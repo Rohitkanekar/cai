@@ -1,0 +1,36 @@
+[
+  {
+    "id": 40,
+    "name": "White GRC Jali",
+    "slug": "white-grc-jali",
+    "category": "grc",
+    "price": "350 / Sq. Ft.",
+    "material": "Glass Reinforced Concrete",
+    "color": "White",
+    "size": "Custom",
+    "finish": "Smooth",
+    "features": "Weather Resistant, UV Protected",
+    "description": "Premium White GRC Jali manufactured using Glass Reinforced Concrete. Ideal for building facades, balconies, compound walls and architectural elevations. Lightweight, durable and suitable for indoor as well as outdoor applications.",
+    "thumbnail": "images/products/grc/grc1.webp",
+    "images": [
+      "images/products/grc/grc1.webp"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "100mm Geometric Pattern GRC Jali",
+    "slug": "100mm-geometric-pattern-grc-jali",
+    "category": "grc",
+    "price": "400 / Sq. Ft.",
+    "material": "Glass Reinforced Concrete",
+    "color": "Grey",
+    "size": "100 mm",
+    "finish": "Concrete Finish",
+    "features": "High Strength, Crack Resistant",
+    "description": "Modern geometric GRC Jali designed for architectural projects. Provides excellent ventilation while enhancing the visual appeal of residential and commercial buildings.",
+    "thumbnail": "images/products/grc/grc2.webp",
+    "images": [
+      "images/products/grc/grc2.webp"
+    ]
+  }  
+]

@@ -1,0 +1,136 @@
+/*==========================================
+            RECENT PROJECTS
+==========================================*/
+
+.projects {
+    padding: 100px 0;
+    background: #f8f9fa;
+}
+
+/*==========================================
+            PROJECT GRID
+==========================================*/
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/*==========================================
+            PROJECT CARD
+==========================================*/
+
+.project-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/*==========================================
+            IMAGE
+==========================================*/
+
+.project-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    transition: 0.5s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.1);
+}
+
+/*==========================================
+            DARK OVERLAY
+==========================================*/
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, .85),
+            rgba(0, 0, 0, .15),
+            transparent);
+    opacity: 1;
+    transition: .4s;
+}
+
+/*==========================================
+            PROJECT INFO
+==========================================*/
+
+.project-info {
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    color: var(--light);
+    opacity: 1;
+}
+
+.project-info h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.project-info span {
+    display: inline-block;
+    color: var(--light);
+    background: var(--primary);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/*==========================================
+            HOVER EFFECT
+==========================================*/
+
+.project-card:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, .18);
+}
+
+/*==========================================
+            RESPONSIVE
+==========================================*/
+
+@media(max-width:992px) {
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .projects {
+        padding: 70px 0;
+    }
+
+    .project-card img {
+        height: 280px;
+    }
+
+    .project-info {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .project-info h3 {
+        font-size: 22px;
+    }
+
+    .project-info span {
+        font-size: 13px;
+        padding: 7px 15px;
+    }
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "id": 42,
+    "name": "Precast Concrete Bench",
+    "slug": "precast-concrete-bench-without-arm-rest",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "length": "3 Feet",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Premium precast concrete bench manufactured for outdoor parks, gardens and public spaces. Designed with a backrest for comfortable seating and long-lasting durability.",
+    "thumbnail": "images/products/benches/bench1.webp",
+    "images": [
+      "images/products/benches/bench1.webp",
+      "images/products/benches/bench1-2.webp",
+      "images/products/benches/bench1-3.webp"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Precast Concrete Bench",
+    "slug": "precast-concrete-bench-with-arm-rest",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "With Arm Rest",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Heavy-duty precast concrete bench with integrated arm rests and backrest. Suitable for public parks, landscapes, residential gardens and commercial outdoor seating.",
+    "thumbnail": "images/products/benches/bench2.webp",
+    "images": [
+      "images/products/benches/bench2.webp",
+      "images/products/benches/bench2-2.webp",
+      "images/products/benches/bench2-3.webp",
+      "images/products/benches/bench2-4.webp"
+    ]
+  }
+]

@@ -1,0 +1,2096 @@
+[
+  {
+    "id": 1,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-1",
+    "category": "planters",
+    "price": "2000",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Grey",
+    "size": "12 inch (30 cm)",
+    "finish": "Textured",
+    "features": "UV Protected, Weather Resistant",
+    "description": "Floor Planter 1 is crafted from premium fiber reinforced concrete with a textured natural grey finish. Designed for both indoor and outdoor spaces, it is UV protected, weather resistant, and highly durable. Its contemporary design enhances gardens, balconies, terraces, hotels, villas, offices, and commercial landscapes while requiring very little maintenance.",
+    "thumbnail": "images/products/planters/planter1.webp",
+    "images": [
+      "images/products/planters/planter1.webp"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-2",
+    "category": "planters",
+    "price": "2100",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Stone Grey",
+    "size": "14 inch (36 cm)",
+    "finish": "Matte",
+    "features": "Lightweight, Outdoor & Indoor Use",
+    "description": "Floor Planter 2 features a premium stone grey matte finish that blends beautifully with modern architecture. Manufactured using high-quality fiber reinforced concrete, it is lightweight yet exceptionally strong, making it suitable for gardens, terraces, balconies, resorts, restaurants, and commercial landscapes.",
+    "thumbnail": "images/products/planters/planter2.webp",
+    "images": [
+      "images/products/planters/planter2.webp"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-3",
+    "category": "planters",
+    "price": "2200",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Cement",
+    "size": "16 inch (41 cm)",
+    "finish": "Smooth",
+    "features": "UV Protected, Crack Resistant",
+    "description": "Floor Planter 3 combines elegant aesthetics with exceptional durability. Its smooth natural cement finish complements contemporary interiors and outdoor landscapes. Designed for long-term use, it resists cracking, fading, and harsh weather conditions while maintaining its premium appearance.",
+    "thumbnail": "images/products/planters/planter3.webp",
+    "images": [
+      "images/products/planters/planter3.webp"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-4",
+    "category": "planters",
+    "price": "2300",
+    "material": "Concrete",
+    "color": "Charcoal",
+    "size": "18 inch (46 cm)",
+    "finish": "Textured",
+    "features": "Heavy Duty Construction",
+    "description": "Floor Planter 4 is manufactured from premium architectural concrete with a stylish charcoal textured finish. Built for heavy-duty outdoor use, it withstands rain, sunlight, and changing weather conditions while adding an elegant touch to residential and commercial spaces.",
+    "thumbnail": "images/products/planters/planter4.webp",
+    "images": [
+      "images/products/planters/planter4.webp"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-5",
+    "category": "planters",
+    "price": "2400",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Ash Grey",
+    "size": "18 inch (46 cm)",
+    "finish": "Matte",
+    "features": "Fade Resistant",
+    "description": "Floor Planter 5 is designed for elegant landscaping with a premium ash grey matte finish. Constructed using fiber reinforced concrete, it offers outstanding strength, fade resistance, and low maintenance, making it ideal for homes, offices, hotels, and luxury villas.",
+    "thumbnail": "images/products/planters/planter5.webp",
+    "images": [
+      "images/products/planters/planter5.webp"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-6",
+    "category": "planters",
+    "price": "2500",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Grey",
+    "size": "20 inch (51 cm)",
+    "finish": "Smooth",
+    "features": "UV Protected, Lightweight",
+    "description": "Floor Planter 6 offers a sleek smooth finish with a contemporary design suitable for both indoor and outdoor environments. Its lightweight yet durable construction ensures easy installation while maintaining excellent resistance against UV rays and weather exposure.",
+    "thumbnail": "images/products/planters/planter6.webp",
+    "images": [
+      "images/products/planters/planter6.webp"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-7",
+    "category": "planters",
+    "price": "2650",
+    "material": "Concrete",
+    "color": "Stone Grey",
+    "size": "20 inch (51 cm)",
+    "finish": "Textured",
+    "features": "Weather Resistant",
+    "description": "Floor Planter 7 features a timeless textured stone grey finish that complements every landscape style. Built using premium concrete, it offers superior durability and weather resistance, making it suitable for gardens, terraces, pathways, resorts, and public spaces.",
+    "thumbnail": "images/products/planters/planter7.webp",
+    "images": [
+      "images/products/planters/planter7.webp"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-8",
+    "category": "planters",
+    "price": "2800",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Approaching Night",
+    "size": "22 inch (56 cm)",
+    "finish": "Matte",
+    "features": "Premium Finish",
+    "description": "Floor Planter 8 is finished in the elegant Approaching Night shade, creating a luxurious appearance for modern spaces. Crafted from premium fiber reinforced concrete, it delivers exceptional durability, minimal maintenance, and long-lasting beauty for residential and commercial projects.",
+    "thumbnail": "images/products/planters/planter8.webp",
+    "images": [
+      "images/products/planters/planter8.webp"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-9",
+    "category": "planters",
+    "price": "2950",
+    "material": "Concrete",
+    "color": "Natural Cement",
+    "size": "24 inch (61 cm)",
+    "finish": "Smooth",
+    "features": "Commercial Grade",
+    "description": "Floor Planter 9 is a commercial-grade planter designed for demanding indoor and outdoor applications. Its smooth natural cement finish and robust construction make it perfect for shopping malls, office complexes, hotels, gardens, and landscape projects.",
+    "thumbnail": "images/products/planters/planter9.webp",
+    "images": [
+      "images/products/planters/planter9.webp"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-10",
+    "category": "planters",
+    "price": "3000",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Charcoal",
+    "size": "24 inch (61 cm)",
+    "finish": "Textured",
+    "features": "UV Protected, Premium Outdoor Use",
+    "description": "Floor Planter 10 combines premium craftsmanship with a rich charcoal textured finish. Manufactured using high-strength fiber reinforced concrete, it is UV protected, weather resistant, and ideal for luxury homes, hotels, restaurants, commercial landscapes, rooftop gardens, and outdoor architectural projects.",
+    "thumbnail": "images/products/planters/planter10.webp",
+    "images": [
+      "images/products/planters/planter10.webp"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-11",
+    "category": "planters",
+    "price": "3050",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Grey",
+    "size": "26 inch (66 cm)",
+    "finish": "Matte",
+    "features": "UV Protected, Weather Resistant",
+    "description": "Floor Planter 11 is designed to complement modern architecture with its elegant natural grey matte finish. Manufactured using premium fiber reinforced concrete, it offers exceptional durability, weather resistance, and low maintenance. Suitable for homes, hotels, offices, restaurants, balconies, terraces, and commercial landscape projects.",
+    "thumbnail": "images/products/planters/planter11.webp",
+    "images": [
+      "images/products/planters/planter11.webp"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-12",
+    "category": "planters",
+    "price": "3100",
+    "material": "Concrete",
+    "color": "Stone Grey",
+    "size": "26 inch (66 cm)",
+    "finish": "Textured",
+    "features": "Heavy Duty Construction",
+    "description": "Floor Planter 12 is crafted from premium architectural concrete with a sophisticated stone grey textured finish. Its robust construction makes it ideal for outdoor gardens, parks, hotels, commercial buildings, and residential landscapes while providing long-lasting performance in every season.",
+    "thumbnail": "images/products/planters/planter12.webp",
+    "images": [
+      "images/products/planters/planter12.webp"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-13",
+    "category": "planters",
+    "price": "3150",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Ash Grey",
+    "size": "28 inch (71 cm)",
+    "finish": "Smooth",
+    "features": "Fade Resistant",
+    "description": "Floor Planter 13 combines minimalist styling with exceptional durability. Featuring a smooth ash grey finish, it is designed for both indoor and outdoor applications. Its fade-resistant construction ensures lasting beauty even under continuous exposure to sunlight and rain.",
+    "thumbnail": "images/products/planters/planter13.webp",
+    "images": [
+      "images/products/planters/planter13.webp"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-14",
+    "category": "planters",
+    "price": "3200",
+    "material": "Concrete",
+    "color": "Natural Cement",
+    "size": "28 inch (71 cm)",
+    "finish": "Matte",
+    "features": "Outdoor & Indoor Use",
+    "description": "Floor Planter 14 features a timeless natural cement finish that blends seamlessly with contemporary and traditional spaces. Built using premium-quality concrete, it offers superior strength, weather resistance, and easy maintenance for residential and commercial environments.",
+    "thumbnail": "images/products/planters/planter14.webp",
+    "images": [
+      "images/products/planters/planter14.webp"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-15",
+    "category": "planters",
+    "price": "3250",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Charcoal",
+    "size": "30 inch (76 cm)",
+    "finish": "Textured",
+    "features": "Crack Resistant",
+    "description": "Floor Planter 15 is manufactured using premium fiber reinforced concrete with a charcoal textured finish. Designed for long-lasting outdoor performance, it resists cracks, UV exposure, moisture, and harsh weather conditions while enhancing modern landscape designs.",
+    "thumbnail": "images/products/planters/planter15.webp",
+    "images": [
+      "images/products/planters/planter15.webp"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-16",
+    "category": "planters",
+    "price": "3300",
+    "material": "Concrete",
+    "color": "Approaching Night",
+    "size": "30 inch (76 cm)",
+    "finish": "Smooth",
+    "features": "Premium Outdoor Finish",
+    "description": "Floor Planter 16 showcases an elegant Approaching Night finish that creates a premium architectural appearance. Its smooth surface, durable construction, and weather-resistant properties make it ideal for villas, hotels, luxury apartments, and commercial landscapes.",
+    "thumbnail": "images/products/planters/planter16.webp",
+    "images": [
+      "images/products/planters/planter16.webp"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-17",
+    "category": "planters",
+    "price": "3350",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Stone Grey",
+    "size": "32 inch (81 cm)",
+    "finish": "Matte",
+    "features": "UV Protected",
+    "description": "Floor Planter 17 offers a contemporary stone grey matte finish with premium fiber reinforced concrete construction. It is UV protected, lightweight, and suitable for balconies, terraces, gardens, offices, shopping malls, and hospitality projects requiring stylish outdoor décor.",
+    "thumbnail": "images/products/planters/planter17.webp",
+    "images": [
+      "images/products/planters/planter17.webp"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-18",
+    "category": "planters",
+    "price": "3400",
+    "material": "Concrete",
+    "color": "Natural Grey",
+    "size": "32 inch (81 cm)",
+    "finish": "Textured",
+    "features": "Heavy Duty Construction",
+    "description": "Floor Planter 18 is designed for demanding outdoor environments. Manufactured using premium architectural concrete, it features a textured natural grey finish and excellent durability, making it perfect for parks, commercial buildings, resorts, gardens, and landscape developments.",
+    "thumbnail": "images/products/planters/planter18.webp",
+    "images": [
+      "images/products/planters/planter18.webp"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-19",
+    "category": "planters",
+    "price": "3450",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Ash Grey",
+    "size": "34 inch (86 cm)",
+    "finish": "Smooth",
+    "features": "Weather Resistant",
+    "description": "Floor Planter 19 combines premium craftsmanship with an elegant smooth ash grey finish. Built for residential and commercial applications, it is weather resistant, UV protected, and suitable for indoor decoration as well as outdoor landscaping projects.",
+    "thumbnail": "images/products/planters/planter19.webp",
+    "images": [
+      "images/products/planters/planter19.webp"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-20",
+    "category": "planters",
+    "price": "3500",
+    "material": "Concrete",
+    "color": "Natural Cement",
+    "size": "34 inch (86 cm)",
+    "finish": "Textured",
+    "features": "Premium Finish, UV Protected",
+    "description": "Floor Planter 20 is a premium decorative planter crafted from high-quality concrete with a natural cement textured finish. Designed for durability and aesthetic appeal, it enhances modern homes, commercial buildings, hotels, resorts, rooftop gardens, and luxury landscape projects with minimal maintenance.",
+    "thumbnail": "images/products/planters/planter20.webp",
+    "images": [
+      "images/products/planters/planter20.webp"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-21",
+    "category": "planters",
+    "price": "3550",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Grey",
+    "size": "36 inch (91 cm)",
+    "finish": "Textured",
+    "features": "UV Protected, Weather Resistant",
+    "description": "Floor Planter 21 is crafted using premium fiber reinforced concrete with a textured natural grey finish. Its elegant design and weather-resistant construction make it ideal for gardens, terraces, balconies, commercial buildings, hotels, and luxury residential projects. Designed for long-lasting durability with minimal maintenance.",
+    "thumbnail": "images/products/planters/planter21.webp",
+    "images": [
+      "images/products/planters/planter21.webp"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-22",
+    "category": "planters",
+    "price": "3650",
+    "material": "Concrete",
+    "color": "Stone Grey",
+    "size": "36 inch (91 cm)",
+    "finish": "Matte",
+    "features": "Heavy Duty Construction",
+    "description": "Floor Planter 22 combines architectural elegance with exceptional durability. Made from premium concrete and finished in stone grey matte, it complements both modern and traditional landscapes while offering superior resistance against sunlight, rain, and daily outdoor use.",
+    "thumbnail": "images/products/planters/planter22.webp",
+    "images": [
+      "images/products/planters/planter22.webp"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-23",
+    "category": "planters",
+    "price": "3750",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Ash Grey",
+    "size": "38 inch (97 cm)",
+    "finish": "Smooth",
+    "features": "Fade Resistant",
+    "description": "Floor Planter 23 features a premium smooth ash grey finish that enhances contemporary architectural spaces. Manufactured from high-quality fiber reinforced concrete, it is fade resistant, lightweight, and suitable for indoor as well as outdoor landscaping applications.",
+    "thumbnail": "images/products/planters/planter23.webp",
+    "images": [
+      "images/products/planters/planter23.webp"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-24",
+    "category": "planters",
+    "price": "3850",
+    "material": "Concrete",
+    "color": "Natural Cement",
+    "size": "38 inch (97 cm)",
+    "finish": "Textured",
+    "features": "Outdoor & Indoor Use",
+    "description": "Floor Planter 24 is designed to bring elegance and functionality to gardens, balconies, office entrances, hotels, and commercial spaces. Its premium textured natural cement finish provides a timeless appearance with exceptional durability and weather resistance.",
+    "thumbnail": "images/products/planters/planter24.webp",
+    "images": [
+      "images/products/planters/planter24.webp"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-25",
+    "category": "planters",
+    "price": "3950",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Charcoal",
+    "size": "40 inch (102 cm)",
+    "finish": "Matte",
+    "features": "UV Protected",
+    "description": "Floor Planter 25 is manufactured from premium fiber reinforced concrete with a sophisticated charcoal matte finish. Its UV-protected surface prevents fading while maintaining its luxurious appearance for residential gardens, commercial landscapes, and hospitality projects.",
+    "thumbnail": "images/products/planters/planter25.webp",
+    "images": [
+      "images/products/planters/planter25.webp"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-26",
+    "category": "planters",
+    "price": "4050",
+    "material": "Concrete",
+    "color": "Approaching Night",
+    "size": "40 inch (102 cm)",
+    "finish": "Smooth",
+    "features": "Premium Finish",
+    "description": "Floor Planter 26 features the elegant Approaching Night colour with a premium smooth finish. Built from durable architectural concrete, it offers outstanding strength, weather resistance, and modern aesthetics suitable for luxury homes, villas, and commercial developments.",
+    "thumbnail": "images/products/planters/planter26.webp",
+    "images": [
+      "images/products/planters/planter26.webp"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-27",
+    "category": "planters",
+    "price": "4150",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Grey",
+    "size": "42 inch (107 cm)",
+    "finish": "Textured",
+    "features": "Weather Resistant",
+    "description": "Floor Planter 27 is a premium outdoor planter featuring a textured natural grey finish. Constructed using fiber reinforced concrete, it offers excellent weather resistance and durability, making it suitable for public parks, hotels, malls, and premium residential landscaping.",
+    "thumbnail": "images/products/planters/planter27.webp",
+    "images": [
+      "images/products/planters/planter27.webp"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-28",
+    "category": "planters",
+    "price": "4250",
+    "material": "Concrete",
+    "color": "Stone Grey",
+    "size": "42 inch (107 cm)",
+    "finish": "Matte",
+    "features": "Commercial Grade",
+    "description": "Floor Planter 28 is built for commercial and residential landscaping applications. Its premium stone grey matte finish blends perfectly with modern architecture while offering outstanding strength, stability, and long-lasting outdoor performance.",
+    "thumbnail": "images/products/planters/planter28.webp",
+    "images": [
+      "images/products/planters/planter28.webp"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-29",
+    "category": "planters",
+    "price": "4350",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Ash Grey",
+    "size": "44 inch (112 cm)",
+    "finish": "Smooth",
+    "features": "Lightweight, Crack Resistant",
+    "description": "Floor Planter 29 combines premium craftsmanship with practical performance. Featuring a smooth ash grey finish, it is lightweight yet extremely durable, making it suitable for balconies, rooftops, gardens, hotels, restaurants, and commercial outdoor spaces.",
+    "thumbnail": "images/products/planters/planter29.webp",
+    "images": [
+      "images/products/planters/planter29.webp"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-30",
+    "category": "planters",
+    "price": "4500",
+    "material": "Concrete",
+    "color": "Natural Cement",
+    "size": "44 inch (112 cm)",
+    "finish": "Textured",
+    "features": "Premium Outdoor Use",
+    "description": "Floor Planter 30 is a premium architectural planter designed for modern landscape projects. Its textured natural cement finish, durable construction, and weather-resistant properties make it perfect for villas, resorts, corporate campuses, hotels, and public landscape installations.",
+    "thumbnail": "images/products/planters/planter30.webp",
+    "images": [
+      "images/products/planters/planter30.webp"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-31",
+    "category": "planters",
+    "price": "4650",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Grey",
+    "size": "46 inch (117 cm)",
+    "finish": "Textured",
+    "features": "UV Protected, Weather Resistant",
+    "description": "Floor Planter 31 is designed to deliver elegance and durability for modern landscapes. Manufactured from premium fiber reinforced concrete with a textured natural grey finish, it is UV protected, weather resistant, and suitable for gardens, villas, hotels, offices, resorts, and commercial landscape projects.",
+    "thumbnail": "images/products/planters/planter31.webp",
+    "images": [
+      "images/products/planters/planter31.webp"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-32",
+    "category": "planters",
+    "price": "4800",
+    "material": "Concrete",
+    "color": "Stone Grey",
+    "size": "46 inch (117 cm)",
+    "finish": "Matte",
+    "features": "Heavy Duty Construction",
+    "description": "Floor Planter 32 features a premium stone grey matte finish with heavy-duty concrete construction. It is built to withstand harsh outdoor conditions while maintaining its attractive appearance, making it ideal for residential gardens, commercial buildings, parks, hotels, and public spaces.",
+    "thumbnail": "images/products/planters/planter32.webp",
+    "images": [
+      "images/products/planters/planter32.webp"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-33",
+    "category": "planters",
+    "price": "4950",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Ash Grey",
+    "size": "48 inch (122 cm)",
+    "finish": "Smooth",
+    "features": "Fade Resistant",
+    "description": "Floor Planter 33 combines a smooth ash grey finish with premium fiber reinforced concrete construction. Its fade-resistant surface and lightweight design make it suitable for indoor decoration, outdoor landscaping, luxury villas, office entrances, hotels, and terrace gardens.",
+    "thumbnail": "images/products/planters/planter33.webp",
+    "images": [
+      "images/products/planters/planter33.webp"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-34",
+    "category": "planters",
+    "price": "5100",
+    "material": "Concrete",
+    "color": "Natural Cement",
+    "size": "48 inch (122 cm)",
+    "finish": "Textured",
+    "features": "Commercial Grade",
+    "description": "Floor Planter 34 is engineered for commercial and architectural landscaping. Its textured natural cement finish delivers a timeless appearance while the durable concrete construction provides excellent strength, stability, and long-term outdoor performance in all weather conditions.",
+    "thumbnail": "images/products/planters/planter34.webp",
+    "images": [
+      "images/products/planters/planter34.webp"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-35",
+    "category": "planters",
+    "price": "5250",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Charcoal",
+    "size": "50 inch (127 cm)",
+    "finish": "Matte",
+    "features": "UV Protected",
+    "description": "Floor Planter 35 features a luxurious charcoal matte finish with UV-protected fiber reinforced concrete construction. Designed for premium landscape projects, it enhances gardens, hotels, resorts, commercial buildings, villas, and modern residential spaces with lasting beauty.",
+    "thumbnail": "images/products/planters/planter35.webp",
+    "images": [
+      "images/products/planters/planter35.webp"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-36",
+    "category": "planters",
+    "price": "5400",
+    "material": "Concrete",
+    "color": "Approaching Night",
+    "size": "50 inch (127 cm)",
+    "finish": "Smooth",
+    "features": "Premium Finish",
+    "description": "Floor Planter 36 showcases an elegant Approaching Night colour with a premium smooth finish. Crafted using architectural concrete, it offers outstanding weather resistance and complements luxury homes, hotels, commercial landscapes, rooftop gardens, and contemporary outdoor environments.",
+    "thumbnail": "images/products/planters/planter36.webp",
+    "images": [
+      "images/products/planters/planter36.webp"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-37",
+    "category": "planters",
+    "price": "5550",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Grey",
+    "size": "52 inch (132 cm)",
+    "finish": "Textured",
+    "features": "Crack Resistant",
+    "description": "Floor Planter 37 is manufactured using premium fiber reinforced concrete with a textured natural grey finish. Its crack-resistant construction and modern styling make it suitable for luxury residences, resorts, public gardens, office campuses, shopping malls, and outdoor architectural projects.",
+    "thumbnail": "images/products/planters/planter37.webp",
+    "images": [
+      "images/products/planters/planter37.webp"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-38",
+    "category": "planters",
+    "price": "5700",
+    "material": "Concrete",
+    "color": "Stone Grey",
+    "size": "52 inch (132 cm)",
+    "finish": "Matte",
+    "features": "Weather Resistant",
+    "description": "Floor Planter 38 combines premium craftsmanship with a sophisticated stone grey matte finish. Built using high-quality concrete, it offers superior durability, weather resistance, and timeless aesthetics for commercial, hospitality, residential, and public landscaping projects.",
+    "thumbnail": "images/products/planters/planter38.webp",
+    "images": [
+      "images/products/planters/planter38.webp"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Pots And Planters",
+    "slug": "floor-planter-39",
+    "category": "planters",
+    "price": "5850",
+    "material": "Fiber Reinforced Concrete",
+    "color": "Natural Cement",
+    "size": "54 inch (137 cm)",
+    "finish": "Textured",
+    "features": "Premium Outdoor Use",
+    "description": "Floor Planter 39 is the largest planter in this collection, designed for premium architectural and landscape projects. Constructed from high-quality fiber reinforced concrete with a textured natural cement finish, it provides exceptional strength, UV protection, weather resistance, and long-lasting performance for luxury villas, hotels, resorts, commercial complexes, and public gardens.",
+    "thumbnail": "images/products/planters/planter39.webp",
+    "images": [
+      "images/products/planters/planter39.webp"
+    ]
+  },  
+  {
+    "id": 40,
+    "name": "White GRC Jali",
+    "slug": "white-grc-jali",
+    "category": "grc",
+    "price": "350 / Sq. Ft.",
+    "material": "Glass Reinforced Concrete",
+    "color": "White",
+    "size": "Custom",
+    "finish": "Smooth",
+    "features": "Weather Resistant, UV Protected",
+    "description": "Premium White GRC Jali manufactured using Glass Reinforced Concrete. Ideal for building facades, balconies, compound walls and architectural elevations. Lightweight, durable and suitable for indoor as well as outdoor applications.",
+    "thumbnail": "images/products/grc/grc1.webp",
+    "images": [
+      "images/products/grc/grc1.webp"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "100mm Geometric Pattern GRC Jali",
+    "slug": "100mm-geometric-pattern-grc-jali",
+    "category": "grc",
+    "price": "400 / Sq. Ft.",
+    "material": "Glass Reinforced Concrete",
+    "color": "Grey",
+    "size": "100 mm",
+    "finish": "Concrete Finish",
+    "features": "High Strength, Crack Resistant",
+    "description": "Modern geometric GRC Jali designed for architectural projects. Provides excellent ventilation while enhancing the visual appeal of residential and commercial buildings.",
+    "thumbnail": "images/products/grc/grc2.webp",
+    "images": [
+      "images/products/grc/grc2.webp"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Precast Concrete Bench",
+    "slug": "precast-concrete-bench-without-arm-rest",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "length": "3 Feet",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Premium precast concrete bench manufactured for outdoor parks, gardens and public spaces. Designed with a backrest for comfortable seating and long-lasting durability.",
+    "thumbnail": "images/products/benches/bench1.webp",
+    "images": [
+      "images/products/benches/bench1.webp",
+      "images/products/benches/bench1-2.webp",
+      "images/products/benches/bench1-3.webp"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Precast Concrete Bench",
+    "slug": "precast-concrete-bench-with-arm-rest",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "With Arm Rest",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Heavy-duty precast concrete bench with integrated arm rests and backrest. Suitable for public parks, landscapes, residential gardens and commercial outdoor seating.",
+    "thumbnail": "images/products/benches/bench2.webp",
+    "images": [
+      "images/products/benches/bench2.webp",
+      "images/products/benches/bench2-2.webp",
+      "images/products/benches/bench2-3.webp",
+      "images/products/benches/bench2-4.webp"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "FRP Elephant Statue",
+    "slug": "frp-elephant-statue",
+    "category": "statues",
+    "brand": "Concrete Arts India",
+    "price": "15000",
+    "currency": "INR",
+    "material": "FRP",
+    "color": "Golden & Brown",
+    "design": "Elephant Statue",
+    "usage": "Exterior Decor",
+    "countryOfOrigin": "India",
+    "pureSilver": "No",
+    "description": "Premium FRP Elephant Statue manufactured using high-quality Fiberglass Reinforced Plastic (FRP). Designed with realistic detailing and durable weather-resistant construction, making it suitable for gardens, resorts, hotels, parks, temples, commercial landscapes and exterior decorative installations.",
+    "features": [
+      "High Quality FRP",
+      "Weather Resistant",
+      "Lightweight",
+      "Durable Construction",
+      "Handcrafted Finish",
+      "Easy Installation",
+      "Suitable for Outdoor Use",
+      "Low Maintenance"
+    ],
+    "thumbnail": "images/products/statues/frp-elephant-statue.webp",
+    "images": [
+      "images/products/statues/frp-elephant-statue.webp",
+      "images/products/statues/frp-elephant-statue-1.webp",
+      "images/products/statues/frp-elephant-statue-2.webp",
+      "images/products/statues/frp-elephant-statue-3.webp"
+    ],
+    "seo": {
+      "title": "FRP Elephant Statue Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium FRP Elephant Statue manufactured by Concrete Arts India. High-quality fiberglass elephant statue suitable for gardens, resorts, hotels and outdoor decoration.",
+      "keywords": [
+        "FRP Elephant Statue",
+        "Fiberglass Elephant Statue",
+        "Animal Statue",
+        "Garden Elephant Statue",
+        "Outdoor Elephant Statue",
+        "FRP Sculpture",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 45,
+    "name": "Radha Krishna Statue",
+    "slug": "radha-krishna-statue",
+    "category": "statues",
+    "subcategory": "radha-krishna",
+    "brand": "Concrete Arts India",
+    "price": "35000",
+    "currency": "INR",
+    "material": "Marble",
+    "color": "Blue",
+    "size": "8 x 9 Inch",
+    "suitableFor": "Temple",
+    "godName": "Radha Krishna",
+    "finish": "Hand Finished",
+    "usage": [
+      "Temple",
+      "Home Temple",
+      "Religious Places",
+      "Spiritual Decor"
+    ],
+    "description": "Beautiful Radha Krishna statue crafted from premium quality marble with a fine blue finish. Designed for temples and devotional spaces, the statue showcases intricate detailing and superior craftsmanship, making it ideal for spiritual environments and religious installations.",
+    "features": [
+      "Premium Marble Construction",
+      "Elegant Blue Finish",
+      "Intricate Handcrafted Design",
+      "Temple Suitable",
+      "Low Maintenance",
+      "Long Lasting",
+      "Fine Artistic Detailing",
+      "Made in India"
+    ],
+    "thumbnail": "images/products/statues/radha-krishna-statue.webp",
+    "images": [
+      "images/products/statues/radha-krishna-statue.webp",
+      "images/products/statues/radha-krishna-statue-1.webp",
+      "images/products/statues/radha-krishna-statue-2.webp",
+      "images/products/statues/radha-krishna-statue-3.webp",
+      "images/products/statues/radha-krishna-statue-4.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Radha Krishna Marble Statue Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium Radha Krishna marble statues for temples, homes and spiritual spaces. High-quality handcrafted marble idol manufactured by Concrete Arts India.",
+      "keywords": [
+        "Radha Krishna Statue",
+        "Marble Radha Krishna Idol",
+        "Temple Statue",
+        "God Statue",
+        "Marble Idol",
+        "Religious Statue",
+        "Spiritual Decor",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 46,
+    "name": "FRP Buddha Statue",
+    "slug": "frp-buddha-statue",
+    "category": "statues",
+    "subcategory": "buddha-statues",
+    "brand": "Concrete Arts India",
+    "price": "5500",
+    "currency": "INR",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "FRP (Fiber Reinforced Plastic)",
+    "design": "Sitting Design",
+    "style": "Traditional",
+    "size": "21 Inch",
+    "color": "Brown",
+    "finish": "Hand Painted",
+    "usage": [
+      "Temple",
+      "Home Decor",
+      "Garden Decoration",
+      "Meditation Room",
+      "Resort Decoration",
+      "Landscape Decoration"
+    ],
+    "description": "Premium quality FRP Buddha Statue featuring a traditional sitting posture with elegant craftsmanship. Manufactured using durable Fiber Reinforced Plastic (FRP), the statue is lightweight, weather resistant and suitable for both indoor and outdoor decoration. Ideal for temples, meditation spaces, gardens, resorts and commercial landscapes.",
+    "features": [
+      "Premium FRP Construction",
+      "Traditional Sitting Design",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Hand Finished",
+      "Suitable for Indoor & Outdoor Use",
+      "Low Maintenance",
+      "Long Lasting Finish",
+      "Made in India"
+    ],
+    "thumbnail": "images/products/statues/buddha-statue-1.webp",
+    "images": [
+      "images/products/statues/buddha-statue.webp",
+      "images/products/statues/buddha-statue-1.webp",
+      "images/products/statues/buddha-statue-2.webp",
+      "images/products/statues/buddha-statue-3.webp",
+      "images/products/statues/buddha-statue-4.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "FRP Buddha Statue Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium FRP Buddha Statue with traditional sitting design. High-quality fiberglass Buddha statue suitable for temples, gardens, meditation rooms and decorative landscapes.",
+      "keywords": [
+        "FRP Buddha Statue",
+        "Fiberglass Buddha Statue",
+        "Garden Buddha Statue",
+        "Temple Buddha Statue",
+        "Meditation Buddha",
+        "Outdoor Buddha Statue",
+        "Decorative Buddha Idol",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 47,
+    "name": "FRP Buddha Statue",
+    "slug": "frp-buddha-statue",
+    "category": "statues",
+    "subcategory": "buddha-statues",
+    "brand": "Concrete Arts India",
+    "price": "5500",
+    "currency": "INR",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "FRP (Fiber Reinforced Plastic)",
+    "design": "Sitting Design",
+    "style": "Traditional",
+    "size": "21 Inch",
+    "color": "Brown",
+    "finish": "Hand Painted",
+    "usage": [
+      "Temple",
+      "Home Decor",
+      "Garden Decoration",
+      "Meditation Room",
+      "Resort Decoration",
+      "Landscape Decoration"
+    ],
+    "description": "Premium quality FRP Buddha Statue featuring a traditional sitting posture with elegant craftsmanship. Manufactured using durable Fiber Reinforced Plastic (FRP), the statue is lightweight, weather resistant and suitable for both indoor and outdoor decoration. Ideal for temples, meditation spaces, gardens, resorts and commercial landscapes.",
+    "features": [
+      "Premium FRP Construction",
+      "Traditional Sitting Design",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Hand Finished",
+      "Suitable for Indoor & Outdoor Use",
+      "Low Maintenance",
+      "Long Lasting Finish",
+      "Made in India"
+    ],
+    "thumbnail": "images/products/statues/buddha-statue-2.webp",
+    "images": [
+      "images/products/statues/buddha-statue.webp",
+      "images/products/statues/buddha-statue-1.webp",
+      "images/products/statues/buddha-statue-2.webp",
+      "images/products/statues/buddha-statue-3.webp",
+      "images/products/statues/buddha-statue-4.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "FRP Buddha Statue Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium FRP Buddha Statue with traditional sitting design. High-quality fiberglass Buddha statue suitable for temples, gardens, meditation rooms and decorative landscapes.",
+      "keywords": [
+        "FRP Buddha Statue",
+        "Fiberglass Buddha Statue",
+        "Garden Buddha Statue",
+        "Temple Buddha Statue",
+        "Meditation Buddha",
+        "Outdoor Buddha Statue",
+        "Decorative Buddha Idol",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 48,
+    "name": "GRC Small Plants Pot",
+    "slug": "grc-small-plants-pot",
+    "category": "planters",
+    "subcategory": "small-planters",
+    "brand": "Concrete Arts India",
+    "price": "850",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "GRC (Glass Reinforced Concrete)",
+    "planterType": "Plants Pot",
+    "shape": "Round",
+    "height": "450 mm",
+    "size": "4 x 5 Inch",
+    "color": "Brown",
+    "finish": "Polished",
+    "usage": [
+      "Indoor Decoration",
+      "Outdoor Decoration",
+      "Garden",
+      "Balcony",
+      "Terrace",
+      "Landscape",
+      "Home Decor",
+      "Commercial Spaces"
+    ],
+    "description": "Premium GRC Small Plants Pot manufactured using Glass Reinforced Concrete (GRC). Made from a blend of cement, fine aggregates and glass fibers, this planter offers excellent strength while remaining lightweight and easy to handle. Its polished brown finish and modern round design make it suitable for both indoor and outdoor decorative applications.",
+    "features": [
+      "Glass Reinforced Concrete Construction",
+      "Lightweight",
+      "High Strength",
+      "Weather Resistant",
+      "Durable",
+      "Polished Finish",
+      "Modern Round Design",
+      "Indoor & Outdoor Use",
+      "Low Maintenance",
+      "Long Service Life"
+    ],
+    "thumbnail": "images/products/planters/planter48.webp",
+    "images": [
+      "images/products/planters/small-plants-pot.webp",
+      "images/products/planters/small-plants-pot-1.webp",
+      "images/products/planters/small-plants-pot-2.webp",
+      "images/products/planters/small-plants-pot-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "GRC Small Plants Pot Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium GRC Small Plants Pot with polished finish. Lightweight and durable Glass Reinforced Concrete planter suitable for gardens, balconies, homes and commercial landscapes.",
+      "keywords": [
+        "GRC Planter",
+        "Glass Reinforced Concrete Planter",
+        "Small Plants Pot",
+        "Round GRC Pot",
+        "Garden Planter",
+        "Decorative Planter",
+        "Concrete Planter",
+        "Outdoor Planter",
+        "Indoor Planter",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 49,
+    "name": "Garden Pots Garden Planters",
+    "slug": "garden-pots-garden-planters",
+    "category": "planters",
+    "subcategory": "garden-pots",
+    "brand": "Concrete Arts India",
+    "price": "1700",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "color": "Brown",
+    "size": "20 x 24 Inch",
+    "diameter": "2 Feet",
+    "finish": "Polished",
+    "display": "Outdoor",
+    "usage": [
+      "Garden",
+      "Landscape",
+      "Home",
+      "Villa",
+      "Hotel",
+      "Resort",
+      "Office",
+      "Terrace",
+      "Balcony",
+      "Outdoor Decoration"
+    ],
+    "description": "Premium garden planter manufactured using high-quality Fiber Clay with a polished finish. The planter features a modern round profile with excellent durability, making it suitable for gardens, terraces, balconies, commercial landscapes and outdoor decorative applications.",
+    "features": [
+      "Premium Fiber Clay Material",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Durable Construction",
+      "Polished Finish",
+      "Low Maintenance",
+      "Suitable for Indoor & Outdoor Use",
+      "Modern Round Design",
+      "Long Service Life"
+    ],
+    "thumbnail": "images/products/planters/planter49.webp",
+    "images": [
+      "images/products/garden-planters/garden-pots-garden-planters.webp",
+      "images/products/garden-planters/garden-pots-garden-planters-1.webp",
+      "images/products/garden-planters/garden-pots-garden-planters-2.webp",
+      "images/products/garden-planters/garden-pots-garden-planters-3.webp",
+      "images/products/garden-planters/garden-pots-garden-planters-4.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Garden Pots Garden Planters Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium Fiber Clay garden pots and garden planters with polished finish. Ideal for gardens, balconies, hotels, resorts, commercial landscaping and outdoor decoration.",
+      "keywords": [
+        "Garden Planters",
+        "Garden Pots",
+        "Fiber Clay Planter",
+        "Outdoor Planter",
+        "Landscape Planter",
+        "Decorative Planter",
+        "Large Garden Pot",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 50,
+    "name": "Vertical Garden Planters",
+    "slug": "vertical-garden-planters",
+    "category": "planters",
+    "subcategory": "vertical-garden-planters",
+    "brand": "Concrete Arts India",
+    "price": "3788",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "color": "White",
+    "size": "10 Inch",
+    "height": "19 Inch",
+    "display": "Outdoor",
+    "itemCode": "RY4R28",
+    "usage": [
+      "Vertical Garden",
+      "Home Garden",
+      "Balcony",
+      "Terrace",
+      "Office",
+      "Hotel",
+      "Resort",
+      "Landscape",
+      "Outdoor Decoration"
+    ],
+    "description": "Premium Fiber Clay Vertical Garden Planter designed for outdoor green walls and vertical landscaping. Manufactured using high-quality Fiber Clay, this planter offers durability, weather resistance and an elegant white finish, making it suitable for residential and commercial landscape projects.",
+    "features": [
+      "Premium Fiber Clay Construction",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Durable",
+      "Round Design",
+      "Elegant White Finish",
+      "Outdoor Suitable",
+      "Low Maintenance",
+      "Long Service Life"
+    ],
+    "thumbnail": "images/products/planters/planter50.webp",
+    "images": [
+      "images/products/planters/planters-planter.webp",
+      "images/products/planters/planters-planter-1.webp",
+      "images/products/planters/planters-planter-2.webp",
+      "images/products/planters/planters-planter-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Vertical Garden Planters Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium Fiber Clay Vertical Garden Planters suitable for outdoor green walls, balconies, gardens, hotels and landscape projects. Manufactured by Concrete Arts India.",
+      "keywords": [
+        "Vertical Garden Planter",
+        "Vertical Garden",
+        "Fiber Clay Planter",
+        "Wall Garden Planter",
+        "Outdoor Planter",
+        "Garden Planter",
+        "Landscape Planter",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 51,
+    "name": "Designer Fiber Planter Pot",
+    "slug": "designer-fiber-planter-pot",
+    "category": "planters",
+    "subcategory": "designer-planters",
+    "brand": "Concrete Arts India",
+    "price": "2450",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay Premium Pot",
+    "shape": "Rectangular",
+    "size": "24 Inch",
+    "color": "White",
+    "finish": "Premium Finish",
+    "usage": [
+      "Flower Pot",
+      "Garden",
+      "Landscape",
+      "Home",
+      "Villa",
+      "Hotel",
+      "Resort",
+      "Commercial Spaces",
+      "Outdoor Decoration"
+    ],
+    "description": "Designer Fiber Planter Pot manufactured from premium quality Fiber Clay material with a modern rectangular design. The planter is lightweight, weather resistant and ideal for indoor as well as outdoor landscaping applications. Its elegant white finish complements residential and commercial spaces while providing durability and low maintenance.",
+    "features": [
+      "Premium Fiber Clay Construction",
+      "Modern Rectangular Design",
+      "Lightweight",
+      "Weather Resistant",
+      "UV Resistant",
+      "Durable Construction",
+      "Elegant White Finish",
+      "Low Maintenance",
+      "Indoor & Outdoor Use",
+      "Long Service Life"
+    ],
+    "thumbnail": "images/products/planters/planter51.webp",
+    "images": [
+      "images/products/fiberglass-planters/designer-fiber-planter-pot.webp",
+      "images/products/fiberglass-planters/designer-fiber-planter-pot-1.webp",
+      "images/products/fiberglass-planters/designer-fiber-planter-pot-2.webp",
+      "images/products/fiberglass-planters/designer-fiber-planter-pot-3.webp",
+      "images/products/fiberglass-planters/designer-fiber-planter-pot-4.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Designer Fiber Planter Pot Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium Designer Fiber Planter Pots made from Fiber Clay with modern rectangular design. Suitable for gardens, homes, hotels, offices and commercial landscaping.",
+      "keywords": [
+        "Designer Fiber Planter Pot",
+        "Fiberglass Planter",
+        "Fiber Clay Planter",
+        "Rectangular Planter",
+        "Garden Planter",
+        "Outdoor Planter",
+        "Commercial Planter",
+        "Landscape Planter",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 52,
+    "name": "Designer Ceramic Planter",
+    "slug": "designer-ceramic-planter",
+    "category": "planters",
+    "subcategory": "ceramic-planters",
+    "brand": "Concrete Arts India",
+    "price": "2950",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "26 - 50 CM",
+    "color": "White",
+    "finish": "Polished",
+    "display": "Indoor & Outdoor",
+    "usage": [
+      "Home",
+      "Garden",
+      "Office",
+      "Hotel",
+      "Resort",
+      "Landscape",
+      "Indoor Decoration",
+      "Outdoor Decoration"
+    ],
+    "description": "Designer Ceramic Planter manufactured from premium Fiber Clay with a polished white finish. Suitable for residential and commercial landscaping, this planter combines elegant aesthetics with weather resistance and durability for both indoor and outdoor applications.",
+    "features": [
+      "Premium Fiber Clay Construction",
+      "Elegant White Finish",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Durable Construction",
+      "Suitable for Indoor & Outdoor Use",
+      "Low Maintenance",
+      "Long Service Life",
+      "Modern Designer Look"
+    ],
+    "thumbnail": "images/products/planters/planter52.webp",
+    "images": [
+      "images/products/designer-planters/designer-ceramic-planter.webp",
+      "images/products/designer-planters/designer-ceramic-planter-1.webp",
+      "images/products/designer-planters/designer-ceramic-planter-2.webp",
+      "images/products/designer-planters/designer-ceramic-planter-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Designer Ceramic Planter Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Premium designer ceramic planter with polished finish for homes, gardens, offices, hotels and commercial landscaping.",
+      "keywords": [
+        "Designer Ceramic Planter",
+        "Fiber Clay Planter",
+        "White Planter",
+        "Decorative Planter",
+        "Garden Planter",
+        "Indoor Planter",
+        "Outdoor Planter"
+      ]
+    }
+  },
+  {
+    "id": 53,
+    "name": "Planters",
+    "slug": "designer-planters",
+    "category": "planters",
+    "subcategory": "premium-planters",
+    "brand": "Concrete Arts India",
+    "price": "2880",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "30 x 15 Inch",
+    "color": "White",
+    "finish": "Polished",
+    "display": "Outdoor",
+    "usage": [
+      "Home",
+      "Garden",
+      "Commercial Landscape",
+      "Hotel",
+      "Villa",
+      "Resort",
+      "Office",
+      "Outdoor Decoration"
+    ],
+    "description": "Premium designer planter manufactured from high-quality Fiber Clay with a polished finish. Built to withstand harsh weather conditions while adding a sophisticated decorative element to gardens, homes and commercial landscapes.",
+    "features": [
+      "Innovative Modern Design",
+      "Premium Fiber Clay",
+      "Highly Durable",
+      "Weather Resistant",
+      "Water Proof",
+      "Corrosion Resistant",
+      "Termite Proof",
+      "Low Maintenance",
+      "Polished Finish",
+      "Long Service Life"
+    ],
+    "thumbnail": "images/products/planters/planter53.webp",
+    "images": [
+      "images/products/designer-planters/designer-planter.webp",
+      "images/products/designer-planters/designer-planter-1.webp",
+      "images/products/designer-planters/designer-planter-2.webp",
+      "images/products/designer-planters/designer-planter-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Designer Planters Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium designer Fiber Clay planters with polished finish for gardens, homes, hotels, offices and commercial landscaping.",
+      "keywords": [
+        "Designer Planter",
+        "Fiber Clay Planter",
+        "Garden Planter",
+        "Decorative Planter",
+        "Outdoor Planter",
+        "Landscape Planter",
+        "Modern Planter"
+      ]
+    }
+  },
+  {
+    "id": 54,
+    "name": "Designer Planter Pots",
+    "slug": "designer-planter-pots",
+    "category": "planters",
+    "subcategory": "designer-planters",
+    "brand": "Concrete Arts India",
+    "price": "2750",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "30 x 15 Inch",
+    "color": "White",
+    "finish": "Polished",
+    "display": "Outdoor",
+    "usage": [
+      "Decoration",
+      "Home",
+      "Garden"
+    ],
+    "description": "Premium designer planter pot manufactured using Fiber Clay with polished finish. Designed for gardens, homes and landscape decoration with excellent durability and weather resistance.",
+    "features": [
+      "Innovative Design",
+      "Premium Fiber Clay",
+      "Weather Resistant",
+      "Water Proof",
+      "Corrosion Resistant",
+      "Termite Proof",
+      "Highly Durable",
+      "Low Maintenance",
+      "Polished Finish",
+      "Long Service Life"
+    ],
+    "thumbnail": "images/products/planters/planter54.webp",
+    "images": [
+      "images/products/planter-pot/designer-planter-pots.webp",
+      "images/products/planter-pot/designer-planter-pots-1.webp",
+      "images/products/planter-pot/designer-planter-pots-2.webp"
+    ],
+    "availability": "In Stock"
+  },
+  {
+    "id": 55,
+    "name": "Ceramic Pots Planters",
+    "slug": "ceramic-pots-planters",
+    "category": "planters",
+    "subcategory": "ceramic-planters",
+    "brand": "Concrete Arts India",
+    "price": "2980",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "26 - 50 CM",
+    "color": "White",
+    "finish": "Polished",
+    "display": "Indoor & Outdoor",
+    "usage": [
+      "Decoration",
+      "Home",
+      "Garden",
+      "Indoor",
+      "Outdoor"
+    ],
+    "description": "Premium ceramic-style planter manufactured using Fiber Clay with polished white finish suitable for residential and commercial landscape decoration.",
+    "features": [
+      "Premium Fiber Clay",
+      "Elegant Finish",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Durable Construction",
+      "Indoor & Outdoor Use",
+      "Low Maintenance"
+    ],
+    "thumbnail": "images/products/planters/planter55.webp",
+    "images": [
+      "images/products/planter-pot/ceramic-pots-planters.webp",
+      "images/products/planter-pot/ceramic-pots-planters-1.webp",
+      "images/products/planter-pot/ceramic-pots-planters-2.webp"
+    ],
+    "availability": "In Stock"
+  },
+  {
+    "id": 56,
+    "name": "Planters",
+    "slug": "planters",
+    "category": "planters",
+    "subcategory": "decorative-planters",
+    "brand": "Concrete Arts India",
+    "price": "2880",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "20 x 24 Inch",
+    "diameter": "2 Feet",
+    "color": "Brown",
+    "finish": "Polished",
+    "display": "Outdoor",
+    "usage": [
+      "Garden",
+      "Landscape",
+      "Outdoor Decoration",
+      "Home",
+      "Hotel",
+      "Resort"
+    ],
+    "description": "Decorative outdoor planter manufactured using premium Fiber Clay with polished finish. Suitable for gardens, villas, resorts and commercial landscape projects.",
+    "features": [
+      "Premium Fiber Clay",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Durable",
+      "Outdoor Suitable",
+      "Low Maintenance",
+      "Elegant Finish"
+    ],
+    "thumbnail": "images/products/planters/planter56.webp",
+    "images": [
+      "images/products/planter-pot/planters.webp",
+      "images/products/planter-pot/planters-1.webp",
+      "images/products/planter-pot/planters-2.webp"
+    ],
+    "availability": "In Stock"
+  },
+  {
+    "id": 57,
+    "name": "Premium Flower Pots",
+    "slug": "premium-flower-pots",
+    "category": "planters",
+    "subcategory": "premium-flower-pots",
+    "brand": "Concrete Arts India",
+    "price": "2879",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "5 Inch",
+    "color": "Brown",
+    "finish": "Premium Finish",
+    "usage": [
+      "Garden",
+      "Home",
+      "Balcony",
+      "Terrace",
+      "Landscape",
+      "Indoor Decoration",
+      "Outdoor Decoration"
+    ],
+    "description": "Premium flower pot manufactured using high-quality Fiber Clay with a stylish round design. Suitable for gardens, balconies, terraces and indoor decoration. Built to withstand harsh weather conditions while offering a premium decorative appearance.",
+    "features": [
+      "Innovative Design",
+      "Premium Fiber Clay",
+      "Weather Resistant",
+      "Water Proof",
+      "Termite Proof",
+      "Corrosion Resistant",
+      "Highly Durable",
+      "Long Life Construction",
+      "Optimum Finish",
+      "Low Maintenance"
+    ],
+    "thumbnail": "images/products/planters/planter57.webp",
+    "images": [
+      "images/products/flower-pots/premium-flower-pots.webp",
+      "images/products/flower-pots/premium-flower-pots-1.webp",
+      "images/products/flower-pots/premium-flower-pots-2.webp",
+      "images/products/flower-pots/premium-flower-pots-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India"
+  },
+  {
+    "id": 58,
+    "name": "Rectangular Fiberglass Planter",
+    "slug": "rectangular-fiberglass-planter",
+    "category": "planters",
+    "subcategory": "fiberglass-planters",
+    "brand": "Sendstone",
+    "price": "4225",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fibre Clay Premium Pot",
+    "shape": "Rectangular",
+    "size": "24 Inch",
+    "color": "White",
+    "finish": "Premium Finish",
+    "usage": [
+      "Flower Pot",
+      "Garden",
+      "Landscape",
+      "Home",
+      "Office",
+      "Hotel",
+      "Commercial Decoration"
+    ],
+    "description": "Premium rectangular fiberglass planter manufactured using Fibre Clay with a modern design. Ideal for commercial landscaping, hotels, offices, villas and luxury residential gardens.",
+    "features": [
+      "Rectangular Design",
+      "Premium Fibre Clay",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Strong Construction",
+      "Premium Finish",
+      "Indoor & Outdoor Use",
+      "Low Maintenance",
+      "Long Service Life"
+    ],
+    "thumbnail": "images/products/planters/planter58.webp",
+    "images": [
+      "images/products/flower-pots/rectangular-fiberglass-planter.webp",
+      "images/products/flower-pots/rectangular-fiberglass-planter-1.webp",
+      "images/products/flower-pots/rectangular-fiberglass-planter-2.webp",
+      "images/products/flower-pots/rectangular-fiberglass-planter-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India"
+  },
+  {
+    "id": 59,
+    "name": "Indoor Pot",
+    "slug": "indoor-pot",
+    "category": "planters",
+    "subcategory": "indoor-planters",
+    "brand": "Concrete Arts India",
+    "price": "2531",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "26 - 50 CM",
+    "color": "White",
+    "finish": "Polished",
+    "display": "Outdoor",
+    "usage": [
+      "Indoor Decoration",
+      "Living Room",
+      "Office",
+      "Hotel",
+      "Garden",
+      "Balcony",
+      "Terrace"
+    ],
+    "description": "Elegant indoor planter manufactured using premium Fiber Clay with a polished white finish. Lightweight, durable and suitable for indoor as well as outdoor landscaping applications.",
+    "features": [
+      "Premium Fiber Clay",
+      "Elegant White Finish",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Round Design",
+      "Indoor & Outdoor Use",
+      "Durable Construction",
+      "Low Maintenance",
+      "Modern Appearance"
+    ],
+    "thumbnail": "images/products/planters/planter59.webp",
+    "images": [
+      "images/products/flower-pots/indoor-pot.webp",
+      "images/products/flower-pots/indoor-pot-1.webp",
+      "images/products/flower-pots/indoor-pot-2.webp",
+      "images/products/flower-pots/indoor-pot-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India"
+  },
+  {
+    "id": 60,
+    "name": "Out Designer Planters",
+    "slug": "out-designer-planters",
+    "category": "planters",
+    "subcategory": "designer-planters",
+    "brand": "Concrete Arts India",
+    "price": "6229",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "10 Inch",
+    "diameter": "1 Feet",
+    "thickness": "1 - 3 Inches",
+    "color": "Brown",
+    "finish": "Premium Matte Finish",
+    "usage": [
+      "Decoration",
+      "Indoor",
+      "Outdoor",
+      "Landscaping"
+    ],
+    "description": "Premium outdoor designer planter manufactured using high-quality Fiber Clay. The planter is suitable for indoor and outdoor decoration, landscaping, hotels, villas, resorts and commercial spaces. Designed for durability with an elegant modern appearance.",
+    "features": [
+      "Premium Fiber Clay",
+      "Designer Finish",
+      "Weather Resistant",
+      "UV Resistant",
+      "Indoor & Outdoor Use",
+      "Lightweight",
+      "Durable Construction",
+      "Crack Resistant",
+      "Low Maintenance",
+      "Long Service Life"
+    ],
+    "itemCode": "RC4R15",
+    "thumbnail": "images/products/planters/planter60.webp",
+    "images": [
+      "images/products/decorative-planters/out-designer-planters.webp",
+      "images/products/decorative-planters/out-designer-planters-1.webp",
+      "images/products/decorative-planters/out-designer-planters-2.webp",
+      "images/products/decorative-planters/out-designer-planters-3.webp",
+      "images/products/decorative-planters/out-designer-planters-4.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Out Designer Planters Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Buy premium outdoor designer Fiber Clay planters for landscaping, gardens, hotels and commercial projects.",
+      "keywords": [
+        "Out Designer Planters",
+        "Outdoor Planter",
+        "Fiber Clay Planter",
+        "Garden Planter",
+        "Landscape Planter",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 61,
+    "name": "Flower Clay Planter",
+    "slug": "flower-clay-planter",
+    "category": "planters",
+    "subcategory": "flower-planters",
+    "brand": "Concrete Arts India",
+    "price": "2888",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "10 Inch",
+    "diameter": "1 Feet",
+    "thickness": "1 - 3 Inches",
+    "color": "Brown",
+    "finish": "Natural Clay Finish",
+    "usage": [
+      "Decoration",
+      "Indoor",
+      "Outdoor",
+      "Landscaping"
+    ],
+    "description": "Flower Clay Planters are crafted from high-quality natural clay and baked at high temperatures, providing excellent strength and durability. The porous clay construction promotes better air circulation and moisture regulation, encouraging healthier root growth. Available in multiple decorative designs for homes, gardens and commercial landscaping.",
+    "features": [
+      "High Quality Natural Clay",
+      "High Temperature Fired",
+      "Excellent Air Circulation",
+      "Moisture Control",
+      "Healthy Root Growth",
+      "Weather Resistant",
+      "Decorative Design",
+      "Indoor & Outdoor Use",
+      "Durable Construction",
+      "Low Maintenance"
+    ],
+    "itemCode": "RC4R16",
+    "thumbnail": "images/products/planters/planter61.webp",
+    "images": [
+      "images/products/decorative-planters/flower-clay-planter.webp",
+      "images/products/decorative-planters/flower-clay-planter-1.webp",
+      "images/products/decorative-planters/flower-clay-planter-2.webp",
+      "images/products/decorative-planters/flower-clay-planter-3.webp",
+      "images/products/decorative-planters/flower-clay-planter-4.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Flower Clay Planter Manufacturer in Mumbai | Concrete Arts India",
+      "description": "Premium Flower Clay Planters made from high-quality natural clay for indoor, outdoor and landscaping applications.",
+      "keywords": [
+        "Flower Clay Planter",
+        "Clay Planter",
+        "Garden Pot",
+        "Decorative Planter",
+        "Indoor Planter",
+        "Concrete Arts India"
+      ]
+    }
+  },
+  {
+    "id": 62,
+    "name": "Garden Planter Pot",
+    "slug": "garden-planter-pot",
+    "category": "planters",
+    "subcategory": "garden-planters",
+    "brand": "Concrete Arts India",
+    "price": "2880",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Earthy Materials and Cocopeat",
+    "shape": "Round",
+    "size": "24 x 24 Inch",
+    "color": "Brown",
+    "finish": "Matte Finish",
+    "display": "Outdoor",
+    "usage": [
+      "Garden",
+      "Home",
+      "Villa",
+      "Hotel",
+      "Resort",
+      "Landscape",
+      "Commercial Projects"
+    ],
+    "description": "Premium decorative garden planter pot manufactured using Fiber Clay with a durable matte finish. Suitable for outdoor landscaping, residential gardens, hotels and commercial projects.",
+    "features": [
+      "Premium Fiber Clay",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Durable Construction",
+      "Crack Resistant",
+      "Fade Resistant",
+      "Low Maintenance",
+      "Modern Design",
+      "Long Service Life"
+    ],
+    "itemCode": "RC4R17",
+    "thumbnail": "images/products/planters/planter62.webp",
+    "images": [
+      "images/products/decorative-planters/garden-planter-pot.webp",
+      "images/products/decorative-planters/garden-planter-pot-1.webp",
+      "images/products/decorative-planters/garden-planter-pot-2.webp",
+      "images/products/decorative-planters/garden-planter-pot-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Garden Planter Pot Manufacturer in Mumbai",
+      "description": "Premium Fiber Clay garden planter pot suitable for homes, villas, hotels and landscape projects.",
+      "keywords": [
+        "Garden Planter Pot",
+        "Fiber Clay Planter",
+        "Outdoor Planter",
+        "Landscape Planter",
+        "Decorative Garden Pot"
+      ]
+    }
+  },
+  {
+    "id": 63,
+    "name": "Black Designer Planter",
+    "slug": "black-designer-planter",
+    "category": "planters",
+    "subcategory": "designer-planters",
+    "brand": "Concrete Arts India",
+    "price": "3788",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "30 x 18 Inch",
+    "color": "Black",
+    "finish": "Premium Matte Finish",
+    "display": "Indoor & Outdoor",
+    "usage": [
+      "Home",
+      "Garden",
+      "Office",
+      "Hotel",
+      "Resort",
+      "Balcony",
+      "Landscape"
+    ],
+    "description": "Elegant black designer planter made from premium Fiber Clay with a smooth matte finish. Ideal for modern interiors, luxury gardens, offices and commercial landscape decoration.",
+    "features": [
+      "Premium Fiber Clay",
+      "Elegant Black Finish",
+      "Weather Resistant",
+      "UV Resistant",
+      "Indoor & Outdoor Use",
+      "Lightweight",
+      "Durable Construction",
+      "Modern Designer Look",
+      "Easy Maintenance",
+      "Long Lasting Finish"
+    ],
+    "itemCode": "RC4R18",
+    "thumbnail": "images/products/planters/planter63.webp",
+    "images": [
+      "images/products/decorative-planters/black-designer-planter.webp",
+      "images/products/decorative-planters/black-designer-planter-1.webp",
+      "images/products/decorative-planters/black-designer-planter-2.webp",
+      "images/products/decorative-planters/black-designer-planter-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Black Designer Planter Manufacturer in Mumbai",
+      "description": "Premium black Fiber Clay designer planter for indoor and outdoor decoration, hotels, offices and residential landscaping.",
+      "keywords": [
+        "Black Designer Planter",
+        "Modern Planter",
+        "Fiber Clay Pot",
+        "Decorative Planter",
+        "Luxury Garden Planter"
+      ]
+    }
+  },
+  {
+    "id": 64,
+    "name": "Decor Planters",
+    "slug": "decor-planters",
+    "category": "planters",
+    "subcategory": "decor-planters",
+    "brand": "Concrete Arts India",
+    "price": "1900",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Earthy Materials and Cocopeat",
+    "shape": "Oval",
+    "size": "18 x 30 Inch",
+    "color": "Blue",
+    "finish": "Clean Harmony",
+    "display": "Indoor & Outdoor",
+    "usage": [
+      "Home",
+      "Office",
+      "Garden",
+      "Hotel",
+      "Resort",
+      "Landscape"
+    ],
+    "description": "Embrace the pinnacle of sustainable luxury with this purely handmade cylindrical planter, a bold statement piece where minimalist design meets environmental consciousness. Expertly crafted from a customized blend of 80% premium cocopeat and 20% earthy mineral composites, this pot features a striking jet-black, rain-etched texture that is both weatherproof and UV resistant, ensuring its deep, obsidian hue never fades. Designed for the ultimate in plant health, the interior is engineered with a natural percolation system of sand and rounded river pebbles, providing a high-performance, eco-friendly sanctuary that brings sophisticated, artisanal elegance to any modern landscape or interior.",
+    "features": [
+      "Premium Fiber Clay",
+      "Weather Resistant",
+      "UV Resistant",
+      "Lightweight",
+      "Elegant Design",
+      "Fade Resistant",
+      "Indoor & Outdoor Use",
+      "Low Maintenance",
+      "Durable Construction",
+      "Long Service Life"
+    ],
+    "itemCode": "RC4R19",
+    "thumbnail": "images/products/planters/planter64.webp",
+    "images": [
+      "images/products/decorative-planters/modern-fiber-planter.webp",
+      "images/products/decorative-planters/modern-fiber-planter-1.webp",
+      "images/products/decorative-planters/modern-fiber-planter-2.webp",
+      "images/products/decorative-planters/modern-fiber-planter-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India"
+  },
+  {
+    "id": 65,
+    "name": "Decor Planters",
+    "slug": "decor-planters",
+    "category": "planters",
+    "subcategory": "designer-planters",
+    "brand": "Concrete Arts India",
+    "price": "2375",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Earthy Materials and Cocopeat",
+    "shape": "Round",
+    "size": "22 x 22 x 30 Inch",
+    "color": "Grey",
+    "finish": "Stone Texture",
+    "display": "Outdoor",
+    "usage": [
+      "Garden",
+      "Landscape",
+      "Villa",
+      "Hotel",
+      "Commercial Projects"
+    ],
+    "description": "Elevate your greenery with these purely handmade luxury planters, where sophisticated design meets high-performance sustainability. Expertly crafted from an eco-friendly blend of 80% cocopeat and 20% earthy materials, each customized vessel features a stunning textured finish that is both weatherproof and UV resistant for year-round durability. Beyond their aesthetic appeal, these pots are engineered for plant health, incorporating a foundational layer of sand and round pebbles to ensure perfect percolation and root aeration. Striking the ideal balance between organic warmth and modern luxury, these breathable planters provide a conscious, elegant sanctuary for any home or garden landscape.",
+    "features": [
+      "Fiber Reinforced Concrete",
+      "Stone Texture Finish",
+      "Weather Resistant",
+      "Heavy Duty",
+      "Crack Resistant",
+      "Fade Resistant",
+      "Low Maintenance",
+      "Luxury Appearance",
+      "Outdoor Suitable",
+      "Long Lasting"
+    ],
+    "itemCode": "RC4R20",
+    "thumbnail": "images/products/planters/planter65.webp",
+    "images": [
+      "images/products/decorative-planters/designer-outdoor-planter.webp",
+      "images/products/decorative-planters/designer-outdoor-planter-1.webp",
+      "images/products/decorative-planters/designer-outdoor-planter-2.webp",
+      "images/products/decorative-planters/designer-outdoor-planter-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India"
+  },
+  {
+    "id": 66,
+    "name": "Designer Planter Pots",
+    "slug": "designer-planter-pots",
+    "category": "planters",
+    "subcategory": "landscape-planters",
+    "brand": "Concrete Arts India",
+    "price": "2880",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Fiber Clay",
+    "shape": "Round",
+    "size": "30 x 15 Inch",
+    "color": "White",
+    "finish": "Polished",
+    "display": "Outdoor",
+    "usage": [
+      "Landscape",
+      "Garden",
+      "Resort",
+      "Villa",
+      "Commercial Spaces"
+    ],
+    "description": "Premium GRC landscape planter designed for large outdoor projects, public gardens, hotels and luxury residential developments.",
+    "features": [
+      "Innovative designs using latest technologies",
+      "Long life construction",
+      "Proven and reliable",
+      "Simplified maintenance",
+      "Withstand harsh weather condition",
+      "Highly durable",
+      "Stylish & Optimum finish",
+      "Water Proof & Termite Proof",
+      "Corrosion Resistant",
+      "Long Life"
+    ],
+    "itemCode": "RC4R21",
+    "thumbnail": "images/products/planters/planter66.webp",
+    "images": [
+      "images/products/decorative-planters/premium-landscape-planter.webp",
+      "images/products/decorative-planters/premium-landscape-planter-1.webp",
+      "images/products/decorative-planters/premium-landscape-planter-2.webp",
+      "images/products/decorative-planters/premium-landscape-planter-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India"
+  },
+  {
+    "id": 67,
+    "name": "Indoor outdoor planter pots",
+    "slug": "indoor-outdoor-planter-pots",
+    "category": "planters",
+    "subcategory": "luxury-planters",
+    "brand": "Concrete Arts India",
+    "price": "1900",
+    "currency": "INR",
+    "priceUnit": "Piece",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "Earthy Materials and Cocopeat",
+    "shape": "Oval",
+    "size": "11 Inch",
+    "color": "Reflected Sky",
+    "finish": "Textured",
+    "display": "Indoor & Outdoor",
+    "usage": [
+      "Luxury Homes",
+      "Hotels",
+      "Landscape",
+      "Resorts",
+      "Corporate Offices"
+    ],
+    "description": "Redefine your living space with this purely handmade luxury planter, a masterpiece where artisanal craftsmanship meets sustainable innovation. Expertly sculpted from a customized, eco-friendly blend of 80% premium cocopeat and 20% earthy materials, this pot offers a lightweight yet stone-like aesthetic that is both UV resistant and weatherproof. The sophisticated, two-tone textured finish—featuring a refined cream rim and charcoal body—houses an internal drainage system of sand and rounded pebbles for natural percolation, ensuring your plants thrive in a vessel that is as resilient as it is beautiful.",
+    "features": [
+      "Premium FRC Construction",
+      "Stone Finish",
+      "Weather Resistant",
+      "UV Resistant",
+      "Heavy Duty",
+      "Luxury Design",
+      "Fade Resistant",
+      "Crack Resistant",
+      "Indoor & Outdoor Use",
+      "Low Maintenance"
+    ],
+    "itemCode": "RC4R22",
+    "thumbnail": "images/products/planters/planter67.webp",
+    "images": [
+      "images/products/decorative-planters/luxury-decorative-garden-pot.webp",
+      "images/products/decorative-planters/luxury-decorative-garden-pot-1.webp",
+      "images/products/decorative-planters/luxury-decorative-garden-pot-2.webp",
+      "images/products/decorative-planters/luxury-decorative-garden-pot-3.webp"
+    ],
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India"
+  }
+]
