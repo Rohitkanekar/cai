@@ -26,13 +26,11 @@ const listViewBtn = document.getElementById("listView");
 
 let products = [];
 let filteredProducts = [];
-
 let currentCategory = "all";
 let currentSearch = "";
 let currentSort = "default";
 let currentView = "grid";
 let currentPage = 1;
-
 const productsPerPage = 9;
 
 /*=========================================================
@@ -40,35 +38,20 @@ const productsPerPage = 9;
 =========================================================*/
 
 async function loadProducts(category = "all") {
-
     try {
-
         let jsonFile = "data/products.json";
-
         if (category !== "all") {
-
             jsonFile = `data/${category}.json`;
-
         }
-
         const response = await fetch(jsonFile);
-
         products = await response.json();
-
         filteredProducts = [...products];
-
         currentPage = 1;
-
         initializeProducts();
-
     }
-
     catch (error) {
-
         console.error("Unable to load products.", error);
-
     }
-
 }
 
 /*=========================================================
@@ -76,9 +59,7 @@ async function loadProducts(category = "all") {
 =========================================================*/
 
 function initializeProducts() {
-
     applyFilters();
-
 }
 
 /*=========================================================
@@ -86,25 +67,15 @@ function initializeProducts() {
 =========================================================*/
 
 categoryButtons.forEach(button => {
-
     button.addEventListener("click", function () {
-
         categoryButtons.forEach(btn => {
-
             btn.classList.remove("active");
-
         });
-
         this.classList.add("active");
-
         currentCategory = this.dataset.category;
-
         currentPage = 1;
-
         loadProducts(currentCategory);
-
     });
-
 });
 
 /*=========================================================
@@ -112,17 +83,11 @@ categoryButtons.forEach(button => {
 =========================================================*/
 
 if (searchInput) {
-
     searchInput.addEventListener("keyup", function () {
-
         currentSearch = this.value.trim().toLowerCase();
-
         currentPage = 1;
-
         applyFilters();
-
     });
-
 }
 
 /*=========================================================
@@ -133,41 +98,25 @@ sortBtn.addEventListener("click", () => {
 });
 
 document.querySelectorAll("#sortMenu li").forEach(item => {
-
     item.addEventListener("click", function () {
-
         selectedSort.textContent = this.textContent;
-
         currentSort = this.dataset.sort;
-
         currentPage = 1;
-
         applyFilters();
-
         sortDropdown.classList.remove("active");
-
     });
-
 });
 
 sortDropdown.addEventListener("change", function () {
-
     currentSort = this.value;
-
     currentPage = 1;
-
     applyFilters();
-
 });
 
 document.addEventListener("click", function (e) {
-
     if (!sortDropdown.contains(e.target)) {
-
         sortDropdown.classList.remove("active");
-
     }
-
 });
 
 /*=========================================================
@@ -175,15 +124,10 @@ document.addEventListener("click", function (e) {
 =========================================================*/
 
 gridViewBtn.addEventListener("click", function () {
-
     currentView = "grid";
-
     gridViewBtn.classList.add("active");
-
     listViewBtn.classList.remove("active");
-
     renderProducts();
-
 });
 
 /*=========================================================
@@ -191,15 +135,10 @@ gridViewBtn.addEventListener("click", function () {
 =========================================================*/
 
 listViewBtn.addEventListener("click", function () {
-
     currentView = "list";
-
     listViewBtn.classList.add("active");
-
     gridViewBtn.classList.remove("active");
-
     renderProducts();
-
 });
 
 /*=========================================================
@@ -207,15 +146,8 @@ listViewBtn.addEventListener("click", function () {
 =========================================================*/
 
 function getPrice(price) {
-
     if (!price) return 0;
-
-    return Number(
-        String(price)
-            .replace(/,/g, "")
-            .replace(/[^\d.]/g, "")
-    ) || 0;
-
+    return Number(String(price).replace(/,/g, "").replace(/[^\d.]/g, "")) || 0;
 }
 
 /*=========================================================
@@ -223,7 +155,6 @@ function getPrice(price) {
 =========================================================*/
 
 function applyFilters() {
-
     filteredProducts = [...products];
 
     /*-----------------------------
@@ -231,15 +162,7 @@ function applyFilters() {
     ------------------------------*/
 
     if (currentSearch !== "") {
-
-        filteredProducts = filteredProducts.filter(product =>
-
-            product.name
-                .toLowerCase()
-                .includes(currentSearch)
-
-        );
-
+        filteredProducts = filteredProducts.filter(product => product.name.toLowerCase().includes(currentSearch));
     }
 
     /*-----------------------------
@@ -247,45 +170,28 @@ function applyFilters() {
     ------------------------------*/
 
     switch (currentSort) {
-
         case "low":
-
             filteredProducts.sort((a, b) => {
                 return getPrice(a.price) - getPrice(b.price);
             });
-
             break;
-
         case "high":
-
-            filteredProducts.sort((a, b) =>{
+            filteredProducts.sort((a, b) => {
                 return getPrice(b.price) - getPrice(a.price);
             });
-
             break;
-
         case "az":
             filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
-
             break;
-
         case "za":
             filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
-
-            break;    
-
-        default:
-
             break;
-
+        default:
+            break;
     }
-
     updateResultCount();
-
     renderProducts();
-
     renderPagination();
-
 }
 
 /*=========================================================
@@ -295,26 +201,18 @@ function applyFilters() {
 function renderProducts() {
 
     productsGrid.innerHTML = "";
-
     if (filteredProducts.length === 0) {
-
         noProducts.style.display = "block";
         productsGrid.style.display = "none";
         pagination.style.display = "none";
-
         return;
-
     }
-
     noProducts.style.display = "none";
     productsGrid.style.display = "";
     pagination.style.display = "flex";
-
     const start = (currentPage - 1) * productsPerPage;
     const end = start + productsPerPage;
-
     const pageProducts = filteredProducts.slice(start, end);
-
     pageProducts.forEach(product => {
 
         /*=================================================
@@ -322,56 +220,21 @@ function renderProducts() {
         =================================================*/
 
         if (currentView === "grid") {
-
             productsGrid.innerHTML += `
-
                 <div class="product-card">
-
                     <div class="product-image">
-
-                        <img
-                            src="${product.thumbnail || "-"}"
-                            alt="${product.name || "-"}"
-                            loading="lazy">
-
-                        <span class="product-category">
-
-                            ${product.category || "-"}
-
-                        </span>
-
+                        <img src="${product.thumbnail || "-"}" alt="${product.name || "-"}" loading="lazy">
+                        <span class="product-category">${product.category || "-"}</span>
                     </div>
-
                     <div class="product-content">
-
-                        <h3 title="${product.name || "-"}">
-
-                            ${product.name || "-"}
-
-                        </h3>
-
-                        <div class="product-price">
-
-                            ₹ ${formatPrice(product.price)}
-
-                        </div>
-
-                        <a
-                            href="product-details.html?id=${product.id}&slug=${product.slug}"
-                            class="btn-primary">
-
-                            View Details
-
-                            <i class="fa-solid  fa-chevron-right"></i>
-
+                        <h3 title="${product.name || "-"}">${product.name || "-"}</h3>
+                        <div class="product-price">₹ ${formatPrice(product.price)}</div>
+                        <a href="product-details.html?id=${product.id}&slug=${product.slug}" class="btn-primary">
+                            View Details <i class="fa-solid  fa-chevron-right"></i>
                         </a>
-
                     </div>
-
                 </div>
-
             `;
-
         }
 
         /*=================================================
@@ -379,116 +242,52 @@ function renderProducts() {
         =================================================*/
 
         else {
-
             productsGrid.innerHTML += `
-
                 <div class="product-list-card">
-
                     <div class="list-image">
-
-                        <img
-                            src="${product.thumbnail || "-"}"
-                            alt="${product.name || "-"}"
-                            loading="lazy">
-
-                        <span class="list-category">
-
-                            ${product.category || "-"}
-
-                        </span>    
-    
-                        
-                        <div class="list-price">
-
-                            ₹ ${formatPrice(product.price)}
-
-                        </div>
-
-                        <a
-                            href="product-details.html?id=${product.id}&slug=${product.slug}"
-                            class="btn-primary">
-
+                        <img src="${product.thumbnail || "-"}" alt="${product.name || "-"}" loading="lazy">
+                        <span class="list-category">${product.category || "-"}</span>                        
+                        <div class="list-price">₹ ${formatPrice(product.price)}</div>
+                        <a href="product-details.html?id=${product.id}&slug=${product.slug}" class="btn-primary">
                             View Details
-                        </a>    
-
+                        </a>
                     </div>
-
                     <div class="list-details">
-
-                        <h3>
-
-                            ${product.name || "-"}
-
-                        </h3>
-
+                        <h3>${product.name || "-"}</h3>
                         <table class="product-spec-table">
-
                             <tr>
-
                                 <th>Category</th>
-
                                 <td>${product.category || "-"}</td>
-
                             </tr>
-
                             <tr>
-
                                 <th>Material</th>
-
                                 <td>${product.material || "-"}</td>
-
                             </tr>
-
                             <tr>
-
                                 <th>Color</th>
-
                                 <td>${product.color || "-"}</td>
-
                             </tr>
-
                             <tr>
-
                                 <th>Size</th>
-
                                 <td>${product.size || "-"}</td>
-
                             </tr>
-
                             <tr>
-
                                 <th>Finish</th>
-
                                 <td>${product.finish || "-"}</td>
-
                             </tr>
-
                             <tr>
-
                                 <th>Features</th>
-
                                 <td>${product.features || "-"}</td>
-
                             </tr>
-
                         </table>
-
-                    </div>                   
-
+                    </div>
                 </div>
-
             `;
-
         }
-
     });
-
     applyView();
-
     animateProducts();
-
     lazyImages();
-
 }
 
 /*=========================================================
@@ -496,23 +295,14 @@ function renderProducts() {
 =========================================================*/
 
 function applyView() {
-
     if (currentView === "grid") {
-
         productsGrid.classList.remove("list-view");
-
         productsGrid.classList.add("grid-view");
-
     }
-
     else {
-
         productsGrid.classList.remove("grid-view");
-
         productsGrid.classList.add("list-view");
-
     }
-
 }
 
 /*=========================================================
@@ -520,31 +310,16 @@ function applyView() {
 =========================================================*/
 
 function animateProducts() {
-
-    const cards = document.querySelectorAll(
-
-        ".product-card, .product-list-card"
-
-    );
-
+    const cards = document.querySelectorAll(".product-card, .product-list-card");
     cards.forEach((card, index) => {
-
         card.style.opacity = "0";
-
         card.style.transform = "translateY(30px)";
-
         setTimeout(() => {
-
             card.style.transition = ".45s ease";
-
             card.style.opacity = "1";
-
             card.style.transform = "translateY(0)";
-
         }, index * 70);
-
     });
-
 }
 
 /*=========================================================
@@ -552,31 +327,18 @@ function animateProducts() {
 =========================================================*/
 
 function lazyImages() {
-
     const images = document.querySelectorAll("img[data-src]");
-
     if (!images.length) return;
-
     const observer = new IntersectionObserver(entries => {
-
         entries.forEach(entry => {
-
             if (!entry.isIntersecting) return;
-
             const image = entry.target;
-
             image.src = image.dataset.src;
-
             image.removeAttribute("data-src");
-
             observer.unobserve(image);
-
         });
-
     });
-
     images.forEach(image => observer.observe(image));
-
 }
 
 /*=========================================================
@@ -584,29 +346,14 @@ function lazyImages() {
 =========================================================*/
 
 function updateResultCount() {
-
     totalCount.textContent = filteredProducts.length;
-
     if (filteredProducts.length === 0) {
-
         showingCount.textContent = "0";
-
         return;
-
     }
-
     const start = ((currentPage - 1) * productsPerPage) + 1;
-
-    const end = Math.min(
-
-        currentPage * productsPerPage,
-
-        filteredProducts.length
-
-    );
-
+    const end = Math.min(currentPage * productsPerPage, filteredProducts.length);
     showingCount.textContent = `${start}-${end}`;
-
 }
 
 /*=========================================================
@@ -614,19 +361,10 @@ function updateResultCount() {
 =========================================================*/
 
 function renderPagination() {
-
     pagination.innerHTML = "";
-
-    const totalPages = Math.ceil(
-
-        filteredProducts.length / productsPerPage
-
-    );
-
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
     if (totalPages <= 1) {
-
         return;
-
     }
 
     /*=========================
@@ -634,27 +372,16 @@ function renderPagination() {
     =========================*/
 
     const previousButton = document.createElement("button");
-
     previousButton.className = "page-btn";
-
     previousButton.innerHTML = "&laquo;";
-
     previousButton.disabled = currentPage === 1;
-
     previousButton.addEventListener("click", () => {
-
         currentPage--;
-
         renderProducts();
-
         updateResultCount();
-
         renderPagination();
-
         scrollToProducts();
-
     });
-
     pagination.appendChild(previousButton);
 
     /*=========================
@@ -662,35 +389,20 @@ function renderPagination() {
     =========================*/
 
     for (let page = 1; page <= totalPages; page++) {
-
         const button = document.createElement("button");
-
         button.className = "page-btn";
-
         button.textContent = page;
-
         if (page === currentPage) {
-
             button.classList.add("active");
-
         }
-
         button.addEventListener("click", () => {
-
             currentPage = page;
-
             renderProducts();
-
             updateResultCount();
-
             renderPagination();
-
             scrollToProducts();
-
         });
-
         pagination.appendChild(button);
-
     }
 
     /*=========================
@@ -698,29 +410,17 @@ function renderPagination() {
     =========================*/
 
     const nextButton = document.createElement("button");
-
     nextButton.className = "page-btn";
-
     nextButton.innerHTML = "&raquo;";
-
     nextButton.disabled = currentPage === totalPages;
-
     nextButton.addEventListener("click", () => {
-
         currentPage++;
-
         renderProducts();
-
         updateResultCount();
-
         renderPagination();
-
         scrollToProducts();
-
     });
-
     pagination.appendChild(nextButton);
-
 }
 
 /*=========================================================
@@ -728,15 +428,10 @@ function renderPagination() {
 =========================================================*/
 
 function scrollToProducts() {
-
     productsGrid.scrollIntoView({
-
         behavior: "smooth",
-
         block: "start"
-
     });
-
 }
 
 /*=========================================================
@@ -744,27 +439,16 @@ function scrollToProducts() {
 =========================================================*/
 
 function checkProducts() {
-
     if (filteredProducts.length === 0) {
-
         noProducts.style.display = "block";
-
         productsGrid.style.display = "none";
-
         pagination.style.display = "none";
-
     }
-
     else {
-
         noProducts.style.display = "none";
-
         productsGrid.style.display = "";
-
         pagination.style.display = "flex";
-
     }
-
 }
 
 /*=========================================================
@@ -772,39 +456,22 @@ function checkProducts() {
 =========================================================*/
 
 function resetFilters() {
-
     currentCategory = "all";
-
     currentSearch = "";
-
     currentSort = "default";
-
     currentView = "grid";
-
     currentPage = 1;
-
     if (searchInput) {
-
         searchInput.value = "";
-
     }
-
     sortDropdown.value = "default";
-
     categoryButtons.forEach(button => {
-
         button.classList.remove("active");
-
     });
-
     categoryButtons[0].classList.add("active");
-
     gridViewBtn.classList.add("active");
-
     listViewBtn.classList.remove("active");
-
     loadProducts("all");
-
 }
 
 /*=========================================================
@@ -812,11 +479,8 @@ function resetFilters() {
 =========================================================*/
 
 const resetButton = document.getElementById("resetProducts");
-
 if (resetButton) {
-
     resetButton.addEventListener("click", resetFilters);
-
 }
 
 /*=========================================================
@@ -824,9 +488,7 @@ if (resetButton) {
 =========================================================*/
 
 window.addEventListener("load", () => {
-
     loadProducts("all");
-
 });
 
 /*=========================================================
@@ -834,17 +496,12 @@ window.addEventListener("load", () => {
 =========================================================*/
 
 function formatPrice(price) {
-
     if (!price) return "-";
-
     const value = parseFloat(price);
-
     if (isNaN(value)) {
         return price;
     }
-
     const suffix = price.replace(/^[\d.,\s]+/, "");
-
     return `${value.toLocaleString("en-IN")}${suffix}`;
 }
 
