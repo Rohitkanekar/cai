@@ -44,17 +44,25 @@
     text-align: center;
 }
 
-.team-content h3 {
-    font-size: 24px;
+.team-content h2 {
+    font-size: 28px;
     font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.team-content h3 {
+    font-size: 19px;
     color: var(--heading-color);
     margin-bottom: 10px;
+    font-weight: 400;
 }
 
 .team-content p {
     color: var(--text-color);
     line-height: 1.8;
     margin: 0;
+    font-size: 16px;
 }
 
 /*=========================================
