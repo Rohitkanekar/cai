@@ -142,12 +142,26 @@ listViewBtn.addEventListener("click", function () {
 });
 
 /*=========================================================
-                    FORMAT PRICE
+                    FORMAT PRICE (FIXED)
 =========================================================*/
 
 function getPrice(price) {
-    if (!price) return 0;
+    if (price === undefined || price === null) return 0;
+    // Safely convert to a string before running regex replacements
     return Number(String(price).replace(/,/g, "").replace(/[^\d.]/g, "")) || 0;
+}
+
+function formatPrice(price) {
+    if (price === undefined || price === null) return "-";
+
+    const value = parseFloat(price);
+    if (isNaN(value)) {
+        return price;
+    }
+
+    // Safely pull suffixes only if it was originally a string
+    const suffix = typeof price === 'string' ? price.replace(/^[\d.,\s]+/, "") : "";
+    return `${value.toLocaleString("en-IN")}${suffix}`;
 }
 
 /*=========================================================
@@ -169,16 +183,28 @@ function applyFilters() {
             SORTING
     ------------------------------*/
 
+    // Helper function inside applyFilters or globally to find a item's baseline price
+    /*-----------------------------
+        SORTING MATCHING BOTH STRATEGIES
+------------------------------*/
+
+    const getProductMinPrice = (prod) => {
+        // If it has a standard top level price, use that
+        if (prod.price !== undefined && prod.price !== null) {
+            return getPrice(prod.price);
+        }
+        // Otherwise fallback to checking sizes
+        if (!prod.sizes || prod.sizes.length === 0) return 0;
+        const prices = prod.sizes.map(s => getPrice(s.price));
+        return Math.min(...prices);
+    };
+
     switch (currentSort) {
         case "low":
-            filteredProducts.sort((a, b) => {
-                return getPrice(a.price) - getPrice(b.price);
-            });
+            filteredProducts.sort((a, b) => getProductMinPrice(a) - getProductMinPrice(b));
             break;
         case "high":
-            filteredProducts.sort((a, b) => {
-                return getPrice(b.price) - getPrice(a.price);
-            });
+            filteredProducts.sort((a, b) => getProductMinPrice(b) - getProductMinPrice(a));
             break;
         case "az":
             filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
@@ -198,8 +224,15 @@ function applyFilters() {
                 RENDER PRODUCTS
 =========================================================*/
 
-function renderProducts() {
+/*=========================================================
+                RENDER PRODUCTS (FIXED)
+=========================================================*/
 
+/*=========================================================
+                RENDER PRODUCTS (ALL CATEGORIES)
+=========================================================*/
+
+function renderProducts() {
     productsGrid.innerHTML = "";
     if (filteredProducts.length === 0) {
         noProducts.style.display = "block";
@@ -210,10 +243,41 @@ function renderProducts() {
     noProducts.style.display = "none";
     productsGrid.style.display = "";
     pagination.style.display = "flex";
+
     const start = (currentPage - 1) * productsPerPage;
     const end = start + productsPerPage;
     const pageProducts = filteredProducts.slice(start, end);
+
     pageProducts.forEach(product => {
+
+        // --- MULTI-CATEGORY PRICE STRATEGY ---
+        let displayPrice = "-";
+
+        if (product.price !== undefined && product.price !== null) {
+            // Case 1: Standard flat price (Benches / Statues without variants)
+            displayPrice = formatPrice(product.price);
+        } else if (product.sizes && product.sizes.length > 0) {
+            // Case 2: Nested sizes array (Planters / GRC / Size variants)
+            const prices = product.sizes.map(s => Number(s.price)).filter(p => !isNaN(p));
+            if (prices.length > 0) {
+                const minPrice = Math.min(...prices);
+                const maxPrice = Math.max(...prices);
+
+                if (minPrice === maxPrice) {
+                    displayPrice = formatPrice(minPrice);
+                } else {
+                    displayPrice = `${formatPrice(minPrice)} - ${formatPrice(maxPrice)}`;
+                }
+            }
+        }
+
+        // Gather sizes string for the list view table
+        let displaySizes = "-";
+        if (product.size) {
+            displaySizes = product.size;
+        } else if (product.sizes && product.sizes.length > 0) {
+            displaySizes = product.sizes.map(s => s.size).join(", ");
+        }
 
         /*=================================================
                         GRID VIEW
@@ -228,9 +292,9 @@ function renderProducts() {
                     </div>
                     <div class="product-content">
                         <h3 title="${product.name || "-"}">${product.name || "-"}</h3>
-                        <div class="product-price">₹ ${formatPrice(product.price)}</div>
+                        <div class="product-price">₹ ${displayPrice}</div>
                         <a href="product-details.html?id=${product.id}&slug=${product.slug}" class="btn-primary">
-                            View Details <i class="fa-solid  fa-chevron-right"></i>
+                            View Details <i class="fa-solid fa-chevron-right"></i>
                         </a>
                     </div>
                 </div>
@@ -247,7 +311,7 @@ function renderProducts() {
                     <div class="list-image">
                         <img src="${product.thumbnail || "-"}" alt="${product.name || "-"}" loading="lazy">
                         <span class="list-category">${product.category || "-"}</span>                        
-                        <div class="list-price">₹ ${formatPrice(product.price)}</div>
+                        <div class="list-price">₹ ${displayPrice}</div>
                         <a href="product-details.html?id=${product.id}&slug=${product.slug}" class="btn-primary">
                             View Details
                         </a>
@@ -268,8 +332,8 @@ function renderProducts() {
                                 <td>${product.color || "-"}</td>
                             </tr>
                             <tr>
-                                <th>Size</th>
-                                <td>${product.size || "-"}</td>
+                                <th>Sizes</th>
+                                <td>${displaySizes}</td>
                             </tr>
                             <tr>
                                 <th>Finish</th>
@@ -490,20 +554,6 @@ if (resetButton) {
 window.addEventListener("load", () => {
     loadProducts("all");
 });
-
-/*=========================================================
-                FORMAT PRICE
-=========================================================*/
-
-function formatPrice(price) {
-    if (!price) return "-";
-    const value = parseFloat(price);
-    if (isNaN(value)) {
-        return price;
-    }
-    const suffix = price.replace(/^[\d.,\s]+/, "");
-    return `${value.toLocaleString("en-IN")}${suffix}`;
-}
 
 /*=========================================================
                 END

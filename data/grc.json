@@ -1,36 +1,263 @@
 [
   {
-    "id": 40,
-    "name": "White GRC Jali",
-    "slug": "white-grc-jali",
+    "id": 1,
+    "name": "White Architectural GRC Jali",
+    "slug": "white-architectural-grc-jali",
     "category": "grc",
-    "price": "350 / Sq. Ft.",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
     "material": "Glass Reinforced Concrete",
-    "color": "White",
+    "color": "Terracotta / Light Red Sandstone",
     "size": "Custom",
-    "finish": "Smooth",
-    "features": "Weather Resistant, UV Protected",
-    "description": "Premium White GRC Jali manufactured using Glass Reinforced Concrete. Ideal for building facades, balconies, compound walls and architectural elevations. Lightweight, durable and suitable for indoor as well as outdoor applications.",
+    "thickness": "50 mm",
+    "weight": "3.5 kg",
+    "finish": "Smooth Matte",
+    "usage": "Façades, Balconies, Elevations, Partition Walls",
+    "description": "Premium White GRC Jali manufactured using high-grade Glass Reinforced Concrete. Ideal for luxury building façades, balconies, compound walls, and striking architectural elevations. Highly lightweight, durable, and suitable for both indoor and outdoor applications.",
+    "features": [
+      "Weather Resistant",
+      "UV Protected",
+      "Lightweight Construction",
+      "High Tensile Strength"
+    ],
     "thumbnail": "images/products/grc/grc1.webp",
-    "images": [
-      "images/products/grc/grc1.webp"
-    ]
+    "seo": {
+      "title": "White Architectural GRC Jali Manufacturer | Concrete Arts India",
+      "description": "Premium white GRC Jali for building facades and elevations. Lightweight, weather-resistant Glass Reinforced Concrete custom manufactured in India.",
+      "keywords": ["White GRC Jali", "Architectural Jali", "Glass Reinforced Concrete", "Facade Design"]
+    }
   },
   {
-    "id": 41,
-    "name": "100mm Geometric Pattern GRC Jali",
-    "slug": "100mm-geometric-pattern-grc-jali",
+    "id": 2,
+    "name": "Geometric Cube GRC Jali (100mm)",
+    "slug": "geometric-cube-grc-jali-100mm",
     "category": "grc",
-    "price": "400 / Sq. Ft.",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
     "material": "Glass Reinforced Concrete",
-    "color": "Grey",
-    "size": "100 mm",
-    "finish": "Concrete Finish",
-    "features": "High Strength, Crack Resistant",
-    "description": "Modern geometric GRC Jali designed for architectural projects. Provides excellent ventilation while enhancing the visual appeal of residential and commercial buildings.",
+    "color": "Natural Cement Grey / Cool Slate Grey",
+    "size": "Custom",
+    "thickness": "100 mm",
+    "weight": "5.2 kg",
+    "finish": "Concrete Raw Finish",
+    "usage": "Exterior Façades, Boundary Walls, Duct Coverings",
+    "description": "A modern geometric GRC Jali showcasing a cubical matrix. Designed for cutting-edge contemporary architectural projects, this pattern provides exceptional ventilation and unique shadow-casting while keeping modern structures cool.",
+    "features": [
+      "High Structural Strength",
+      "Crack Resistant",
+      "Excellent Wind Ventilation",
+      "Modern Cubical Aesthetic"
+    ],
     "thumbnail": "images/products/grc/grc2.webp",
-    "images": [
-      "images/products/grc/grc2.webp"
-    ]
+    "seo": {
+      "title": "Geometric Cube GRC Jali (100mm) | Concrete Arts India",
+      "description": "Modern geometric cube pattern GRC Jali. 100mm thickness offers superior depth, structural strength, and ventilation for modern facades.",
+      "keywords": ["Geometric GRC Jali", "Cube Jali Design", "100mm GRC Panel", "Concrete Arts India"]
+    }
+  },
+  {
+    "id": 3,
+    "name": "Islamic Lattice GRC Jali (100mm)",
+    "slug": "islamic-lattice-grc-jali-100mm",
+    "category": "grc",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
+    "material": "Glass Reinforced Concrete",
+    "color": "Off-White / Cream",
+    "size": "Custom",
+    "thickness": "100 mm",
+    "weight": "4.8 kg",
+    "finish": "Fine Sandblast",
+    "usage": "Temples, Mosque Architecture, Residential Partitions",
+    "description": "Features a classic, intricate Islamic geometric star-and-lattice layout. This highly artistic GRC panel brings a traditional heritage touch to modern mosques, premium villas, and spiritual institutional architectures.",
+    "features": [
+      "Traditional Islamic Patterns",
+      "Premium Sharp Edge Mold Detail",
+      "High Flame Retardancy",
+      "Eco-Friendly Mineral Binder"
+    ],
+    "thumbnail": "images/products/grc/grc3.webp",
+    "seo": {
+      "title": "Islamic Lattice GRC Jali 100mm | Concrete Arts India",
+      "description": "Buy traditional Islamic lattice GRC Jali screens. Intricate geometric designs perfect for religious spaces and luxury heritage elevations.",
+      "keywords": ["Islamic GRC Jali", "Mughal Jali Screen", "Traditional Concrete Grilles"]
+    }
+  },
+  {
+    "id": 4,
+    "name": "Diamond Mesh GRC Jali (100mm)",
+    "slug": "diamond-mesh-grc-jali-100mm",
+    "category": "grc",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
+    "material": "Glass Reinforced Concrete",
+    "color": "Off-White / Crisp White",
+    "size": "Custom",
+    "thickness": "100 mm",
+    "weight": "5.0 kg",
+    "finish": "Natural Exposed Concrete",
+    "usage": "Commercial Courtyards, Balcony Railings, Office Facades",
+    "description": "An elegant, continuous diamond crisscross pattern that provides a perfect balance of privacy and natural illumination. Excellent choice for multi-story office building exteriors and residential balcony panels.",
+    "features": [
+      "Optimal Privacy Shielding",
+      "Structural Anti-sag Properties",
+      "Low Thermal Expansion",
+      "Easy Bolt-on Frame Installation"
+    ],
+    "thumbnail": "images/products/grc/grc4.webp",
+    "seo": {
+      "title": "Diamond Mesh GRC Jali Manufacturer | Concrete Arts India",
+      "description": "Premium Diamond Mesh pattern GRC Jali panels. Ideal for multi-story residential building balconies and architectural privacy screens.",
+      "keywords": ["Diamond GRC Jali", "Privacy Screen Jali", "Crisscross Concrete Panel"]
+    }
+  },
+  {
+    "id": 5,
+    "name": "Contemporary Square GRC Jali (100mm)",
+    "slug": "contemporary-square-grc-jali-100mm",
+    "category": "grc",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
+    "material": "Glass Reinforced Concrete",
+    "color": "Terracotta / Light Red Sandstone",
+    "size": "Custom",
+    "thickness": "100 mm",
+    "weight": "5.1 kg",
+    "finish": "Smooth Concrete",
+    "usage": "Industrial Facades, Modern Lofts, Parking Garages",
+    "description": "Symmetrical modern grid layout optimized for clean lines and high-speed air circulation. Highly suitable for structural ventilation ducts, HVAC shafts, parking lot screens, and loft interior partitions.",
+    "features": [
+      "Symmetrical Clean Lines",
+      "Maximum Ventilation Open Area",
+      "Heavy Impact Resistance",
+      "Low Dust Retention Design"
+    ],
+    "thumbnail": "images/products/grc/grc5.webp",
+    "seo": {
+      "title": "Contemporary Square GRC Jali 100mm | Concrete Arts India",
+      "description": "Grid-style contemporary square GRC Jali panels. Designed for optimum airflow, parking structures, and industrial-modern facades.",
+      "keywords": ["Square Grid Jali", "Modern GRC Panel", "Ventilation Jali Screen"]
+    }
+  },
+  {
+    "id": 6,
+    "name": "Linear Stripes GRC Jali (100mm)",
+    "slug": "linear-stripes-grc-jali-100mm",
+    "category": "grc",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
+    "material": "Glass Reinforced Concrete",
+    "color": "Off-White / Ivory White",
+    "size": "Custom",
+    "thickness": "100 mm",
+    "weight": "4.6 kg",
+    "finish": "Acid Washed",
+    "usage": "Sun Shade Louvers, Poolside Screens, High-rise Cladding",
+    "description": "Features clean, repetitive parallel linear cutouts. Acts as a brilliant architectural sunshade/louver system that reduces indoor HVAC cooling loads by cutting down direct solar heat gain.",
+    "features": [
+      "Passive Solar Heating Control",
+      "Minimalist Linear Design",
+      "Excellent High-altitude Wind Tolerance",
+      "Alkali-resistant Glass Fiber Core"
+    ],
+    "thumbnail": "images/products/grc/grc6.webp",
+    "seo": {
+      "title": "Linear Stripes GRC Jali Louvers | Concrete Arts India",
+      "description": "Linear GRC Jali panels designed for modern architectural sunshades. Mitigates building solar heat gain while retaining beautiful aesthetics.",
+      "keywords": ["Linear GRC Jali", "Concrete Sunshade Louver", "Striped Facade Screen"]
+    }
+  },
+  {
+    "id": 7,
+    "name": "Classic Cross GRC Jali (100mm)",
+    "slug": "classic-cross-grc-jali-100mm",
+    "category": "grc",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
+    "material": "Glass Reinforced Concrete",
+    "color": "Muted Mustard Yellow / Ochre",
+    "size": "Custom",
+    "thickness": "100 mm",
+    "weight": "4.9 kg",
+    "finish": "Textured Stone Finish",
+    "usage": "Boundary Walls, Bungalow Elevations, Rooftop Parapets",
+    "description": "A classic cross (X-pattern) layout reminiscent of vintage colonial structures and Mediterranean villas. Blends effortlessly with earthy landscape stones and rustic boundary wall designs.",
+    "features": [
+      "Timeless Mediterranean Look",
+      "Thick Reinforced Ribs",
+      "High Freeze-Thaw Durability",
+      "Fungus and Moss Repelling Surface"
+    ],
+    "thumbnail": "images/products/grc/grc7.webp",
+    "seo": {
+      "title": "Classic Cross GRC Jali Mediterranean Style | Concrete Arts India",
+      "description": "Shop classic cross pattern GRC Jali. Durable colonial and Mediterranean style concrete grilles ideal for bungalows and boundary walls.",
+      "keywords": ["Cross GRC Jali", "X Pattern Jali", "Colonial Balustrade alternative"]
+    }
+  },
+  {
+    "id": 8,
+    "name": "Star Matrix GRC Jali (100mm)",
+    "slug": "star-matrix-grc-jali-100mm",
+    "category": "grc",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
+    "material": "Glass Reinforced Concrete",
+    "color": "Pure White",
+    "size": "Custom",
+    "thickness": "100 mm",
+    "weight": "5.0 kg",
+    "finish": "Satin Smooth",
+    "usage": "Banquets, Luxury Resorts, Focal Facade Elements",
+    "description": "A dense, geometric arrangement of interlocking stars. Specifically engineered as an accent design element for luxurious hotel lobbies, wedding venues, and high-profile residential entry structures.",
+    "features": [
+      "Stunning Kaleidoscope Shadow Play",
+      "Extremely Low Shrinkage Compound",
+      "High Flexural Strength Performance",
+      "Pre-drilled Anchor Points"
+    ],
+    "thumbnail": "images/products/grc/grc8.webp",
+    "seo": {
+      "title": "Star Matrix GRC Jali Panel | Concrete Arts India",
+      "description": "Intricate star matrix GRC Jali screens for hotels and luxury resorts. Hand-finished premium fiberglass concrete designs.",
+      "keywords": ["Star GRC Jali", "Luxury Facade Screen", "Resort Architectural Panels"]
+    }
+  },
+  {
+    "id": 9,
+    "name": "Hexagonal Cellular GRC Jali (100mm)",
+    "slug": "hexagonal-cellular-grc-jali-100mm",
+    "category": "grc",
+    "brand": "Concrete Arts India",
+    "price": "450 / Sq. Ft.",
+    "currency": "INR",
+    "material": "Glass Reinforced Concrete",
+    "color": "Beige / Light Sandstone",
+    "size": "Custom",
+    "thickness": "100 mm",
+    "weight": "5.3 kg",
+    "finish": "Industrial Matte",
+    "usage": "Green Building Enclosures, IT Park Facades, Eco-Resorts",
+    "description": "An organic, honeycomb-inspired cell pattern. Combining biophilic design principles with structural concrete durability, it is highly favored for certified green building designs and IT park installations.",
+    "features": [
+      "Biophilic Honeycomb Design",
+      "Excellent Lightweight Structural Integrity",
+      "High Sound-damping Characteristics",
+      "Zero Deflection Under High Air Pressure"
+    ],
+    "thumbnail": "images/products/grc/grc9.webp",
+    "seo": {
+      "title": "Hexagonal Cellular GRC Jali (Honeycomb) | Concrete Arts India",
+      "description": "Biophilic hexagonal honeycomb GRC Jali panels. Ideal for modern commercial IT park facades and eco-friendly structures.",
+      "keywords": ["Hexagonal Jali", "Honeycomb GRC Screen", "Biophilic Facade Design"]
+    }
   }
 ]

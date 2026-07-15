@@ -432,6 +432,8 @@ button {
 .btn-outline:hover {
     background: var(--primary);
     color: var(--light);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .18);
 }
 
 .btn-outline-light {
