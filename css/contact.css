@@ -1,3 +1,72 @@
+/*==============================
+            SOURCE DROPDOWN
+==============================*/
+
+.source-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.source-btn {
+    width: 100%;
+    height: 47px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.source-btn:hover {
+    border-color: var(--primary);
+}
+
+.source-btn i {
+    transition: .3s;
+}
+
+.source-btn.active i {
+    transform: rotate(180deg);
+}
+
+.source-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 6px;
+    list-style: none;
+    padding: 6px 0;
+    display: none;
+    z-index: 999;
+    max-height: 250px;
+    overflow: auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .08);
+}
+
+.source-menu.show {
+    display: block;
+}
+
+.source-menu li {
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.source-menu li:hover {
+    background: var(--primary);
+    color: var(--light);
+}
+
 /*==========================================
             CONTACT
 ==========================================*/
@@ -20,7 +89,6 @@
 
 .section-contact {
     text-align: left;
-    margin-bottom: 0;
 }
 
 .info-box {
@@ -71,9 +139,41 @@
             CONTACT FORM
 ==========================================*/
 
+.selected-product {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.selected-product img {
+    margin: 0 auto;
+}
+
+.selected-product h2 {
+    font-size: 30px;
+    color: var(--primary);
+    margin: 15px 0;
+    text-align: center;
+}
+
+@media(max-width:768px) {
+
+    .selected-product {
+        flex-direction: column;
+    }
+
+    .selected-product img {
+        width: 100%;
+        height: auto;
+    }
+
+}
+
 .contact-form {
     background: var(--light);
-    padding: 40px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, .08);
 }
@@ -81,10 +181,11 @@
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-.contact-form button {
+.contact-form .submit-button {
     min-width: 180px;
     margin-top: 10px;
 }
@@ -93,14 +194,27 @@
     position: relative;
 }
 
+.form-group label {
+    position: relative;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.form-group label::after {
+    content: "*";
+    color: #dc3545;
+    right: -10px;
+    position: absolute;
+
+}
+
 .error {
     display: block;
     color: #dc3545;
-    font-size: 12px;
+    font-size: 14px;
 }
 
-input.error-input,
-textarea.error-input {
+.error-input {
     border-color: #dc3545 !important;
 }
 

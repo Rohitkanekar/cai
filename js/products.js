@@ -6,6 +6,18 @@
                     DOM ELEMENTS
 =========================================================*/
 
+const loader = document.getElementById("loader");
+
+function showLoader() {
+    loader.classList.add("active");
+    document.body.classList.add('loading');
+}
+
+function hideLoader() {
+    loader.classList.remove("active");
+    document.body.classList.remove('loading');
+}
+
 const productsGrid = document.getElementById("productsGrid");
 const categoryButtons = document.querySelectorAll(".category-btn");
 const searchInput = document.getElementById("productSearch");
@@ -37,21 +49,32 @@ const productsPerPage = 9;
                 LOAD PRODUCTS JSON
 =========================================================*/
 
-async function loadProducts(category = "all") {
+async function loadProducts() {
+    showLoader();
     try {
-        let jsonFile = "data/products.json";
-        if (category !== "all") {
-            jsonFile = `data/${category}.json`;
-        }
-        const response = await fetch(jsonFile);
-        products = await response.json();
+
+        const response = await fetch("api/products.php");
+
+        const data = await response.json();
+
+        products = data.products || [];
+
         filteredProducts = [...products];
+
         currentPage = 1;
+
         initializeProducts();
+
     }
     catch (error) {
+
         console.error("Unable to load products.", error);
+
     }
+    finally {
+        hideLoader();
+    }
+
 }
 
 /*=========================================================
@@ -74,7 +97,7 @@ categoryButtons.forEach(button => {
         this.classList.add("active");
         currentCategory = this.dataset.category;
         currentPage = 1;
-        loadProducts(currentCategory);
+        applyFilters();
     });
 });
 
@@ -93,9 +116,12 @@ if (searchInput) {
 /*=========================================================
                     SORTING
 =========================================================*/
-sortBtn.addEventListener("click", () => {
-    sortDropdown.classList.toggle("active");
-});
+
+if (sortBtn && sortDropdown) {
+    sortBtn.addEventListener("click", () => {
+        sortDropdown.classList.toggle("active");
+    });
+}
 
 document.querySelectorAll("#sortMenu li").forEach(item => {
     item.addEventListener("click", function () {
@@ -103,18 +129,20 @@ document.querySelectorAll("#sortMenu li").forEach(item => {
         currentSort = this.dataset.sort;
         currentPage = 1;
         applyFilters();
-        sortDropdown.classList.remove("active");
+        if (sortDropdown) sortDropdown.classList.remove("active");
     });
 });
 
-sortDropdown.addEventListener("change", function () {
-    currentSort = this.value;
-    currentPage = 1;
-    applyFilters();
-});
+if (sortDropdown) {
+    sortDropdown.addEventListener("change", function () {
+        currentSort = this.value;
+        currentPage = 1;
+        applyFilters();
+    });
+}
 
 document.addEventListener("click", function (e) {
-    if (!sortDropdown.contains(e.target)) {
+    if (sortDropdown && !sortDropdown.contains(e.target)) {
         sortDropdown.classList.remove("active");
     }
 });
@@ -123,31 +151,34 @@ document.addEventListener("click", function (e) {
                 GRID VIEW
 =========================================================*/
 
-gridViewBtn.addEventListener("click", function () {
-    currentView = "grid";
-    gridViewBtn.classList.add("active");
-    listViewBtn.classList.remove("active");
-    renderProducts();
-});
+if (gridViewBtn) {
+    gridViewBtn.addEventListener("click", function () {
+        currentView = "grid";
+        gridViewBtn.classList.add("active");
+        listViewBtn.classList.remove("active");
+        renderProducts();
+    });
+}
 
 /*=========================================================
                 LIST VIEW
 =========================================================*/
 
-listViewBtn.addEventListener("click", function () {
-    currentView = "list";
-    listViewBtn.classList.add("active");
-    gridViewBtn.classList.remove("active");
-    renderProducts();
-});
+if (listViewBtn) {
+    listViewBtn.addEventListener("click", function () {
+        currentView = "list";
+        listViewBtn.classList.add("active");
+        gridViewBtn.classList.remove("active");
+        renderProducts();
+    });
+}
 
 /*=========================================================
-                    FORMAT PRICE (FIXED)
+                    FORMAT PRICE
 =========================================================*/
 
 function getPrice(price) {
     if (price === undefined || price === null) return 0;
-    // Safely convert to a string before running regex replacements
     return Number(String(price).replace(/,/g, "").replace(/[^\d.]/g, "")) || 0;
 }
 
@@ -159,7 +190,6 @@ function formatPrice(price) {
         return price;
     }
 
-    // Safely pull suffixes only if it was originally a string
     const suffix = typeof price === 'string' ? price.replace(/^[\d.,\s]+/, "") : "";
     return `${value.toLocaleString("en-IN")}${suffix}`;
 }
@@ -172,7 +202,20 @@ function applyFilters() {
     filteredProducts = [...products];
 
     /*-----------------------------
-            SEARCH
+            CATEGORY FILTER
+    ------------------------------*/
+
+    if (currentCategory !== "all") {
+        filteredProducts = filteredProducts.filter(product => {
+            const catName = typeof product.category === "string" 
+                ? product.category.toLowerCase() 
+                : (product.category?.name?.toLowerCase() || "");
+            return catName === currentCategory.toLowerCase();
+        });
+    }
+
+    /*-----------------------------
+                SEARCH
     ------------------------------*/
 
     if (currentSearch !== "") {
@@ -180,20 +223,13 @@ function applyFilters() {
     }
 
     /*-----------------------------
-            SORTING
+                SORTING
     ------------------------------*/
 
-    // Helper function inside applyFilters or globally to find a item's baseline price
-    /*-----------------------------
-        SORTING MATCHING BOTH STRATEGIES
-------------------------------*/
-
     const getProductMinPrice = (prod) => {
-        // If it has a standard top level price, use that
         if (prod.price !== undefined && prod.price !== null) {
             return getPrice(prod.price);
         }
-        // Otherwise fallback to checking sizes
         if (!prod.sizes || prod.sizes.length === 0) return 0;
         const prices = prod.sizes.map(s => getPrice(s.price));
         return Math.min(...prices);
@@ -215,6 +251,7 @@ function applyFilters() {
         default:
             break;
     }
+
     updateResultCount();
     renderProducts();
     renderPagination();
@@ -224,25 +261,21 @@ function applyFilters() {
                 RENDER PRODUCTS
 =========================================================*/
 
-/*=========================================================
-                RENDER PRODUCTS (FIXED)
-=========================================================*/
-
-/*=========================================================
-                RENDER PRODUCTS (ALL CATEGORIES)
-=========================================================*/
-
 function renderProducts() {
+    if (!productsGrid) return;
+    
     productsGrid.innerHTML = "";
+    
     if (filteredProducts.length === 0) {
-        noProducts.style.display = "block";
+        if (noProducts) noProducts.style.display = "block";
         productsGrid.style.display = "none";
-        pagination.style.display = "none";
+        if (pagination) pagination.style.display = "none";
         return;
     }
-    noProducts.style.display = "none";
+    
+    if (noProducts) noProducts.style.display = "none";
     productsGrid.style.display = "";
-    pagination.style.display = "flex";
+    if (pagination) pagination.style.display = "flex";
 
     const start = (currentPage - 1) * productsPerPage;
     const end = start + productsPerPage;
@@ -250,28 +283,40 @@ function renderProducts() {
 
     pageProducts.forEach(product => {
 
-        // --- MULTI-CATEGORY PRICE STRATEGY ---
         let displayPrice = "-";
 
-        if (product.price !== undefined && product.price !== null) {
-            // Case 1: Standard flat price (Benches / Statues without variants)
+        if (
+            product.size &&
+            product.size.price !== undefined &&
+            product.size.price !== null &&
+            product.size.price !== ""
+        ) {
+            displayPrice = formatPrice(product.size.price);
+        }
+        else if (
+            product.price !== undefined &&
+            product.price !== null
+        ) {
             displayPrice = formatPrice(product.price);
-        } else if (product.sizes && product.sizes.length > 0) {
-            // Case 2: Nested sizes array (Planters / GRC / Size variants)
-            const prices = product.sizes.map(s => Number(s.price)).filter(p => !isNaN(p));
+        }
+        else if (
+            product.sizes &&
+            product.sizes.length > 0
+        ) {
+            const prices = product.sizes
+                .map(s => Number(s.price))
+                .filter(p => !isNaN(p));
+
             if (prices.length > 0) {
                 const minPrice = Math.min(...prices);
                 const maxPrice = Math.max(...prices);
 
-                if (minPrice === maxPrice) {
-                    displayPrice = formatPrice(minPrice);
-                } else {
-                    displayPrice = `${formatPrice(minPrice)} - ${formatPrice(maxPrice)}`;
-                }
+                displayPrice = (minPrice === maxPrice)
+                    ? formatPrice(minPrice)
+                    : `${formatPrice(minPrice)} - ${formatPrice(maxPrice)}`;
             }
         }
 
-        // Gather sizes string for the list view table
         let displaySizes = "-";
         if (product.size) {
             displaySizes = product.size;
@@ -279,8 +324,12 @@ function renderProducts() {
             displaySizes = product.sizes.map(s => s.size).join(", ");
         }
 
+        const categoryName = typeof product.category === "string" 
+            ? product.category 
+            : (product.category?.name || "-");
+
         /*=================================================
-                        GRID VIEW
+                            GRID VIEW
         =================================================*/
 
         if (currentView === "grid") {
@@ -288,13 +337,13 @@ function renderProducts() {
                 <div class="product-card">
                     <div class="product-image">
                         <img src="${product.thumbnail || "-"}" alt="${product.name || "-"}" loading="lazy">
-                        <span class="product-category">${product.category || "-"}</span>
+                        <span class="product-category">${categoryName}</span>
                     </div>
                     <div class="product-content">
                         <h3 title="${product.name || "-"}">${product.name || "-"}</h3>
                         <div class="product-price">₹ ${displayPrice}</div>
-                        <a href="product-details.html?id=${product.id}&slug=${product.slug}" class="btn-primary">
-                            View Details <i class="fa-solid fa-chevron-right"></i>
+                        <a href="product-details.php?id=${product.id}&slug=${product.slug}" class="btn-primary">
+                            View Details
                         </a>
                     </div>
                 </div>
@@ -302,7 +351,7 @@ function renderProducts() {
         }
 
         /*=================================================
-                        LIST VIEW
+                            LIST VIEW
         =================================================*/
 
         else {
@@ -310,9 +359,9 @@ function renderProducts() {
                 <div class="product-list-card">
                     <div class="list-image">
                         <img src="${product.thumbnail || "-"}" alt="${product.name || "-"}" loading="lazy">
-                        <span class="list-category">${product.category || "-"}</span>                        
+                        <span class="list-category">${categoryName}</span>                   
                         <div class="list-price">₹ ${displayPrice}</div>
-                        <a href="product-details.html?id=${product.id}&slug=${product.slug}" class="btn-primary">
+                        <a href="product-details.php?id=${product.id}&slug=${product.slug}" class="btn-primary">
                             View Details
                         </a>
                     </div>
@@ -321,7 +370,7 @@ function renderProducts() {
                         <table class="product-spec-table">
                             <tr>
                                 <th>Category</th>
-                                <td>${product.category || "-"}</td>
+                                <td>${categoryName}</td>
                             </tr>
                             <tr>
                                 <th>Material</th>
@@ -349,6 +398,7 @@ function renderProducts() {
             `;
         }
     });
+
     applyView();
     animateProducts();
     lazyImages();
@@ -359,6 +409,7 @@ function renderProducts() {
 =========================================================*/
 
 function applyView() {
+    if (!productsGrid) return;
     if (currentView === "grid") {
         productsGrid.classList.remove("list-view");
         productsGrid.classList.add("grid-view");
@@ -410,7 +461,9 @@ function lazyImages() {
 =========================================================*/
 
 function updateResultCount() {
-    totalCount.textContent = filteredProducts.length;
+    if (totalCount) totalCount.textContent = filteredProducts.length;
+    if (!showingCount) return;
+    
     if (filteredProducts.length === 0) {
         showingCount.textContent = "0";
         return;
@@ -425,15 +478,13 @@ function updateResultCount() {
 =========================================================*/
 
 function renderPagination() {
+    if (!pagination) return;
+    
     pagination.innerHTML = "";
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
     if (totalPages <= 1) {
         return;
     }
-
-    /*=========================
-            PREVIOUS
-    =========================*/
 
     const previousButton = document.createElement("button");
     previousButton.className = "page-btn";
@@ -447,10 +498,6 @@ function renderPagination() {
         scrollToProducts();
     });
     pagination.appendChild(previousButton);
-
-    /*=========================
-            PAGE NUMBERS
-    =========================*/
 
     for (let page = 1; page <= totalPages; page++) {
         const button = document.createElement("button");
@@ -468,10 +515,6 @@ function renderPagination() {
         });
         pagination.appendChild(button);
     }
-
-    /*=========================
-            NEXT
-    =========================*/
 
     const nextButton = document.createElement("button");
     nextButton.className = "page-btn";
@@ -492,26 +535,11 @@ function renderPagination() {
 =========================================================*/
 
 function scrollToProducts() {
-    productsGrid.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-}
-
-/*=========================================================
-                CHECK PRODUCTS
-=========================================================*/
-
-function checkProducts() {
-    if (filteredProducts.length === 0) {
-        noProducts.style.display = "block";
-        productsGrid.style.display = "none";
-        pagination.style.display = "none";
-    }
-    else {
-        noProducts.style.display = "none";
-        productsGrid.style.display = "";
-        pagination.style.display = "flex";
+    if (productsGrid) {
+        productsGrid.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
     }
 }
 
@@ -528,14 +556,19 @@ function resetFilters() {
     if (searchInput) {
         searchInput.value = "";
     }
-    sortDropdown.value = "default";
+    if (sortDropdown) {
+        sortDropdown.value = "default";
+    }
     categoryButtons.forEach(button => {
         button.classList.remove("active");
     });
-    categoryButtons[0].classList.add("active");
-    gridViewBtn.classList.add("active");
-    listViewBtn.classList.remove("active");
-    loadProducts("all");
+    if (categoryButtons.length > 0) {
+        categoryButtons[0].classList.add("active");
+    }
+    if (gridViewBtn) gridViewBtn.classList.add("active");
+    if (listViewBtn) listViewBtn.classList.remove("active");
+    
+    applyFilters();
 }
 
 /*=========================================================
@@ -552,9 +585,9 @@ if (resetButton) {
 =========================================================*/
 
 window.addEventListener("load", () => {
-    loadProducts("all");
+    loadProducts();
 });
 
 /*=========================================================
-                END
+                    END
 =========================================================*/

@@ -17,3 +17,4 @@ document.querySelectorAll(".menu a").forEach(link => {
         document.body.classList.remove("menu-open");
     });
 });
+

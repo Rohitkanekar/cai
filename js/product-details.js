@@ -2,7 +2,22 @@
         PRODUCT DETAILS
 =========================================*/
 
+const loader = document.getElementById("loader");
+
+function showLoader() {
+    loader.classList.add("active");
+    document.body.classList.add('loading');
+}
+
+function hideLoader() {
+    loader.classList.remove("active");
+    document.body.classList.remove('loading');
+}
+
 const productContainer = document.getElementById("productDetails");
+const relatedProducts = document.getElementById("relatedProducts");
+
+let allProducts = [];
 
 /*=========================================
         GET SLUG
@@ -16,164 +31,204 @@ const slug = params.get("slug");
 =========================================*/
 
 async function loadProduct() {
+
+    showLoader();
     try {
-        const response = await fetch("data/products.json");
-        allProducts = await response.json();
-        const product = allProducts.find(item => item.slug === slug);
-        if (!product) {
+
+        /* Product */
+
+        const response = await fetch(
+            `api/product.php?slug=${encodeURIComponent(slug)}`
+        );
+
+        const data = await response.json();
+
+        if (!data.success) {
+
             productContainer.innerHTML = `
                 <div class="product-not-found">
                     <h2>Product Not Found</h2>
-                    <a href="products.html" class="btn-primary">
+                    <a href="products.php" class="btn-primary">
                         Back to Products
                     </a>
                 </div>
             `;
+
             return;
         }
-        renderProduct(product);
-        renderRelatedProducts(product);
+
+        /* All Products */
+
+        const productsResponse = await fetch("api/products.php");
+        const productsData = await productsResponse.json();
+
+        allProducts = productsData.products || [];
+
+        renderProduct(data.product);
+
+        renderRelatedProducts(data.product);
+
     }
     catch (error) {
-        console.error(error);
+
+        console.error("Unable to load product.", error);
+
     }
+    finally {
+        hideLoader();
+    }
+
 }
 
 /*=========================================
-        DETERMINE DYNAMIC PRICE
+        FORMAT PRICE
+=========================================*/
+
+function formatPrice(price) {
+
+    if (
+        price === undefined ||
+        price === null ||
+        price === "" ||
+        Number(price) === 0
+    ) {
+        return "-";
+    }
+
+    return Number(price).toLocaleString("en-IN");
+
+}
+
+/*=========================================
+        DISPLAY PRICE
 =========================================*/
 
 function getProductDisplayPrice(product) {
-    if (product.price !== undefined && product.price !== null) {
+
+    /* Multiple Sizes - Default to 1st size price if available */
+
+    if (
+        product.sizes &&
+        product.sizes.length > 0
+    ) {
+        return formatPrice(product.sizes[0].price);
+    }
+
+    /* Single Size */
+
+    if (
+        product.size &&
+        Number(product.size.price) > 0
+    ) {
+        return formatPrice(product.size.price);
+    }
+
+    /* Flat Price */
+
+    if (
+        product.price &&
+        Number(product.price) > 0
+    ) {
         return formatPrice(product.price);
-    } else if (product.sizes && product.sizes.length > 0) {
-        const prices = product.sizes.map(s => Number(s.price)).filter(p => !isNaN(p));
-        if (prices.length > 0) {
-            const minPrice = Math.min(...prices);
-            const maxPrice = Math.max(...prices);
-            
-            if (minPrice === maxPrice) {
-                return formatPrice(minPrice);
-            } else {
-                return `${formatPrice(minPrice)} - ${formatPrice(maxPrice)}`;
-            }
-        }
     }
+
     return "-";
+
 }
 
 /*=========================================
-       FORMAT NESTED DIMENSIONS
+        DIMENSION ROWS
 =========================================*/
 
-function formatDimensions(dims) {
-    if (!dims || typeof dims !== 'object') return null;
-    
-    const l = dims.length || {};
-    const h = dims.height || {};
-    const b = dims.breadth || {};
-    
-    // Check if we have standard L x B x H values
-    if (l.mm || h.mm || b.mm) {
-        const mmStr = `${l.mm || 0} x ${b.mm || 0} x ${h.mm || 0} mm`;
-        const inchStr = (l.inch || h.inch || b.inch) ? ` (${l.inch || 0} x ${b.inch || 0} x ${h.inch || 0} inch)` : '';
-        return `${mmStr}${inchStr}`;
-    }
-    
-    return null;
-}
+function generateDimensionRows(size) {
 
-/*=========================================
-     GENERATE LABELED DIMENSION ROWS
-=========================================*/
-
-function generateDimensionRows(sizeString) {
-    if (!sizeString || sizeString === "-") {
-        return `<tr><th>Size / Dimensions</th><td>-</td></tr>`;
-    }
-
-    const regex = /^([\d.]+)\s*x\s*([\d.]+)\s*x\s*([\d.]+)\s*mm(?:\s*\(\s*([\d.]+)\s*x\s*([\d.]+)\s*x\s*([\d.]+)\s*inch\s*\))?$/i;
-    const match = sizeString.match(regex);
-
-    if (match) {
-        const l_mm = match[1];
-        const b_mm = match[2];
-        const h_mm = match[3];
-        const l_in = match[4];
-        const b_in = match[5];
-        const h_in = match[6];
-
-        const l_display = l_in ? `${l_mm} mm (${l_in} inch)` : `${l_mm} mm`;
-        const b_display = b_in ? `${b_mm} mm (${b_in} inch)` : `${b_mm} mm`;
-        const h_display = h_in ? `${h_mm} mm (${h_in} inch)` : `${h_mm} mm`;
+    if (!size) {
 
         return `
-            <tr><th>Length</th><td>${l_display}</td></tr>
-            <tr><th>Breadth</th><td>${b_display}</td></tr>
-            <tr><th>Height</th><td>${h_display}</td></tr>
+            <tr>
+                <th>Size</th>
+                <td>-</td>
+            </tr>
         `;
+
     }
 
-    return `<tr><th>Size / Dimensions</th><td>${sizeString}</td></tr>`;
+    const lengthMm = size.dimensions?.length?.mm ?? size.length_mm;
+    const lengthInch = size.dimensions?.length?.inch ?? size.length_inch;
+
+    const breadthMm = size.dimensions?.breadth?.mm ?? size.breadth_mm;
+    const breadthInch = size.dimensions?.breadth?.inch ?? size.breadth_inch;
+
+    const heightMm = size.dimensions?.height?.mm ?? size.height_mm;
+    const heightInch = size.dimensions?.height?.inch ?? size.height_inch;
+
+    const formatDimension = (mm, inch) => {
+        const parts = [];
+        if (mm !== undefined && mm !== null && mm !== "") parts.push(`${mm} mm`);
+        if (inch !== undefined && inch !== null && inch !== "") parts.push(`${inch} inch`);
+        return parts.length > 0 ? parts.join(" / ") : "-";
+    };
+
+    return `
+
+        <tr>
+            <th>Size</th>
+            <td>${size.size || size.name || "-"}</td>
+        </tr>
+
+        <tr>
+            <th>Length</th>
+            <td>${formatDimension(lengthMm, lengthInch)}</td>
+        </tr>
+
+        <tr>
+            <th>Breadth</th>
+            <td>${formatDimension(breadthMm, breadthInch)}</td>
+        </tr>
+
+        <tr>
+            <th>Height</th>
+            <td>${formatDimension(heightMm, heightInch)}</td>
+        </tr>
+
+    `;
+
 }
 
 /*=========================================
-        RENDER PRODUCT
+        GENERATE SPECIFICATION ROWS
 =========================================*/
 
-function renderProduct(product) {
+function generateSpecificationRows(product, selectedSize = null) {
 
-    /*=========================================
-            FORMAT FEATURES
-    =========================================*/
+    // If multiple sizes exist and none explicitly passed, default to the 1st size
+    const size = selectedSize || (product.sizes && product.sizes.length > 0 ? product.sizes[0] : (product.size || {}));
 
-    const features = Array.isArray(product.features) ? product.features : String(product.features || "").split(",").map(feature => feature.trim()).filter(feature => feature);
-    const featuresHTML = features.map(feature => `<li>${feature}</li>`).join("");
-    
-    // Dynamic Base/Range Price Setup
-    const displayPrice = getProductDisplayPrice(product);
+    const featuresHTML = (product.features || [])
+        .map(feature => `<li>${feature}</li>`)
+        .join("");
 
-    // --- SMART IMAGE CHECK ---
-    // Evaluates key name fallbacks if your JSON properties differ across collections
-    const productImageSrc = product.thumbnail || product.image || product.img || "";
-
-    // --- HYBRID EXTRACTION: HOLDS BOTH APPROACHES SIMULTANEOUSLY ---
-    let initialSize = "-";
-    let initialWeight = "-";
-
-    const topLevelDims = formatDimensions(product.dimensions);
-    if (topLevelDims) {
-        initialSize = topLevelDims;
-    } else if (product.size) {
-        initialSize = product.size;
-    } else if (product.sizes && product.sizes.length > 0) {
-        const firstVariant = product.sizes[0];
-        const variantDims = formatDimensions(firstVariant.dimensions);
-        initialSize = variantDims ? variantDims : (firstVariant.size || "-");
-    }    
-
-    let variantSelectorHTML = "";
-    
-    let specificationsHTML = `
+    return `
         <tr>
             <th>Material</th>
             <td>${product.material || "-"}</td>
         </tr>
         <tr>
-            <th>Color</th>
-            <td>${product.color || "-"}</td>
-        </tr>
-        <tbody id="dynamicDimensionRows">
-            ${generateDimensionRows(initialSize)}
-        </tbody>
-        <tr id="detailWeightRow">
-            <th>Weight</th>
-            <td id="detailWeight">${product.weight || "-"}</td>
+            <th>Shape</th>
+            <td>${product.shape || "-"}</td>
         </tr>
         <tr>
             <th>Finish</th>
             <td>${product.finish || "-"}</td>
         </tr>
+        <tr>
+            <th>Color</th>
+            <td>${product.color || "-"}</td>
+        </tr>
+        
+        <!-- Output dimension rows directly using formatting logic -->
+        ${generateDimensionRows(size)}
+
         <tr>
             <th>Features</th>
             <td>
@@ -187,240 +242,464 @@ function renderProduct(product) {
             <td>${product.description || "-"}</td>
         </tr>
     `;
-
-    // --- UL / LI VARIANT SELECTION (COMBINED APPROACHES) ---
-    if (product.sizes && product.sizes.length > 0) {
-        const listItemsHTML = product.sizes.map((s, idx) => {
-            let buttonLabel = s.size;
-            if (!buttonLabel || buttonLabel.trim() === "" || buttonLabel === "-") {
-                const computedDims = formatDimensions(s.dimensions);
-                buttonLabel = computedDims ? computedDims.split(" (")[0] : `Option ${idx + 1}`; 
-            }
-            
-            return `
-                <li class="variant-item${idx === 0 ? ' active' : ''}" data-index="${idx}">
-                    ${buttonLabel}
-                </li>
-            `;
-        }).join("");
-
-        variantSelectorHTML = `
-            <div class="variant-selector">
-                <label>Select Variant:</label>
-                <ul id="sizeList">
-                    ${listItemsHTML}
-                </ul>
-            </div>
-        `;
-    }
-
-    // Fixed the image element template literal setup below
-    productContainer.innerHTML = `
-        <div class="product-wrapper">
-            <div class="product-gallery">
-                <img src="${productImageSrc}" alt="${product.name || "Product Image"}" id="mainImage">
-            </div>
-            <div class="product-info">
-                <span class="product-category">${product.category || "-"}</span>
-                <h1>${product.name || "-"}</h1>
-                
-                <div class="product-price" id="dynamicPrice">₹ ${displayPrice}</div>
-                
-                ${variantSelectorHTML}
-
-                <table class="product-specification">
-                    ${specificationsHTML}
-                </table>
-                <div class="product-buttons" style="margin-top: 20px;">
-                    <a href="contact.html" class="btn-primary">
-                        Get Quote
-                    </a>
-                    <a href="products.html" class="btn-outline">
-                        Back
-                    </a>
-                </div>
-            </div>
-        </div>
-    `;   
-
-    // --- INTERACTIVE SYSTEM EVENT LISTENERS ---
-    const sizeItems = document.querySelectorAll("#sizeList .variant-item");
-    if (sizeItems.length > 0 && product.sizes) {
-        const updateVariantDOM = (index) => {
-            const selectedVariant = product.sizes[index];
-            if (selectedVariant) {
-                document.getElementById("dynamicPrice").textContent = `₹ ${formatPrice(selectedVariant.price)}`;
-                
-                // Adaptive breakdown injection switch inside table element upon item click
-                const activeDims = formatDimensions(selectedVariant.dimensions);
-                const sizeValue = activeDims ? activeDims : (selectedVariant.size || "-");
-                document.getElementById("dynamicDimensionRows").innerHTML = generateDimensionRows(sizeValue);
-                
-                document.getElementById("detailWeight").textContent = selectedVariant.weight || "-";
-            }
-        };
-
-        updateVariantDOM(0);
-
-        sizeItems.forEach(item => {
-            item.addEventListener("click", function() {
-                sizeItems.forEach(i => i.classList.remove("active"));
-                this.classList.add("active");
-                
-                const variantIndex = parseInt(this.dataset.index, 10);
-                updateVariantDOM(variantIndex);
-            });
-        });
-    }
 }
 
 /*=========================================
-                FORMAT PRICE
+        RENDER PRODUCT
 =========================================*/
 
-function formatPrice(price) {
-    if (price === undefined || price === null || price === "") return "-";
-    const value = parseFloat(price);
-    if (isNaN(value)) {
-        return price;
+function renderProduct(product) {
+
+    const displayPrice = getProductDisplayPrice(product);
+
+    /* Category handling supporting both string or object structure */
+    const categoryName = typeof product.category === "string"
+        ? product.category
+        : (product.category?.name || "-");
+
+    /* Resolve Image Path without fallback image */
+    const imagePath = product.thumbnail || (product.images && product.images.length > 0 ? product.images[0].image : null);
+
+    const imageHTML = imagePath
+        ? `<img src="${imagePath}" alt="${product.name}" id="mainImage">`
+        : '';
+
+    /* Variant Selector HTML (if multiple sizes exist) */
+    let variantHTML = "";
+
+    let initialQuoteUrl = `contact.php?id=${product.id}&slug=${product.slug}`;
+
+    if (product.sizes && product.sizes.length > 1) {
+
+        initialQuoteUrl += `&size=${encodeURIComponent(product.sizes[0].size)}`;
+
+        variantHTML = `
+        <div class="variant-wrapper">
+
+            <label class="variant-title">
+                Available Sizes
+            </label>
+
+            <div class="variant-buttons">
+
+                ${product.sizes.map((size, index) => `
+
+                    <button
+                        type="button"
+                        class="variant-btn ${index === 0 ? "active" : ""}"
+                        data-index="${index}">
+
+                        ${size.size}
+
+                    </button>
+
+                `).join("")}
+
+            </div>
+
+        </div>
+    `;
+
     }
-    const suffix = typeof price === 'string' ? price.replace(/^[\d.,\s]+/, "") : "";
-    return `${value.toLocaleString("en-IN")}${suffix}`;
+
+    /* Render Main Product Layout */
+    productContainer.innerHTML = `
+
+        <div class="product-wrapper">
+
+            <div class="product-gallery">
+                ${imageHTML}
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    ${categoryName}
+                </span>
+
+                <h1>${product.name}</h1>
+
+                <div class="product-price" id="productPrice">
+                    ₹ ${displayPrice}
+                </div>
+
+                ${variantHTML}
+
+                <table class="product-specification">
+                    <tbody id="specificationBody">
+                        ${generateSpecificationRows(product)}
+                    </tbody>
+                </table>
+
+                <div class="product-buttons">
+
+                    <a
+                        href="${initialQuoteUrl}"
+                        class="btn-primary quote-btn">
+
+                        Get Quote
+
+                    </a>
+
+                    <a
+                        href="products.php"
+                        class="btn-outline">
+
+                        Back
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+    /*=========================================
+        SIZE / VARIANT SWITCHING EVENT LISTENERS
+    =========================================*/
+
+    if (product.sizes && product.sizes.length > 1) {
+
+        const buttons = document.querySelectorAll(".variant-btn");
+
+        buttons.forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                buttons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+
+                const index = parseInt(this.dataset.index);
+                const selectedSize = product.sizes[index];
+
+                /* Update Price */
+                const priceElement = document.getElementById("productPrice");
+                if (priceElement) {
+                    priceElement.innerHTML = `₹ ${formatPrice(selectedSize.price)}`;
+                }
+
+                /* Update Specifications & Dynamic Dimensions */
+                const specBody = document.getElementById("specificationBody");
+                if (specBody) {
+                    specBody.innerHTML = generateSpecificationRows(product, selectedSize);
+                }
+
+                /* Update Quote URL with Size Parameter */
+                const quoteBtn = document.querySelector(".quote-btn");
+
+                if (quoteBtn) {
+                    quoteBtn.href =
+                        `contact.php?id=${product.id}` +
+                        `&slug=${product.slug}` +
+                        `&size=${encodeURIComponent(selectedSize.size)}`;
+                }
+
+            });
+
+        });
+
+    }
+
 }
+
+/*=========================================
+        RELATED PRODUCTS
+=========================================*/
+
+const carousel = document.querySelector(".product-carousel");
+const track = document.querySelector(".carousel-track");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
+
+let cards = [];
+let currentIndex = 0;
+let visibleCards = 4;
+let cardWidth = 0;
+let autoPlay = null;
+
+/*=========================================
+        RENDER RELATED PRODUCTS
+=========================================*/
+
+function renderRelatedProducts(currentProduct) {
+
+    if (!relatedProducts) return;
+
+    relatedProducts.innerHTML = "";
+
+    /*----------------------------------
+        Current Category
+    -----------------------------------*/
+
+    const currentCategoryId =
+        currentProduct.category?.id ?? "";
+
+    const currentCategorySlug =
+        (currentProduct.category?.slug || "").toLowerCase();
+
+    const currentCategoryName =
+        (currentProduct.category?.name || "").toLowerCase();
+
+    /*----------------------------------
+        Filter Same Category
+    -----------------------------------*/
+
+    const related = allProducts.filter(product => {
+
+        if (Number(product.id) === Number(currentProduct.id)) {
+            return false;
+        }
+
+        const category = product.category || {};
+
+        return (
+            Number(category.id) === Number(currentCategoryId) ||
+            (category.slug || "").toLowerCase() === currentCategorySlug ||
+            (category.name || "").toLowerCase() === currentCategoryName
+        );
+
+    });
+
+    if (!related.length) {
+
+        relatedProducts.innerHTML = `
+            <div class="text-center w-100">
+                No related products found.
+            </div>
+        `;
+
+        return;
+    }
+
+    /*----------------------------------
+        Render
+    -----------------------------------*/
+
+    related.forEach(product => {
+
+        const image =
+            product.thumbnail ||
+            "images/no-image.webp";
+
+        relatedProducts.insertAdjacentHTML("beforeend", `
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <img
+                        src="${image}"
+                        alt="${product.name}"
+                        loading="lazy">
+
+                </div>
+
+                <div class="product-content">
+
+                    <h3>${product.name}</h3>
+
+                    <div class="product-price">
+                        ₹ ${getProductDisplayPrice(product)}
+                    </div>
+
+                    <a
+                        href="product-details.php?id=${product.id}&slug=${product.slug}"
+                        class="btn-primary">
+
+                        View Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        `);
+
+    });
+
+    cards = [...relatedProducts.querySelectorAll(".product-card")];
+
+    initializeCarousel();
+
+}
+
+/*=========================================
+        INITIALIZE CAROUSEL
+=========================================*/
+
+function initializeCarousel() {
+
+    currentIndex = 0;
+
+    if (!cards.length)
+        return;
+
+    updateVisibleCards();
+
+    if (cards.length <= visibleCards) {
+
+        if (prevBtn) prevBtn.style.display = "none";
+        if (nextBtn) nextBtn.style.display = "none";
+
+        stopAutoplay();
+        return;
+
+    }
+
+    if (prevBtn) prevBtn.style.display = "flex";
+    if (nextBtn) nextBtn.style.display = "flex";
+
+    startAutoplay();
+
+}
+
+/*=========================================
+        RESPONSIVE
+=========================================*/
+
+function updateVisibleCards() {
+
+    cards = [...relatedProducts.querySelectorAll(".product-card")];
+    if (!cards.length) return;
+
+    if (window.innerWidth < 576) {
+        visibleCards = 1;
+    }
+    else if (window.innerWidth < 768) {
+        visibleCards = 2;
+    }
+    else if (window.innerWidth < 992) {
+        visibleCards = 3;
+    }
+    else {
+        visibleCards = 4;
+    }
+
+    const gap = 25;
+    cardWidth = cards[0].getBoundingClientRect().width + gap;
+
+    if (track) {
+        track.style.transition = "none";
+        track.style.transform = "translateX(0px)";
+    }
+    currentIndex = 0;
+
+}
+
+/*=========================================
+        NEXT SLIDE (SEAMLESS LOOP)
+=========================================*/
+
+function nextSlide() {
+
+    cards = [...relatedProducts.querySelectorAll(".product-card")];
+    if (cards.length <= visibleCards || !track) return;
+
+    track.style.transition = "transform 0.5s ease";
+    track.style.transform = `translateX(-${cardWidth}px)`;
+
+    track.ontransitionend = () => {
+        track.style.transition = "none";
+        // Move the first card to the very end of the DOM track container
+        track.appendChild(track.firstElementChild);
+        track.style.transform = "translateX(0px)";
+        track.ontransitionend = null; // Clear handler
+    };
+
+}
+
+/*=========================================
+        PREVIOUS SLIDE (SEAMLESS LOOP)
+=========================================*/
+
+function prevSlide() {
+
+    cards = [...relatedProducts.querySelectorAll(".product-card")];
+    if (cards.length <= visibleCards || !track) return;
+
+    track.style.transition = "none";
+    // Instantly move the last card to the front before sliding visible window back
+    track.insertBefore(track.lastElementChild, track.firstElementChild);
+    track.style.transform = `translateX(-${cardWidth}px)`;
+
+    setTimeout(() => {
+        track.style.transition = "transform 0.5s ease";
+        track.style.transform = "translateX(0px)";
+    }, 20);
+
+}
+
+/*=========================================
+        MOVE CAROUSEL
+=========================================*/
+
+/*=========================================
+        MOVE CAROUSEL
+=========================================*/
+
+function moveCarousel(instant = false) {
+
+    if (!track)
+        return;
+
+    if (instant) {
+        track.style.transition = "none";
+    } else {
+        track.style.transition = "transform .5s ease";
+    }
+
+    track.style.transform =
+        `translateX(-${currentIndex * cardWidth}px)`;
+
+}
+
+/*=========================================
+        AUTOPLAY
+=========================================*/
+
+function startAutoplay() {
+
+    stopAutoplay();
+
+    if (cards.length <= visibleCards)
+        return;
+
+    autoPlay = setInterval(nextSlide, 3000);
+
+}
+
+function stopAutoplay() {
+
+    clearInterval(autoPlay);
+
+}
+
+/*=========================================
+        EVENTS
+=========================================*/
+
+if (nextBtn)
+    nextBtn.addEventListener("click", nextSlide);
+
+if (prevBtn)
+    prevBtn.addEventListener("click", prevSlide);
+
+if (carousel) {
+
+    carousel.addEventListener("mouseenter", stopAutoplay);
+
+    carousel.addEventListener("mouseleave", startAutoplay);
+
+}
+
+window.addEventListener("resize", updateVisibleCards);
 
 /*=========================================
         START
 =========================================*/
 
 loadProduct();
-
-/*=========================================
-        RELATED PRODUCTS
-=========================================*/
-
-const relatedProducts = document.getElementById("relatedProducts");
-const carousel = document.querySelector(".product-carousel");
-const track = document.querySelector(".carousel-track");
-const nextBtn = document.querySelector(".next");
-const prevBtn = document.querySelector(".prev");
-let cards = [];
-let currentIndex = 0;
-let visibleCards = 4;
-let cardWidth = 0;
-let autoPlay;
-let allProducts = [];
-
-function renderRelatedProducts(currentProduct) {
-    relatedProducts.innerHTML = "";
-    currentIndex = 0;
-    const related = allProducts.filter(item =>
-        item.category === currentProduct.category &&
-        item.slug !== currentProduct.slug
-    );
-    if (!related.length) {
-        document.querySelector(".products-more").style.display = "none";
-        return;
-    }
-    related.forEach(product => {
-        const relatedDisplayPrice = getProductDisplayPrice(product);
-        const relatedImageSrc = product.thumbnail || product.image || product.img || "";
-        
-        relatedProducts.insertAdjacentHTML("beforeend", `
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="${relatedImageSrc}" alt="${product.name}" loading="lazy">
-                </div>
-                <div class="product-content">
-                    <h3>${product.name}</h3>
-                    <div class="product-price">₹ ${relatedDisplayPrice}</div>
-                    <a href="product-details.html?slug=${product.slug}" class="btn-primary">
-                        View Details
-                    </a>
-                </div>
-            </div>
-        `);
-    });
-
-    cards = [...document.querySelectorAll(".product-card")];
-
-    if (cards.length < 4) {
-        stopAutoplay();
-        prevBtn.style.display = "none";
-        nextBtn.style.display = "none";
-        track.style.transform = "none";
-        track.style.transition = "none";
-        track.classList.add("grid-view");
-        return;
-    }
-
-    prevBtn.style.display = "flex";
-    prevBtn.style.justifyContent = "center";
-    prevBtn.style.alignItems = "center";
-    nextBtn.style.display = "flex";
-    nextBtn.style.justifyContent = "center";
-    nextBtn.style.alignItems = "center";
-    track.classList.remove("grid-view");
-    updateVisibleCards();
-    stopAutoplay();
-    startAutoplay();
-}
-
-function updateVisibleCards() {
-    if (!cards.length) return;
-    if (window.innerWidth < 576) {
-        visibleCards = 1;
-    } else if (window.innerWidth < 768) {
-        visibleCards = 2;
-    } else if (window.innerWidth < 992) {
-        visibleCards = 3;
-    } else {
-        visibleCards = 4;
-    }
-
-    const gap = 25;
-    cardWidth = cards[0].getBoundingClientRect().width + gap;
-    moveCarousel();
-}
-
-function moveCarousel() {
-    track.style.transition = "transform .5s ease";
-    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-}
-
-function nextSlide() {
-    if (cards.length < 4) return;
-    currentIndex++;
-    if (currentIndex > cards.length - visibleCards) {
-        currentIndex = 0;
-    }
-    moveCarousel();
-}
-
-function prevSlide() {
-    if (cards.length < 4) return;
-    currentIndex--;
-    if (currentIndex < 0) {
-        currentIndex = cards.length - visibleCards;
-    }
-    moveCarousel();
-}
-
-nextBtn.addEventListener("click", nextSlide);
-prevBtn.addEventListener("click", prevSlide);
-
-function startAutoplay() {
-    if (cards.length < 4) return;
-    stopAutoplay();
-    autoPlay = setInterval(nextSlide, 3000);
-}
-
-function stopAutoplay() {
-    clearInterval(autoPlay);
-}
-
-if (carousel) {
-    carousel.addEventListener("mouseenter", stopAutoplay);
-    carousel.addEventListener("mouseleave", startAutoplay);
-}
-
-window.addEventListener("resize", updateVisibleCards);

@@ -19,22 +19,28 @@
     margin: 50px 0 60px;
 }
 
-.gallery-filter button {
+.gallery-filter a {
     padding: 10px 35px;
     border: 2px solid #e5e5e5;
     background: var(--light);
     color: var(--secondary);
     border-radius: 50px;
-    font-size: 15px;
+    font-size: 16px;
     transition: .35s;
 }
 
-.gallery-filter button:hover,
-.gallery-filter button.active {
+.gallery-filter a:hover,
+.gallery-filter a.active {
     background: var(--primary);
     border-color: var(--primary);
     color: var(--light);
 }
+
+.gallery-filter a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .18);
+}
+
 
 /*=========================================
             GALLERY GRID
@@ -147,6 +153,13 @@
     max-height: 85vh;
     border-radius: 10px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 20px;
+    color: var(--primary);
+    font-size: 24px;
 }
 
 /*=========================================
@@ -372,7 +385,7 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
         margin: 0 -15px 20px;
-        padding: 0 15px;
+        padding: 15px;
     }
 
     .gallery-filter::-webkit-scrollbar {

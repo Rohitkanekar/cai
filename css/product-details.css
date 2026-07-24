@@ -32,11 +32,12 @@
 }
 
 .product-gallery img {
-    width: 100%;
+    max-width: 100%;
     border-radius: 12px;
     display: block;
     background: #f5f5f5;
     transition: .4s;
+    margin: 0 auto;
 }
 
 .product-gallery img:hover {
@@ -78,37 +79,6 @@
     margin-bottom: 30px;
 }
 
-/*=========================================================
-                TABLE
-=========================================================*/
-
-.product-specification {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 35px;
-}
-
-.product-specification tr {
-    border-bottom: 1px solid #ececec;
-}
-
-.product-specification th {
-    width: 180px;
-    padding: 16px;
-    background: #fafafa;
-    color: #222;
-    text-align: left;
-    font-weight: 600;
-    border: 1px solid #e8e8e8;
-    vertical-align: top;
-}
-
-.product-specification td {
-    padding: 16px;
-    color: #666;
-    border: 1px solid #e8e8e8;
-    vertical-align: top;
-}
 
 /*=========================================================
                 BUTTONS
@@ -118,6 +88,7 @@
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+    margin-top: 15px;
 }
 
 /*=========================================================
@@ -189,15 +160,6 @@
         font-size: 28px;
     }
 
-    .product-specification th {
-        width: 150px;
-        padding: 12px;
-    }
-
-    .product-specification td {
-        padding: 12px;
-    }
-
 }
 
 @media (max-width:576px) {
@@ -212,11 +174,6 @@
 
     .product-price {
         font-size: 24px;
-    }
-
-    .product-specification {
-        display: block;
-        overflow-x: auto;
     }
 
     .product-buttons {
@@ -247,12 +204,6 @@
 
     .product-price {
         font-size: 22px;
-    }
-
-    .product-specification th,
-    .product-specification td {
-        padding: 10px;
-        font-size: 14px;
     }
 
 }
@@ -402,6 +353,8 @@
     transform: translateY(-50%);
     z-index: 10;
     color: var(--light);
+    align-items: center;
+    justify-content: center;
 }
 
 .prev {
@@ -479,33 +432,35 @@
     gap: 10px;
 }
 
+.variant-buttons {
+    margin: 15px 0;
+    display: flex;
+    gap: 15px;
+}
+
 .variant-selector label {
     margin-bottom: 10px;
     display: block;
 }
 
-.variant-item {
+.variant-btn {
     display: inline-block;
     border: 2px solid var(--primary);
     color: var(--primary);
-    padding: 10px 34px;
+    padding: 10px 20px;
     border-radius: 50px;
     transition: .4s;
     cursor: pointer;
+    background: var(--light);
 }
 
-.variant-item.active {
-    display: inline-block;
+.variant-btn.active {
     background: var(--primary);
     color: var(--light);
-    padding: 10px 35px;
-    border-radius: 50px;
-    transition: .4s;
     border: 2px solid var(--primary);
-    cursor: pointer;
 }
 
-.variant-item:hover {
+.variant-btn:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, .18);
 }

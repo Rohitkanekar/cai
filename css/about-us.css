@@ -213,17 +213,6 @@
     margin-top: -20px;
 }
 
-/*==================================
-        BUTTON
-==================================*/
-
-.values .btn-primary,
-.about .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
 /*==========================================
             COUNTER SECTION
 ==========================================*/
