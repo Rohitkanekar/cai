@@ -1,13 +1,28 @@
 <?php
 
-// =========================================
-// DATABASE CONFIGURATION
-// =========================================
+$isLocal = (
+    $_SERVER['HTTP_HOST'] === 'localhost' ||
+    strpos($_SERVER['HTTP_HOST'], 'localhost:') === 0
+);
 
-$host = "localhost";
-$dbname = "concrete_arts_india";
-$username = "root";
-$password = "";
+if ($isLocal) {
+
+    $host = "localhost";
+    $dbname = "concrete_arts_india";
+    $username = "root";
+    $password = "";
+
+    define('ADMIN_URL', '/cai/admin/');
+
+} else {
+
+    $host = "sql306.infinityfree.com";
+    $dbname = "if0_42478964_cai";
+    $username = "if0_42478964";
+    $password = "MASTERrohit26";
+
+    define('ADMIN_URL', '/admin/');
+}
 
 try {
 
@@ -18,7 +33,6 @@ try {
     );
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
 
@@ -26,17 +40,6 @@ try {
 
 }
 
-// =========================================
-// START SESSION
-// =========================================
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-// =========================================
-// BASE URL CONFIGURATION
-// =========================================
-
-
-define('ADMIN_URL', '/admin/');

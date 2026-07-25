@@ -115,7 +115,7 @@ $recentEnquiries = $pdo->query("
 
                                 <tr>
 
-                                    <th>#</th>
+                                    <th>ID</th>
 
                                     <th>Customer</th>
 
@@ -169,7 +169,7 @@ $recentEnquiries = $pdo->query("
 
                                             <td>
 
-                                                <?= date("d M Y", strtotime($row["created_at"])) ?>
+                                                <?= date("d M Y h:i A", strtotime($row["created_at"])) ?>
 
                                             </td>
 

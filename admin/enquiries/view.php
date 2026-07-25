@@ -31,6 +31,7 @@ if (!$enquiry) {
 
 ?>
 
+
 <div class="main-content">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -72,12 +73,22 @@ if (!$enquiry) {
 
                         <tr>
                             <th>Phone</th>
-                            <td><?= htmlspecialchars($enquiry["phone"] ?: "-") ?></td>
+                            <td><a href="tel:<?= htmlspecialchars($enquiry["phone"] ?: "-") ?>"><?= htmlspecialchars($enquiry["phone"] ?: "-") ?></a></td>
                         </tr>
 
                         <tr>
                             <th>Email</th>
-                            <td><?= htmlspecialchars($enquiry["email"] ?: "-") ?></td>
+                            <td><a href="mailto:<?= htmlspecialchars($enquiry["email"] ?: "-") ?>"><?= htmlspecialchars($enquiry["email"] ?: "-") ?></a></td>
+                        </tr>
+
+                        <tr>
+                            <th>Address</th>
+                            <td><?= htmlspecialchars($enquiry["customer_address"] ?: "-") ?></td>
+                        </tr>
+
+                        <tr>
+                            <th>Source</th>
+                            <td><?= htmlspecialchars($enquiry["source"] ?: "-") ?></td>
                         </tr>
 
                         <tr>

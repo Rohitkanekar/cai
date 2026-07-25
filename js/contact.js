@@ -57,6 +57,8 @@ function getCategoryName(cat) {
 }
 
 async function loadSelectedProduct() {
+    showLoader();
+
 
     productCard.style.display = "block";
 
@@ -85,12 +87,14 @@ async function loadSelectedProduct() {
         const hasSizes = product.sizes && product.sizes.length > 0;
 
         if (hasSizes) {
-            selectedProduct.selectedSize = params.get("size") || product.sizes[0].size;
-            selectedProduct.selectedPrice = params.get("price") || product.sizes[0].price;
+            selectedProduct.selectedSize =
+                params.get("size") || product.sizes[0].size;
 
-            selectedSizeData = product.sizes.find(
-                item => item.size === selectedProduct.selectedSize
-            ) || product.sizes[0];
+            selectedSizeData =
+                product.sizes.find(item => item.size === selectedProduct.selectedSize)
+                || product.sizes[0];
+
+            selectedProduct.selectedPrice = selectedSizeData.price;
         }
 
         const productNameInput = document.getElementById("productName");
@@ -162,6 +166,9 @@ async function loadSelectedProduct() {
         console.log('Selected', product);
     } catch (err) {
         console.error("Error loading selected product:", err);
+    }
+    finally {
+        hideLoader();
     }
 }
 
@@ -280,12 +287,20 @@ if (form) {
                 const hasSizes = selectedProduct.sizes && selectedProduct.sizes.length > 0;
 
                 // --- PUT THE CODE HERE ---
-                const rawImage = selectedProduct.thumbnail || (selectedProduct.images?.[0]?.image || selectedProduct.images?.[0]) || '';
+                const rawImage =
+                    selectedProduct.thumbnail ||
+                    (selectedProduct.images?.[0]?.image || selectedProduct.images?.[0]) ||
+                    "";
 
-                let absoluteImage = rawImage;
-                if (!rawImage.startsWith("http")) {
-                    absoluteImage = `${window.location.origin}/cai/${rawImage.replace(/^\/+/, "")}`;
-                }
+                const isLocal =
+                    window.location.hostname === "localhost" ||
+                    window.location.hostname === "185.27.134.117";
+
+                const absoluteImage = isLocal
+                    ? `${window.location.origin}/cai/${rawImage}`
+                    : `${window.location.origin}/${rawImage}`;
+
+                console.log(absoluteImage);
 
                 Object.assign(formData, {
                     productName: selectedProduct.name,

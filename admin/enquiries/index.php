@@ -133,6 +133,10 @@ $enquiries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <th>Email</th>
 
+                            <th>Address</th>
+
+                            <th>Source</th>
+
                             <th>Product</th>
 
                             <th>Product Category</th>
@@ -145,11 +149,7 @@ $enquiries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <th>Product Finish</th>
 
-                            <th>Product Image</th>
-
-                            <th>Address</th>
-
-                            <th>Source</th>
+                            <th>Product Image</th>                            
 
                             <th width="120">Date</th>
 
@@ -171,9 +171,16 @@ $enquiries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                     <td><?= htmlspecialchars($row["customer_name"] ?: "-") ?></td>
 
-                                    <td><?= htmlspecialchars($row["phone"] ?: "-") ?></td>
+                                    <td><a href="tel:<?= htmlspecialchars($row["phone"] ?: "-") ?>"><?= htmlspecialchars($row["phone"] ?: "-") ?></a></td>
 
-                                    <td><?= htmlspecialchars($row["email"] ?: "-") ?></td>
+                                    <td><a href="mailto:<?= htmlspecialchars($row["email"] ?: "-") ?>"><?= htmlspecialchars($row["email"] ?: "-") ?></a></td>
+
+                                    <td>
+                                        <?= htmlspecialchars($row["customer_address"] ?: "-") ?>
+                                    </td>
+
+
+                                    <td><?= htmlspecialchars($row["source"] ?: "-") ?></td>
 
                                     <td><?= htmlspecialchars($row["product_name"] ?: "-") ?></td>
 
@@ -181,7 +188,7 @@ $enquiries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                     <td><?= htmlspecialchars($row["product_material"] ?: "-") ?></td>
 
-                                    <td><?= htmlspecialchars($row["product_price"] ?: "-") ?></td>
+                                    <td>₹ <?= htmlspecialchars($row["product_price"] ?: "-") ?></td>
 
                                     <td><?= htmlspecialchars($row["product_size"] ?: "-") ?></td>
 
@@ -195,16 +202,9 @@ $enquiries = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <?php else: ?>
                                             -
                                         <?php endif; ?>
-                                    </td>
+                                    </td>                                    
 
-                                    <td>
-                                        <?= htmlspecialchars($row["customer_address"] ?: "-") ?>
-                                    </td>
-
-
-                                    <td><?= htmlspecialchars($row["source"] ?: "-") ?></td>
-
-                                    <td><?= date("d M Y", strtotime($row["created_at"] ?: "-")) ?></td>
+                                    <td><?= date("d M Y h:i A", strtotime($row["created_at"] ?: "-")) ?></td>
 
                                     <td>
 

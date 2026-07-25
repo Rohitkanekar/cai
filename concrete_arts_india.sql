@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2026 at 11:20 AM
+-- Generation Time: Jul 24, 2026 at 02:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -106,7 +106,8 @@ CREATE TABLE `enquiries` (
 INSERT INTO `enquiries` (`id`, `customer_name`, `phone`, `email`, `customer_address`, `source`, `subject`, `message`, `product_name`, `product_category`, `product_material`, `product_size`, `product_price`, `product_length`, `product_breadth`, `product_height`, `product_color`, `product_finish`, `product_image`, `product_url`, `created_at`) VALUES
 (56, 'Rohit Rajendra Kanekar', '9029999120', 'kanekarrohit26@gmail.com', 'Tembhipada Road\nAbove Pipeline', 'Facebook', 'Velvet FRP Planter VT4R61', 'We\'d love to hear from you\nSend us a message and we\'ll respond as soon as possible.', 'Velvet FRP Planter VT4R61', 'planters', 'FRP (Fiber Reinforced Plastic)', 'Large', 9023.00, '550 mm (22)', '550 mm (22)', '520 mm (20)', 'Customizable', 'Velvet Texture', 'http://localhost/cai/images/products/planters/planter92.webp', NULL, '2026-07-24 07:39:50'),
 (57, 'Rohit Rajendra Kanekar', '9029999120', 'kanekarrohit26@gmail.com', 'Tembhipada Road\nAbove Pipeline', 'Facebook', 'Quotation', 'Send us a message and we\'ll respond as soon as possible.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-07-24 07:49:02'),
-(58, 'Rohit Rajendra Kanekar', '9029999120', 'kanekarrohit26@gmail.com', 'Tembhipada Road\nAbove Pipeline', 'Facebook', 'Botanical Sanctuary Concrete Bench', 'We\'d love to hear from you\nSend us a message and we\'ll respond as soon as possible.', 'Botanical Sanctuary Concrete Bench', 'benches', 'Precast Concrete', '', 7500.00, NULL, NULL, NULL, 'Natural Cement Grey / Light Grey', 'Soft Leaf Stamped Texture', 'http://localhost/cai/images/products/benches/bench16.webp', NULL, '2026-07-24 08:43:19');
+(58, 'Rohit Rajendra Kanekar', '9029999120', 'kanekarrohit26@gmail.com', 'Tembhipada Road\nAbove Pipeline', 'Facebook', 'Botanical Sanctuary Concrete Bench', 'We\'d love to hear from you\nSend us a message and we\'ll respond as soon as possible.', 'Botanical Sanctuary Concrete Bench', 'benches', 'Precast Concrete', '', 7500.00, NULL, NULL, NULL, 'Natural Cement Grey / Light Grey', 'Soft Leaf Stamped Texture', 'http://localhost/cai/images/products/benches/bench16.webp', NULL, '2026-07-24 08:43:19'),
+(59, 'Rohit Rajendra Kanekar', '9029999120', 'kanekarrohit26@gmail.com', 'Tembhipada Road\nAbove Pipeline', 'Facebook', 'Royal FRP Planter RY4R60', 'Royal FRP Planter RY4R60', 'Royal FRP Planter RY4R60', 'planters', 'FRP (Fiber Reinforced Plastic)', 'Large', 9763.00, '500 mm (20)', '500 mm (20)', '490 mm (19)', 'Customizable', 'Royal Stone Texture', 'http://localhost/cai/images/products/planters/planter91.webp', NULL, '2026-07-24 12:21:11');
 
 -- --------------------------------------------------------
 
@@ -1275,7 +1276,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `enquiries`
 --
 ALTER TABLE `enquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `products`

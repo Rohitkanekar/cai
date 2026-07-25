@@ -159,13 +159,7 @@
                                         class="category-btn active" data-category="all">
                                         All Products
                                     </button>
-                                </li>
-                                <li>
-                                    <button aria-label="Category" type="button" role="button" class="category-btn"
-                                        data-category="planters">
-                                        Planters
-                                    </button>
-                                </li>
+                                </li>                                
                                 <li>
                                     <button aria-label="Category" type="button" role="button" class="category-btn"
                                         data-category="benches">
@@ -176,6 +170,12 @@
                                     <button aria-label="Category" type="button" role="button" class="category-btn"
                                         data-category="grc">
                                         GRC Jali
+                                    </button>
+                                </li>
+                                <li>
+                                    <button aria-label="Category" type="button" role="button" class="category-btn"
+                                        data-category="planters">
+                                        Planters
                                     </button>
                                 </li>
                                 <li>

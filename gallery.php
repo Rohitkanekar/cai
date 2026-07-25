@@ -150,7 +150,7 @@
                 <!-- Heading -->
                 <div class="section-heading">
                     <span>OUR GALLERY</span>
-                    <h2>Explore Our Recent Work</h2>
+                    <h2>Explore Our Products</h2>
                     <p>
                         Browse our premium collection of concrete planters,
                         landscape furniture, GRC products, sculptures and
@@ -163,8 +163,8 @@
                     <a aria-label="Gallery" data-filter="all" class="active">All</a>
                     <a aria-label="Gallery" data-filter="benches">Benches</a>
                     <a aria-label="Gallery" data-filter="grc">GRC</a>
-                    <a aria-label="Gallery" data-filter="statues">Statues</a>
                     <a aria-label="Gallery" data-filter="planters">Planters</a>
+                    <a aria-label="Gallery" data-filter="statues">Statues</a>
                 </div>
 
                 <!-- Gallery Grid -->
