@@ -1,7 +1,5 @@
 <?php
-
 header("Content-Type: application/json");
-
 require_once __DIR__ . "/../admin/includes/config.php";
 
 /*
@@ -26,30 +24,24 @@ SELECT
     p.color,
     p.featured,
     p.status,
-
+    p.thumbnail AS main_thumbnail,
     c.id   AS category_id,
     c.name AS category_name,
     c.slug AS category_slug
-
 FROM products p
-
 LEFT JOIN categories c
 ON c.id = p.category_id
-
 WHERE p.status = 1
-
 ORDER BY p.id DESC
 ");
-
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 $result = [];
 
 foreach ($products as $product) {
 
     /*
     |--------------------------------------------------------------------------
-    | All Sizes
+    | All Sizes & Dimensions
     |--------------------------------------------------------------------------
     */
 
@@ -59,47 +51,34 @@ foreach ($products as $product) {
         WHERE product_id=?
         ORDER BY id ASC
     ");
-
     $stmtSize->execute([$product["id"]]);
-
     $sizesData = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
-
     $sizes = [];
-
+    
     foreach ($sizesData as $row) {
-
         $sizes[] = [
-
             "size" => $row["size"],
-
             "price" => (float) $row["price"],
-
             "dimensions" => [
-
                 "length" => [
-                    "mm" => (int) $row["length_mm"],
-                    "inch" => $row["length_inch"] != "" ? (float) $row["length_inch"] : null
+                    "mm" => (int) ($row["length_mm"] ?? 0),
+                    "inch" => ($row["length_inch"] !== "" && $row["length_inch"] !== null) ? (float) $row["length_inch"] : null
                 ],
-
                 "height" => [
-                    "mm" => (int) $row["height_mm"],
-                    "inch" => $row["height_inch"] != "" ? (float) $row["height_inch"] : null
+                    "mm" => (int) ($row["height_mm"] ?? 0),
+                    "inch" => ($row["height_inch"] !== "" && $row["height_inch"] !== null) ? (float) $row["height_inch"] : null
                 ],
-
                 "breadth" => [
-                    "mm" => (int) $row["breadth_mm"],
-                    "inch" => $row["breadth_inch"] != "" ? (float) $row["breadth_inch"] : null
+                    "mm" => (int) ($row["breadth_mm"] ?? 0),
+                    "inch" => ($row["breadth_inch"] !== "" && $row["breadth_inch"] !== null) ? (float) $row["breadth_inch"] : null
                 ]
-
             ]
-
         ];
-
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Thumbnail
+    | Thumbnail (With Timestamp Prefix Cleanup & Fallbacks)
     |--------------------------------------------------------------------------
     */
 
@@ -110,10 +89,39 @@ foreach ($products as $product) {
         AND is_thumbnail=1
         LIMIT 1
     ");
-
     $stmtThumb->execute([$product["id"]]);
+    $rawThumbnail = $stmtThumb->fetchColumn();
 
-    $thumbnail = $stmtThumb->fetchColumn();
+    if (empty($rawThumbnail)) {
+        // Fallback to any image if no explicit thumbnail flag is set
+        $stmtAnyImg = $pdo->prepare("
+            SELECT image
+            FROM product_images
+            WHERE product_id=?
+            LIMIT 1
+        ");
+        $stmtAnyImg->execute([$product["id"]]);
+        $rawThumbnail = $stmtAnyImg->fetchColumn();
+    }
+
+    if (empty($rawThumbnail)) {
+        // Fallback to main products table thumbnail column
+        $rawThumbnail = $product["main_thumbnail"] ?? '';
+    }
+
+    $thumbnail = "";
+    if (!empty($rawThumbnail)) {
+        $pathInfo = pathinfo($rawThumbnail);
+        $filename = $pathInfo['filename'] ?? '';
+        $extension = $pathInfo['extension'] ?? '';
+        
+        if (!empty($filename) && !empty($extension)) {
+            $cleanedFilename = preg_replace('/^\d+_/', '', $filename);
+            $thumbnail = ($pathInfo['dirname'] !== '.' ? $pathInfo['dirname'] . '/' : '') . $cleanedFilename . '.' . $extension;
+        } else {
+            $thumbnail = $rawThumbnail;
+        }
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -127,9 +135,7 @@ foreach ($products as $product) {
         WHERE product_id=?
         ORDER BY id ASC
     ");
-
     $stmtFeature->execute([$product["id"]]);
-
     $features = $stmtFeature->fetchAll(PDO::FETCH_COLUMN);
 
     /*
@@ -144,14 +150,12 @@ foreach ($products as $product) {
         WHERE product_id=?
         LIMIT 1
     ");
-
     $stmtSeo->execute([$product["id"]]);
-
     $seo = $stmtSeo->fetch(PDO::FETCH_ASSOC);
 
     /*
     |--------------------------------------------------------------------------
-    | Response
+    | Response Initialization
     |--------------------------------------------------------------------------
     */
 
@@ -184,48 +188,30 @@ foreach ($products as $product) {
         ]
     ];
 
-    /*
-    |--------------------------------------------------------------------------
-    | Planters = sizes[]
-    |--------------------------------------------------------------------------
-    */
+    // Check if category is a Planter or has multiple configuration rows
+    $isPlanter = stripos($product["category_name"] ?? '', 'planter') !== false;
 
-    if (count($sizes) > 1) {
-
+    if ($isPlanter || count($sizes) > 1) {
         $item["sizes"] = $sizes;
-
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Other Products = price + size
-    |--------------------------------------------------------------------------
-    */ else {
-
+        $item["size"] = "";
+        $item["price"] = 0;
+    } else {
+        // Single product fallback configuration
         if (!empty($sizes)) {
-
             $first = $sizes[0];
-
             $item["price"] = $first["price"];
-
             $item["size"] = $first["size"];
-
             $item["dimensions"] = $first["dimensions"];
-
+            $item["sizes"] = $sizes; // Expose sizes array uniformly so frontend parses it seamlessly
         } else {
-
             $item["price"] = 0;
-
-            $item["size"] = null;
-
+            $item["size"] = "";
             $item["dimensions"] = null;
-
+            $item["sizes"] = [];
         }
-
     }
-
+    
     $result[] = $item;
-
 }
 
 echo json_encode([

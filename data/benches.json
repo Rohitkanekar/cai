@@ -1,0 +1,498 @@
+[
+  {
+    "id": 10,
+    "name": "Classic Park Concrete Bench",
+    "slug": "classic-park-concrete-bench-without-arm-rest",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Granite Grey",
+    "finish": "Smooth Matte",
+    "weight": "350 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Premium precast concrete bench manufactured for traditional outdoor parks, public gardens, and open landscapes. Designed with an ergonomic backrest for comfortable public seating and long-lasting elemental durability.",
+    "features": [
+      "Heavy-duty Precast Build",
+      "Ergonomic Back Support",
+      "All-weather Resistant",
+      "Vandalism Proof"
+    ],
+    "thumbnail": "images/products/benches/bench1.webp",
+    "seo": {
+      "title": "Classic Park Concrete Bench Manufacturer | Concrete Arts India",
+      "description": "Buy classic precast concrete park benches without armrests. Ideal for municipal parks, public walkways, and large gardens.",
+      "keywords": ["Classic Concrete Bench", "Park Bench", "Precast Garden Seating", "Concrete Arts India"]
+    }
+  },
+  {
+    "id": 11,
+    "name": "Executive Slatted Concrete Bench",
+    "slug": "executive-slatted-concrete-bench-with-arm-rest",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "With Arm Rest",
+    "size": "4 Feet",
+    "color": "Grey / Lime Green",
+    "finish": "Slatted Textured",
+    "weight": "400 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Heavy-duty precast concrete bench with integrated armrests and structured slat-back design. Perfect choice for elite commercial property entries, urban spaces, corporate courtyards, and premium residential layouts.",
+    "features": [
+      "Integrated Arm Rest Comfort",
+      "Modern Slatted Finish",
+      "Anti-skid Texture Surface",
+      "High Weight Tolerance"
+    ],
+    "thumbnail": "images/products/benches/bench2.webp",
+    "seo": {
+      "title": "Executive Slatted Concrete Bench with Arm Rest | Concrete Arts India",
+      "description": "Premium commercial grade concrete slatted benches featuring heavy duty structural armrests for ultimate public utility.",
+      "keywords": ["Slatted Concrete Bench", "Armrest Concrete Bench", "Commercial Outdoor Seating"]
+    }
+  },
+  {
+    "id": 12,
+    "name": "Contemporary Garden Concrete Bench",
+    "slug": "contemporary-garden-concrete-bench",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Dark Blue / Navy",
+    "finish": "Polished Gloss",
+    "weight": "350 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Sleek and minimalist modern concrete bench curated explicitly for high-end boutique hotels, modern residential villa lawns, and contemporary architecture landscapes.",
+    "features": [
+      "Minimalist Design Lines",
+      "Premium Sandstone Appearance",
+      "Low Liquid Absorption",
+      "UV Degradation Proof"
+    ],
+    "thumbnail": "images/products/benches/bench3.webp",
+    "seo": {
+      "title": "Contemporary Garden Concrete Bench Online | Concrete Arts India",
+      "description": "Shop design-forward contemporary sandstone look garden concrete benches. Tailor-made for luxury villas and private lawns.",
+      "keywords": ["Contemporary Concrete Bench", "Modern Garden Bench", "Luxury Outdoor Furniture"]
+    }
+  },
+  {
+    "id": 13,
+    "name": "Urban Landscape Concrete Bench",
+    "slug": "urban-landscape-concrete-bench",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Light Purple / Lavender",
+    "finish": "Industrial Rough",
+    "weight": "380 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Robust structural bench engineered to withstand massive daily foot traffic loads in metro stations, public plazas, urban streetscapes, and busy downtown walkways.",
+    "features": [
+      "Industrial Strength Core",
+      "Vandal and Impact Resistant",
+      "Zero Base Anchoring Required",
+      "Efflorescence Free Coating"
+    ],
+    "thumbnail": "images/products/benches/bench4.webp",
+    "seo": {
+      "title": "Urban Landscape Concrete Bench for Public Spaces | Concrete Arts India",
+      "description": "High-durability urban landscape concrete seating solutions engineered specifically for high-density metropolitan spaces.",
+      "keywords": ["Urban Street Bench", "Public Plaza Seating", "Heavy Duty Stone Bench"]
+    }
+  },
+  {
+    "id": 14,
+    "name": "Traditional Boulevard Concrete Bench",
+    "slug": "traditional-boulevard-concrete-bench",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Dark Slate Grey / Teal Grey",
+    "finish": "Rustic Matte",
+    "weight": "350 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Features a classic European boulevard aesthetic with a warm terracotta clay tint color profile. Perfectly fits heritage pathways, walking trails, and botanical gardens.",
+    "features": [
+      "Classic Boulevard Styling",
+      "Rich Terracotta Coloring",
+      "Thick Structural Rebar Reinforcement",
+      "Deep Seat Base Depth"
+    ],
+    "thumbnail": "images/products/benches/bench5.webp",
+    "seo": {
+      "title": "Traditional Boulevard Concrete Bench Supplier | Concrete Arts India",
+      "description": "Add time-tested European street elegance with our Terracotta hue Traditional Boulevard Precast Concrete Benches.",
+      "keywords": ["Boulevard Bench", "Terracotta Concrete Bench", "Heritage Walkway Seating"]
+    }
+  },
+  {
+    "id": 15,
+    "name": "Modernist Plaza Concrete Bench",
+    "slug": "modernist-plaza-concrete-bench",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Bright Orange",
+    "finish": "Acid Washed",
+    "weight": "360 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Features a striking geometric presentation with an acid-washed finish texture that reveals subtle underlying aggregates. Enhances museums, high-tech parks, and corporate plazas.",
+    "features": [
+      "Striking Angular Profile",
+      "Exposed Micro-aggregate Texture",
+      "Stain and Spill Resistant Protection",
+      "Monolithic Component Alignment"
+    ],
+    "thumbnail": "images/products/benches/bench6.webp",
+    "seo": {
+      "title": "Modernist Plaza Concrete Bench Manufacturer | Concrete Arts India",
+      "description": "Architectural grade modernist plaza concrete benches featuring geometric minimalist styles and advanced structural strength.",
+      "keywords": ["Modernist Concrete Bench", "Plaza Seating", "Architectural Outdoor Furniture"]
+    }
+  },
+  {
+    "id": 16,
+    "name": "Ornate Heritage Concrete Bench",
+    "slug": "ornate-heritage-concrete-bench",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Dark Greyish-Brown",
+    "finish": "Intricately Molded Antique",
+    "weight": "340 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Designed with deep artistic moldings on the structural legs and back frame panel, echoing old-world luxury Indian palace architectural patterns.",
+    "features": [
+      "Intricate Ornamental Motifs",
+      "Vintage Accent Color Coating",
+      "High-fidelity Mold Clarity",
+      "Premium Structural Concrete Blend"
+    ],
+    "thumbnail": "images/products/benches/bench7.webp",
+    "seo": {
+      "title": "Ornate Heritage Concrete Bench Factory | Concrete Arts India",
+      "description": "Ornate structural concrete benches mimicking classical antique patterns. Perfect for luxury resorts and historic preservation sites.",
+      "keywords": ["Ornate Bench", "Heritage Concrete Bench", "Antique Style Park Bench"]
+    }
+  },
+  {
+    "id": 17,
+    "name": "Rustic Parkside Concrete Bench",
+    "slug": "rustic-parkside-concrete-bench",
+    "category": "benches",
+    "price": "7500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Turquoise / Aqua Teal",
+    "finish": "Faux Wood-Grain Textured",
+    "weight": "350 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Offers the warm, traditional visual appeal of a thick natural timber plank structure combined with the lifetime permanence and zero-rot capability of reinforced precast concrete.",
+    "features": [
+      "Ultra-realistic Wood Grain Texture",
+      "No Splintering or Rot Risks",
+      "Deep Penetrating Color Pigment",
+      "Termite and Moisture Proof"
+    ],
+    "thumbnail": "images/products/benches/bench8.webp",
+    "seo": {
+      "title": "Rustic Wood-Look Concrete Bench | Concrete Arts India",
+      "description": "Get the warmth of timber wood grain with the unbreakable life span of reinforced precast stone concrete technology.",
+      "keywords": ["Faux Wood Concrete Bench", "Rustic Park Bench", "Wood Texture Garden Seating"]
+    }
+  },
+  {
+    "id": 18,
+    "name": "Eco-Lite Garden Concrete Bench",
+    "slug": "eco-lite-garden-concrete-bench",
+    "category": "benches",
+    "price": "6500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Lightweight Precast Composite",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Dark Timber Brown",
+    "finish": "Smooth Pored Fine Finish",
+    "weight": "300 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "A smart, cost-effective lightweight concrete composite model variation designed for easy shifting and flexible backyard installations without needing crane cranes or heavy crews.",
+    "features": [
+      "Optimized Weight Structural Core",
+      "Easy Multi-person Manual Lift Setup",
+      "Highly Budget-friendly Price Tier",
+      "Eco-conscious Mineral Binder Base"
+    ],
+    "thumbnail": "images/products/benches/bench9.webp",
+    "seo": {
+      "title": "Eco-Lite Budget Garden Concrete Bench | Concrete Arts India",
+      "description": "Affordable and highly dynamic lightweight structural concrete benches suited perfectly for backyards and domestic lawns.",
+      "keywords": ["Lightweight Concrete Bench", "Affordable Garden Seat", "Eco Friendly Bench"]
+    }
+  },
+  {
+    "id": 19,
+    "name": "Vista Point Concrete Bench",
+    "slug": "vista-point-concrete-bench",
+    "category": "benches",
+    "price": "6500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Dark Timber Brown",
+    "finish": "Polished Terrazzo Style",
+    "weight": "350 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Perfect seating match for high altitude mountain view points, coastal marine drive promenades, and scenic highway overlook stops.",
+    "features": [
+      "High Wind Load Base Support",
+      "Marine Atmospheric Protection Coating",
+      "Vibrant Distinct Perimeter Highlights",
+      "Anti-erosion Aggregate Build"
+    ],
+    "thumbnail": "images/products/benches/bench10.webp",
+    "seo": {
+      "title": "Vista Point Scenic Concrete Bench | Concrete Arts India",
+      "description": "Heavy-duty coastal and hilltop weatherproof concrete benches built to survive extreme humidity and high winds.",
+      "keywords": ["Vista Bench", "Coastal Promenade Seat", "Weatherproof Bench"]
+    }
+  },
+  {
+    "id": 20,
+    "name": "Compact Courtyard Concrete Bench",
+    "slug": "compact-courtyard-concrete-bench",
+    "category": "benches",
+    "price": "4000",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "2.5 Feet",
+    "color": "Dark Timber Brown",
+    "finish": "Satin Soft Finish",
+    "weight": "280 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "A specially shortened spatial layout design configuration optimized for tight urban balconies, small rooftop gardens, patio paths, and narrow home courtyard corners.",
+    "features": [
+      "Space Saving Slim Profile Layout",
+      "Highly Ergonomic Upright Back Angle",
+      "Extremely Competitive Introductory Price",
+      "Quick Clean Surface Treatment"
+    ],
+    "thumbnail": "images/products/benches/bench11.webp",
+    "seo": {
+      "title": "Compact Courtyard Concrete Bench | Concrete Arts India",
+      "description": "Space-optimized, small footprint concrete garden benches ideal for narrow passages, terraces, and balconies.",
+      "keywords": ["Small Concrete Bench", "Balcony Seating", "Compact Courtyard Furniture"]
+    }
+  },
+  {
+    "id": 21,
+    "name": "Metro Transit Concrete Bench",
+    "slug": "metro-transit-concrete-bench",
+    "category": "benches",
+    "price": "6500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Muted Purple-Brown / Mahogany",
+    "finish": "Ultra Smooth Anti-graffiti",
+    "weight": "400 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Utility grade infrastructure bench with anti-graffiti top layering designed intentionally for bus terminals, train railway platforms, and public transport interchanges.",
+    "features": [
+      "Anti-Graffiti Hard Top Layer",
+      "Boltable Ground Plate Interface Slots",
+      "High Scuff Scratch Deflection",
+      "Massive structural density index"
+    ],
+    "thumbnail": "images/products/benches/bench12.webp",
+    "seo": {
+      "title": "Metro Transit Public Concrete Bench | Concrete Arts India",
+      "description": "Infrastructure grade platform concrete seating solutions engineered for railway stations and metro networks.",
+      "keywords": ["Transit Bench", "Railway Platform Seating", "Bus Stop Bench"]
+    }
+  },
+  {
+    "id": 22,
+    "name": "Meadow View Concrete Bench",
+    "slug": "meadow-view-concrete-bench",
+    "category": "benches",
+    "price": "5500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Reddish Brown / Terracotta", 
+    "finish": "Natural Textured",
+    "weight": "320 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Features organic styling curves and muted raw earth blend coloration to disappear effortlessly into natural farmhouse orchards, large meadows, and organic fields.",
+    "features": [
+      "Organic Blending Hue Mix",
+      "Gentle Sloped Seating Base Structure",
+      "Moss and Lichen Friendly Surface Texture",
+      "High Cold Frost Fracture Resilience"
+    ],
+    "thumbnail": "images/products/benches/bench13.webp",
+    "seo": {
+      "title": "Meadow View Farmhouse Concrete Bench | Concrete Arts India",
+      "description": "Earthy colored, naturally textured concrete benches built for farmhouses, orchards, and country resorts.",
+      "keywords": ["Meadow Bench", "Farmhouse Concrete Seat", "Natural Stone Bench"]
+    }
+  },
+  {
+    "id": 23,
+    "name": "Commercial Promenade Concrete Bench",
+    "slug": "commercial-promenade-concrete-bench",
+    "category": "benches",
+    "price": "7000",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Dark Timber Brown",
+    "finish": "Semi-gloss Fine aggregate",
+    "weight": "370 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Premium industrial grade shopping mall boardwalk seating. Clean lines with a micro quartz particle reflective configuration that shimmers under nighttime public streetlights.",
+    "features": [
+      "Quartz Aggregates Reflective Mix",
+      "Premium Oil Stain Repulsion Layer",
+      "Extra Broad Seat Width",
+      "Heavy Mass Base Stability"
+    ],
+    "thumbnail": "images/products/benches/bench14.webp",
+    "seo": {
+      "title": "Commercial Promenade Mall Bench | Concrete Arts India",
+      "description": "High-end quartz finish precast concrete benches tailored for shopping complex promenades and high streets.",
+      "keywords": ["Promenade Bench", "Mall Concrete Seating", "Retail Space Outdoor Furniture"]
+    }
+  },
+  {
+    "id": 24,
+    "name": "Minimalist Esplanade Concrete Bench",
+    "slug": "minimalist-esplanade-concrete-bench",
+    "category": "benches",
+    "price": "5000",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Dark Charcoal Grey / Timber Brown",
+    "finish": "Ultra Fine Sandblast",
+    "weight": "340 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Eliminates all visual clutter. A perfectly balanced crisp design offering high performance minimal profiles ideal for open art exhibition lawns and upscale smart-city spaces.",
+    "features": [
+      "Ultra-fine Sandblasted Texture",
+      "No Visual Hardware or Joining Lines",
+      "High Hydrophobic Exterior Defense Coating",
+      "Excellent Price-to-Value Proportion"
+    ],
+    "thumbnail": "images/products/benches/bench15.webp",
+    "seo": {
+      "title": "Minimalist Esplanade Concrete Bench | Concrete Arts India",
+      "description": "Sandblasted minimal style dark grey concrete benches. Perfect statement element for clean contemporary architecture layouts.",
+      "keywords": ["Minimalist Bench", "Sandblasted Concrete Seat", "Slate Grey Outdoor Bench"]
+    }
+  },
+  {
+    "id": 25,
+    "name": "Botanical Sanctuary Concrete Bench",
+    "slug": "botanical-sanctuary-concrete-bench",
+    "category": "benches",
+    "price": "6500",
+    "currency": "INR",
+    "brand": "Concrete Arts India",
+    "material": "Precast Concrete",
+    "benchType": "With Back",
+    "seatingCapacity": "3 Seater",
+    "armRest": "Without Arm Rest",
+    "size": "3 Feet",
+    "color": "Natural Cement Grey / Light Grey",
+    "finish": "Soft Leaf Stamped Texture",
+    "weight": "350 kg",
+    "usage": "Garden, Park, Outdoor Seating",
+    "description": "Tailored visually for floral hot-houses, botanical sanctuaries, and private rose gardens. Coloration prevents high glare under direct bright greenhouse solar glass arrays.",
+    "features": [
+      "Low Solar Heat Absorption Pigment",
+      "Anti-fungal Organic Top Treatment",
+      "Soft Curved Armless Outlines",
+      "Reinforced Carbon Mesh Structural Internals"
+    ],
+    "thumbnail": "images/products/benches/bench16.webp",
+    "seo": {
+      "title": "Botanical Sanctuary Garden Bench | Concrete Arts India",
+      "description": "Shop low-glare, anti-fungal precast concrete seating solutions specialized for plant nurseries and botanical parks.",
+      "keywords": ["Botanical Garden Bench", "Greenhouse Seating", "Sage Green Concrete Bench"]
+    }
+  }
+]

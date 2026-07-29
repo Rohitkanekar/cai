@@ -61,11 +61,9 @@
     <div id="loader" class="loader-overlay">
         <div class="loader-content">
             <div class="spinner"></div>
-            <p>Submitting your enquiry...</p>
+            <p>Please wait...</p>
         </div>
     </div>
-
-
 
     <!-- ================= HEADER ================= -->
 
@@ -204,16 +202,18 @@
                     <div class="contact-form">
                         <div id="selectedProduct" class="selected-product"></div>
 
-                        <input type="hidden" id="productName" name="productName">
-                        <input type="hidden" id="productCategory" name="productCategory">
-                        <input type="hidden" id="productMaterial" name="productMaterial">
-                        <input type="hidden" id="productSize" name="productSize">
-                        <input type="hidden" id="productPrice" name="productPrice">
-                        <input type="hidden" id="productColor" name="productColor">
-                        <input type="hidden" id="productFinish" name="productFinish">
-                        <input type="hidden" id="source" name="source">
-
                         <form id="contactForm" method="post">
+                            <input type="hidden" id="productName" name="productName">
+                            <input type="hidden" id="productCategory" name="productCategory">
+                            <input type="hidden" id="productMaterial" name="productMaterial">
+                            <input type="hidden" id="productSize" name="productSize">
+                            <input type="hidden" id="productPrice" name="productPrice">
+                            <input type="hidden" id="productColor" name="productColor">
+                            <input type="hidden" id="productFinish" name="productFinish">
+                            <input type="hidden" id="productDescription" name="productDescription">
+                            <input type="hidden" id="productFeatures" name="productFeatures">
+                            <input type="hidden" id="source" name="source">
+
                             <div class="form-grid">
                                 <div class="form-group">
                                     <label for="name">Full Name</label>

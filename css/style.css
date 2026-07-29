@@ -626,16 +626,17 @@ button {
         top: 100px;
         left: -100%;
         width: 100%;
-        height: calc(100vh - 100px);
+        max-height: calc(100vh - 150px);
         background: var(--light);
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        overflow: auto;
+        overflow-y: auto;
         gap: 30px;
         transition: .4s;
         z-index: 999;
         border-top: 2px solid var(--primary);
+        padding: 20px 0;
     }
 
     .menu.active {
@@ -1291,4 +1292,3 @@ button {
         transform: rotate(360deg);
     }
 }
-

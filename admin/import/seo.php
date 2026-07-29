@@ -1,14 +1,10 @@
 <?php
-
 echo "<hr>";
 echo "<h2>Importing Product SEO...</h2>";
-
 $imported = 0;
 $skipped = 0;
 $errors = 0;
-
 foreach ($products as $product) {
-
     if (empty($product["seo"])) {
         continue;
     }
@@ -21,20 +17,14 @@ foreach ($products as $product) {
         WHERE slug = ?
         LIMIT 1
     ");
-
     $stmt->execute([
         $product["slug"]
     ]);
-
     $dbProduct = $stmt->fetch(PDO::FETCH_ASSOC);
-
     if (!$dbProduct) {
-
         $errors++;
         continue;
-
     }
-
     $productId = $dbProduct["id"];
 
     // Duplicate Check
@@ -45,26 +35,18 @@ foreach ($products as $product) {
         WHERE product_id = ?
         LIMIT 1
     ");
-
     $check->execute([$productId]);
-
     if ($check->fetch()) {
-
         $skipped++;
         continue;
-
     }
 
     // Convert keywords array to string
 
     $keywords = "";
-
     if (!empty($product["seo"]["keywords"])) {
-
         $keywords = implode(", ", $product["seo"]["keywords"]);
-
     }
-
     $insert = $pdo->prepare("
         INSERT INTO product_seo
         (
@@ -78,31 +60,19 @@ foreach ($products as $product) {
             ?, ?, ?, ?
         )
     ");
-
     $insert->execute([
-
         $productId,
-
         $product["seo"]["title"] ?? "",
-
         $product["seo"]["description"] ?? "",
-
         $keywords
-
     ]);
-
     echo "✅ "
         . htmlspecialchars($product["name"])
         . "<br>";
-
     $imported++;
-
 }
-
 echo "<hr>";
-
 echo "<h3>SEO Import Completed</h3>";
-
 echo "Imported : $imported <br>";
 echo "Skipped : $skipped <br>";
 echo "Errors : $errors <br>";

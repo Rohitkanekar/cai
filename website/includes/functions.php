@@ -1,5 +1,4 @@
 <?php
-
 require_once "config.php";
 
 /*
@@ -11,14 +10,12 @@ require_once "config.php";
 function getCategories()
 {
     global $pdo;
-
     $stmt = $pdo->query("
         SELECT *
         FROM categories
         WHERE status = 1
         ORDER BY sort_order ASC, name ASC
     ");
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -31,16 +28,13 @@ function getCategories()
 function getCategory($id)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT *
         FROM categories
         WHERE id = ?
         LIMIT 1
     ");
-
     $stmt->execute([$id]);
-
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -53,16 +47,13 @@ function getCategory($id)
 function getCategoryBySlug($slug)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT *
         FROM categories
         WHERE slug = ?
         LIMIT 1
     ");
-
     $stmt->execute([$slug]);
-
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -75,7 +66,6 @@ function getCategoryBySlug($slug)
 function getProducts()
 {
     global $pdo;
-
     $stmt = $pdo->query("
         SELECT
             p.*,
@@ -87,7 +77,6 @@ function getProducts()
         WHERE p.status = 1
         ORDER BY p.id DESC
     ");
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -100,7 +89,6 @@ function getProducts()
 function getFeaturedProducts()
 {
     global $pdo;
-
     $stmt = $pdo->query("
         SELECT
             p.*,
@@ -114,7 +102,6 @@ function getFeaturedProducts()
             AND p.featured = 1
         ORDER BY p.id DESC
     ");
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -127,7 +114,6 @@ function getFeaturedProducts()
 function getLatestProducts($limit = 8)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT
             p.*,
@@ -140,11 +126,8 @@ function getLatestProducts($limit = 8)
         ORDER BY p.id DESC
         LIMIT ?
     ");
-
     $stmt->bindValue(1, (int)$limit, PDO::PARAM_INT);
-
     $stmt->execute();
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -157,7 +140,6 @@ function getLatestProducts($limit = 8)
 function getProduct($id)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT
             p.*,
@@ -169,9 +151,7 @@ function getProduct($id)
         WHERE p.id = ?
         LIMIT 1
     ");
-
     $stmt->execute([$id]);
-
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -184,7 +164,6 @@ function getProduct($id)
 function getProductBySlug($slug)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT
             p.*,
@@ -198,9 +177,7 @@ function getProductBySlug($slug)
             AND p.status = 1
         LIMIT 1
     ");
-
     $stmt->execute([$slug]);
-
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -213,7 +190,6 @@ function getProductBySlug($slug)
 function getProductsByCategory($categoryId)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT *
         FROM products
@@ -222,9 +198,7 @@ function getProductsByCategory($categoryId)
             AND status = 1
         ORDER BY id DESC
     ");
-
     $stmt->execute([$categoryId]);
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -237,16 +211,13 @@ function getProductsByCategory($categoryId)
 function getProductImages($productId)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT *
         FROM product_images
         WHERE product_id = ?
         ORDER BY sort_order ASC
     ");
-
     $stmt->execute([$productId]);
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -259,7 +230,6 @@ function getProductImages($productId)
 function getProductThumbnail($productId)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT *
         FROM product_images
@@ -268,9 +238,7 @@ function getProductThumbnail($productId)
             AND is_thumbnail = 1
         LIMIT 1
     ");
-
     $stmt->execute([$productId]);
-
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -283,16 +251,13 @@ function getProductThumbnail($productId)
 function getProductSize($productId)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT *
         FROM product_sizes
         WHERE product_id = ?
         LIMIT 1
     ");
-
     $stmt->execute([$productId]);
-
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -305,16 +270,13 @@ function getProductSize($productId)
 function getProductFeatures($productId)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT *
         FROM product_features
         WHERE product_id = ?
         ORDER BY id ASC
     ");
-
     $stmt->execute([$productId]);
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -327,15 +289,12 @@ function getProductFeatures($productId)
 function getProductSEO($productId)
 {
     global $pdo;
-
     $stmt = $pdo->prepare("
         SELECT *
         FROM product_seo
         WHERE product_id = ?
         LIMIT 1
     ");
-
     $stmt->execute([$productId]);
-
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }

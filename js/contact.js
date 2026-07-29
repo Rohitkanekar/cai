@@ -5,8 +5,15 @@
 const sourceBtn = document.getElementById("sourceBtn");
 const sourceError = document.getElementById("sourceError");
 const sourceMenu = document.getElementById("sourceMenu");
-const selectedSource = document.getElementById("selectedSource");
 const sourceInput = document.getElementById("source");
+const selectedSource = document.getElementById("selectedSource");
+const productCard = document.getElementById("selectedProduct");
+const loader = document.getElementById("loader");
+const form = document.getElementById("contactForm");
+const params = new URLSearchParams(window.location.search);
+const slug = params.get("slug");
+let selectedSizeData = null;
+let selectedProduct = null;
 
 sourceBtn.addEventListener("click", () => {
     sourceBtn.classList.toggle("active");
@@ -30,13 +37,6 @@ document.addEventListener("click", function (e) {
     }
 });
 
-let selectedProduct = null;
-const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
-const productCard = document.getElementById("selectedProduct");
-let selectedSizeData = null;
-const loader = document.getElementById("loader");
-
 function showLoader() {
     loader.classList.add("active");
     document.body.classList.add('loading');
@@ -57,8 +57,6 @@ function getCategoryName(cat) {
 }
 
 async function loadSelectedProduct() {
-    showLoader();
-
 
     productCard.style.display = "block";
 
@@ -70,22 +68,20 @@ async function loadSelectedProduct() {
     }
 
     try {
+        showLoader();
         const response = await fetch("api/products.php");
         const data = await response.json();
         const products = Array.isArray(data) ? data : (data.products || data.data || []);
-
         const product = products.find(item => item.slug === slug);
-
         if (!product) {
             selectedProduct = null;
             productCard.style.display = "none";
             return;
         }
-
         selectedProduct = product;
         const catName = getCategoryName(product.category);
+        const isPlanter = catName.includes('planter');
         const hasSizes = product.sizes && product.sizes.length > 0;
-
         if (hasSizes) {
             selectedProduct.selectedSize =
                 params.get("size") || product.sizes[0].size;
@@ -112,20 +108,21 @@ async function loadSelectedProduct() {
             ? (product.category.name || "-")
             : (product.category || "-");
 
-        productCard.innerHTML = `
-            <img src="${product.thumbnail || (product.images?.[0]?.image || product.images?.[0]) || 'images/no-image.webp'}" alt="${product.name}">
-            <div class="selected-product-content">
-                <h2>${product.name}</h2>
-                <table class="product-specification">
-                    <tr>
-                        <th>Category</th>
-                        <td>${displayCategory}</td>
-                    </tr>
-                    <tr>
-                        <th>Material</th>
-                        <td>${product.material || "-"}</td>
-                    </tr>
-                    ${hasSizes && selectedSizeData && selectedSizeData.dimensions ? `
+        let featuresList = [];
+        if (Array.isArray(product.features)) {
+            featuresList = product.features;
+        } else if (typeof product.features === "string" && product.features.trim() !== "") {
+            featuresList = product.features.split(/[\n,]+/).map(f => f.trim()).filter(Boolean);
+        }
+
+        const featuresHTML = featuresList.length > 0
+            ? featuresList.map(feature => `<li>${feature}</li>`).join("")
+            : "<li>-</li>";
+
+        let dimensionRowsHTML = "";
+        if (isPlanter) {
+            if (hasSizes && selectedSizeData && selectedSizeData.dimensions) {
+                dimensionRowsHTML = `
                     <tr>
                         <th>Size</th>
                         <td>${displaySize}</td>
@@ -142,12 +139,44 @@ async function loadSelectedProduct() {
                         <th>Height</th>
                         <td>${selectedSizeData.dimensions.height?.mm || "-"} mm (${selectedSizeData.dimensions.height?.inch || "-"})</td>
                     </tr>
-                    ` : `
+                `;
+            } else {
+                dimensionRowsHTML = `
                     <tr>
                         <th>Size</th>
                         <td>${displaySize}</td>
                     </tr>
-                    `}
+                `;
+            }
+        } else {
+            dimensionRowsHTML = `
+                ${displaySize !== "-" && displaySize !== "" ? `
+                <tr>
+                    <th>Size</th>
+                    <td>${displaySize}</td>
+                </tr>
+                ` : ""}
+            `;
+        }
+
+        productCard.innerHTML = `
+            <img src="${product.thumbnail || (product.images?.[0]?.image || product.images?.[0]) || 'images/no-image.webp'}" alt="${product.name}">
+            <div class="selected-product-content">
+                <h2>${product.name}</h2>
+                <table class="product-specification">
+                    <tr>
+                        <th>Category</th>
+                        <td>${displayCategory}</td>
+                    </tr>
+                    <tr>
+                        <th>Material</th>
+                        <td>${product.material || "-"}</td>
+                    </tr>
+                    <tr>
+                        <th>Shape</th>
+                        <td>${product.shape || "-"}</td>
+                    </tr>
+                    ${dimensionRowsHTML}
                     <tr>
                         <th>Price</th>
                         <td>₹ ${Number(displayPrice || 0).toLocaleString("en-IN")}</td>
@@ -160,8 +189,20 @@ async function loadSelectedProduct() {
                         <th>Finish</th>
                         <td>${product.finish || "-"}</td>
                     </tr>
+                    <tr>
+                        <th>Features</th>
+                        <td>
+                            <ul class="ul-dot">
+                                ${featuresHTML}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>${product.description || "-"}</td>
+                    </tr>
                 </table>
-            </div>
+         </div>
         `;
         console.log('Selected', product);
     } catch (err) {
@@ -174,7 +215,6 @@ async function loadSelectedProduct() {
 
 loadSelectedProduct();
 
-const form = document.getElementById("contactForm");
 if (form) {
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -281,12 +321,13 @@ if (form) {
                 message: message.value.trim(),
                 address: address.value.trim(),
                 source: sourceInput.value.trim()
-            };
+         };
 
             if (selectedProduct && slug) {
                 const hasSizes = selectedProduct.sizes && selectedProduct.sizes.length > 0;
+                const catName = getCategoryName(selectedProduct.category);
+                const isPlanter = catName.includes('planter');
 
-                // --- PUT THE CODE HERE ---
                 const rawImage =
                     selectedProduct.thumbnail ||
                     (selectedProduct.images?.[0]?.image || selectedProduct.images?.[0]) ||
@@ -302,18 +343,28 @@ if (form) {
 
                 console.log(absoluteImage);
 
+                let formattedFeatures = "";
+                if (Array.isArray(selectedProduct.features)) {
+                    formattedFeatures = selectedProduct.features.join(", ");
+                } else if (typeof selectedProduct.features === "string") {
+                    formattedFeatures = selectedProduct.features;
+                }
+
                 Object.assign(formData, {
                     productName: selectedProduct.name,
                     productCategory: typeof selectedProduct.category === "object" ? selectedProduct.category.name : selectedProduct.category,
                     productMaterial: selectedProduct.material,
+                    productShape: selectedProduct.shape,
                     productSize: hasSizes ? selectedProduct.selectedSize : (selectedProduct.size?.size || selectedProduct.size),
                     productPrice: hasSizes ? selectedProduct.selectedPrice : selectedProduct.price,
                     productColor: selectedProduct.color,
                     productFinish: selectedProduct.finish,
-                    productImage: absoluteImage // <-- This adds productImage into the JSON payload
-                });
+                    productFeatures: formattedFeatures,
+                    productDescription: selectedProduct.description || "",
+                    productImage: absoluteImage
+             });
 
-                if (hasSizes) {
+                if (isPlanter && hasSizes) {
                     const currentSizeData = selectedProduct.sizes.find(
                         item => item.size === selectedProduct.selectedSize
                     ) || selectedProduct.sizes[0];
@@ -323,10 +374,10 @@ if (form) {
                             productLength: `${currentSizeData.dimensions.length?.mm || "-"} mm (${currentSizeData.dimensions.length?.inch || "-"})`,
                             productBreadth: `${currentSizeData.dimensions.breadth?.mm || "-"} mm (${currentSizeData.dimensions.breadth?.inch || "-"})`,
                             productHeight: `${currentSizeData.dimensions.height?.mm || "-"} mm (${currentSizeData.dimensions.height?.inch || "-"})`
-                        });
-                    }
+                    });
                 }
-            }
+              }
+         }
 
             try {
                 const response = await fetch("api/contact.php", {
@@ -336,11 +387,26 @@ if (form) {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(formData)
-                });
+            });
                 if (response.ok) {
                     console.log("Form submitted successfully", formData);
                     showToast("Enquiry submitted successfully. We will get back to you soon.", "success");
                     form.reset();
+
+                    // Clear URL params
+                    window.history.replaceState({}, document.title, window.location.pathname);
+
+                    // Reset product data
+                    selectedProduct = null;
+                    selectedSizeData = null;
+
+                    // Reset source dropdown
+                    selectedSource.textContent = "Select Source";
+                    sourceInput.value = "";
+                    sourceBtn.classList.remove("valid-input", "error-input");
+
+                    // Hide selected product
+                    productCard.innerHTML = "";
                     productCard.style.display = "none";
 
                     document.querySelectorAll("input, textarea").forEach(field => {
@@ -351,61 +417,46 @@ if (form) {
                         productCard.innerHTML = "";
                     }
 
-                } else {
+            } else {
                     showToast("Something went wrong. Please try again.", "error");
-                }
-            } catch (error) {
-                console.error(error);
-                showToast("Unable to submit the form. Please try again later.", "error");
             }
-            finally {
-                hideLoader();
-            }
+        } catch (error) {
+            console.error(error);
+            showToast("Unable to submit the form. Please try again later.", "error");
         }
+        finally {
+            hideLoader();
+      }
+    }
     });
 }
 
 function showError(input, message) {
-
     if (input === sourceInput) {
-
         sourceBtn.classList.add("error-input");
-
         const error = document.getElementById("sourceError");
-
         if (error) {
             error.textContent = message;
         }
-
         return;
     }
-
     input.classList.add("error-input");
-
     if (input.nextElementSibling) {
         input.nextElementSibling.textContent = message;
     }
-
 }
 
 function showSuccess(input) {
-
     if (input === sourceInput) {
-
         sourceBtn.classList.remove("error-input");
         sourceBtn.classList.add("valid-input");
-
         const error = document.getElementById("sourceError");
-
         if (error) {
             error.textContent = "";
         }
-
         return;
     }
-
     input.classList.add("valid-input");
-
 }
 
 function showToast(message, type = "success") {
@@ -417,19 +468,19 @@ function showToast(message, type = "success") {
         case "success":
             toast.classList.add("success");
             icon = '<i class="fa-solid fa-circle-check"></i>';
-            break;
+          break;
         case "error":
             toast.classList.add("error");
             icon = '<i class="fa-solid fa-circle-xmark"></i>';
-            break;
+          break;
         case "warning":
             toast.classList.add("warning");
             icon = '<i class="fa-solid fa-triangle-exclamation"></i>';
-            break;
+          break;
         case "info":
             toast.classList.add("info");
             icon = '<i class="fa-solid fa-circle-info"></i>';
-            break;
+          break;
         default:
             toast.classList.add("success");
             icon = '<i class="fa-solid fa-circle-check"></i>';

@@ -1,0 +1,329 @@
+[
+  {
+    "id": 26,
+    "name": "FRP Elephant Statue",
+    "slug": "frp-elephant-statue",
+    "category": "statues",
+    "brand": "Concrete Arts India",
+    "price": "15000",
+    "currency": "INR",
+    "material": "FRP (Fiberglass Reinforced Plastic)",
+    "color": "Dark Brown / Charcoal",
+    "design": "Royal Elephant",
+    "size": "4.5 Feet",
+    "finish": "Metallic Lacquered Finish",
+    "usage": [
+      "Exterior Decor",
+      "Resort Entrance",
+      "Garden Decoration",
+      "Commercial Landscapes"
+    ],
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "availability": "In Stock",
+    "description": "Exquisite royal heritage FRP Elephant Statue cast in high-density Fiberglass Reinforced Plastic. Showcases intricate traditional Indian ceremonial drapery details, meticulously finished in weathered bronze and gold leaf paint. Highly weather-proof and structured for grand outdoor entranceways.",
+    "features": [
+      "High-Density Premium FRP",
+      "All-Weather UV Resistant Paint",
+      "Lightweight Structural Strength",
+      "Intricate Royal Drapery Carvings",
+      "Anti-Toppling Base Plate Support"
+    ],
+    "thumbnail": "images/products/statues/frp-elephant-statue.webp",
+    "seo": {
+      "title": "FRP Royal Elephant Statue Outdoor Decor | Concrete Arts India",
+      "description": "Buy life-sized and ornamental FRP Elephant Statues for hotel entrances, lawns, and resorts. Weatherproof fiberglass construction with antique gold finishes.",
+      "keywords": ["FRP Elephant Statue", "Fiberglass Animal Sculpture", "Resort Entrance Decor", "Garden Elephant Statue"]
+    }
+  },
+  {
+    "id": 27,
+    "name": "Radha Krishna Statue",
+    "slug": "radha-krishna-statue",
+    "category": "statues",
+    "subcategory": "radha-krishna",
+    "brand": "Concrete Arts India",
+    "price": "35000",
+    "currency": "INR",
+    "material": "Premium White Alabaster Marble",
+    "color": "Light Blue, Yellow and Green",
+    "size": "8 x 9 Inch",
+    "suitableFor": "Temple",
+    "godName": "Radha Krishna",
+    "finish": "Polished Gloss with Hand-painted Details",
+    "usage": [
+      "Temple",
+      "Home Temple",
+      "Religious Places",
+      "Spiritual Decor"
+    ],
+    "description": "Divine Radha Krishna Murti hand-carved from select single-block white alabaster marble. Highlighted with soft sky blue garments and fine gold-lining brushwork, this piece brings peaceful spiritual energy to residential altars and temples alike.",
+    "features": [
+      "Premium Pure Marble Construction",
+      "Elegant Hand-Painted Details",
+      "Vibrant Non-Toxic Accents",
+      "Excellent Face Expression Precision",
+      "Stain-resistant Polished Surface"
+    ],
+    "thumbnail": "images/products/statues/radha-krishna-statue.webp",
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Radha Krishna Marble Statue for Home Temple | Concrete Arts India",
+      "description": "Beautiful hand-carved Radha Krishna marble statue featuring fine blue detailing. Ideal size for home altars, spiritual rooms, and temple shrines.",
+      "keywords": ["Radha Krishna Murti", "Marble Radha Krishna Statue", "Home Temple Puja Idols"]
+    }
+  },
+  {
+    "id": 28,
+    "name": "FRP Meditating Buddha Statue",
+    "slug": "frp-meditating-buddha-statue",
+    "category": "statues",
+    "subcategory": "buddha-statues",
+    "brand": "Concrete Arts India",
+    "price": "5500",
+    "currency": "INR",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "FRP (Fiber Reinforced Plastic)",
+    "design": "Dhyasana Sitting Pose",
+    "style": "Traditional Zen",
+    "size": "21 Inch",
+    "color": "Metallic Bronze / Copper",
+    "finish": "Matte Stone Textured",
+    "usage": [
+      "Temple",
+      "Home Decor",
+      "Garden Decoration",
+      "Meditation Room",
+      "Resort Decoration",
+      "Landscape Decoration"
+    ],
+    "description": "Zen-inspired sitting Meditating Buddha Statue cast in high-grade lightweight FRP. Finished with a natural sandstone texture that perfectly mimics heavy stone block carvings without the weight, making it a stellar addition to peaceful outdoor garden walks.",
+    "features": [
+      "Mimics Natural Sandstone Texture",
+      "Highly Resistant to Algae and Moss",
+      "Hollow Lightweight Core for Easy Shifting",
+      "UV-Stabilized Fading Protection",
+      "Zen Meditational Posing"
+    ],
+    "thumbnail": "images/products/statues/buddha-statue-1.webp",
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "FRP Meditating Buddha Statue (21 Inch) | Concrete Arts India",
+      "description": "Shop traditional Zen sitting Buddha statue made of durable, lightweight fiber-reinforced plastic. Perfect for outdoor garden patios and yoga studios.",
+      "keywords": ["FRP Buddha Statue", "Garden Buddha Sculpture", "Zen Meditation Decor", "Fiberglass Buddha"]
+    }
+  },
+  {
+    "id": 29,
+    "name": "FRP Dhyana Mudra Buddha Statue",
+    "slug": "frp-dhyana-mudra-buddha-statue",
+    "category": "statues",
+    "subcategory": "buddha-statues",
+    "brand": "Concrete Arts India",
+    "price": "5500",
+    "currency": "INR",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "FRP (Fiber Reinforced Plastic)",
+    "design": "Dhyana Mudra Pose",
+    "style": "Spiritual Indochina",
+    "size": "21 Inch",
+    "color": "Soft Peach / Light Orange",
+    "finish": "Verdigris Metallic Patina",
+    "usage": [
+      "Temple",
+      "Home Decor",
+      "Garden Decoration",
+      "Meditation Room",
+      "Resort Decoration",
+      "Landscape Decoration"
+    ],
+    "description": "Stunning Dhyana Mudra Buddha statue capturing the classic hand gesture of deep concentration. Cast using robust fiberglass resins and finished with an antique verdigris copper patina that beautifully matches outdoor flora and water fountain bodies.",
+    "features": [
+      "Realistic Oxidized Copper Look",
+      "Dhyana Mudra (Gestation of Meditation)",
+      "High Water and Chlorine Resistance",
+      "Ideal for Water Feature Accents",
+      "Easy Wash-down Maintenance"
+    ],
+    "thumbnail": "images/products/statues/buddha-statue-2.webp",
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Dhyana Mudra FRP Buddha Statue Patina Finish | Concrete Arts India",
+      "description": "Beautiful 21-inch Dhyana Mudra Buddha statue in a gorgeous copper patina finish. Ideal for water fountains, ponds, and backyard garden landscapes.",
+      "keywords": ["Dhyana Mudra Buddha", "Patina Finish Statue", "Pond Buddha Statue", "FRP Spiritual Art"]
+    }
+  },
+  {
+    "id": 30,
+    "name": "FRP Meditating Shiva Statue (6ft)",
+    "slug": "frp-meditating-shiva-statue-6ft",
+    "category": "statues",
+    "subcategory": "shiva-statues",
+    "brand": "Concrete Arts India",
+    "price": "60000",
+    "currency": "INR",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "FRP (Fiber Reinforced Plastic)",
+    "design": "Yogic Padmasana Pose",
+    "style": "Himalayan Traditional",
+    "size": "6 Feet",
+    "color": "Metallic Copper / Rose Gold",
+    "finish": "Stone Matte Wash",
+    "usage": [
+      "Temple",
+      "Home Decor",
+      "Garden Decoration",
+      "Meditation Room",
+      "Resort Decoration",
+      "Landscape Decoration"
+    ],
+    "description": "Grand 6-foot tall representation of Lord Shiva sitting in deep Himalayan padmasana dhyāna. Engineered utilizing premium-grade, reinforced fiberglass fibers to survive intense summer sun, rainfall, and winter frost without cracking.",
+    "features": [
+      "Colossal 6ft Landscape Presence",
+      "Reinforced Fiberglass Shell",
+      "Stunning Ascetic Ash Detailing",
+      "High Wind-load Structural Base",
+      "Highly Stable Outdoor Anchor Slots"
+    ],
+    "thumbnail": "images/products/statues/shiva-1.webp",
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "6ft Meditating Shiva FRP Statue for Temples | Concrete Arts India",
+      "description": "Shop our large 6-foot meditating Shiva statue. Sculpted in deep yogic dhyana posture, perfect for large lawns, ashram landscapes, and temples.",
+      "keywords": ["6 Feet Shiva Statue", "Large FRP Shiva Idol", "Ashram Outdoor Sculptures", "Meditating Shiva Murti"]
+    }
+  },
+  {
+    "id": 31,
+    "name": "FRP Blessing Lord Shiva Statue",
+    "slug": "frp-blessing-lord-shiva-statue",
+    "category": "statues",
+    "subcategory": "shiva-statues",
+    "brand": "Concrete Arts India",
+    "price": "60000",
+    "currency": "INR",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "FRP (Fiber Reinforced Plastic)",
+    "design": "Abhaya Mudra Sitting Pose",
+    "style": "Traditional Majestic",
+    "size": "6 Feet",
+    "color": "Dark Bronze / Metallic Brown",
+    "finish": "Polished Hand-painted Lacquer",
+    "usage": [
+      "Temple",
+      "Home Decor",
+      "Garden Decoration",
+      "Meditation Room",
+      "Resort Decoration",
+      "Landscape Decoration"
+    ],
+    "description": "Majestic 6-foot Lord Shiva statue showcasing the Abhaya Mudra (blessing of fearlessness). Meticulously hand-colored in warm, earthy terracotta-ochre tones, creating a highly welcoming focal point for yoga schools, health spas, and spiritual sanctuaries.",
+    "features": [
+      "Blessing Gesture (Abhaya Mudra)",
+      "Vibrant Ochre Earth Tone Finish",
+      "Non-corrosive Structural Internals",
+      "Shatter-proof Polymer Composition",
+      "Smooth Matte Topseal Coat"
+    ],
+    "thumbnail": "images/products/statues/shiva-2.webp",
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "6ft Blessing Lord Shiva FRP Statue | Concrete Arts India",
+      "description": "Premium 6ft Shiva statue depicting the protective Abhaya blessing gesture. Weatherproof polymer-resin build for commercial resorts and home estates.",
+      "keywords": ["Abhaya Mudra Shiva Statue", "Terracotta Lord Shiva Murti", "Blessing Shiva Sculpture"]
+    }
+  },
+  {
+    "id": 32,
+    "name": "FRP Adiyogi Style Shiva Statue",
+    "slug": "frp-adiyogi-style-shiva-statue",
+    "category": "statues",
+    "subcategory": "shiva-statues",
+    "brand": "Concrete Arts India",
+    "price": "60000",
+    "currency": "INR",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "FRP (Fiber Reinforced Plastic)",
+    "design": "Yogic Adiyogi Design",
+    "style": "Modern Minimalist Spiritual",
+    "size": "6 Feet",
+    "color": "Solid White",
+    "finish": "Semi-Gloss Powdered Satin",
+    "usage": [
+      "Temple",
+      "Home Decor",
+      "Garden Decoration",
+      "Meditation Room",
+      "Resort Decoration",
+      "Landscape Decoration"
+    ],
+    "description": "Stunning modern Adiyogi-inspired Lord Shiva statue finished in a sleek, solid white tone. Blends ancient yogic iconography with contemporary geometric line carving, making it a beautiful statement piece for modern fitness studios and zen parks.",
+    "features": [
+      "Contemporary Adiyogi Portraiture",
+      "Monolithic White Aesthetics",
+      "Resistant to Hard-water Spotting",
+      "Reinforced Core against Structural Flex",
+      "Smooth Seamless Joint Lines"
+    ],
+    "thumbnail": "images/products/statues/shiva-3.webp",
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Adiyogi Style Shiva FRP Statue (6ft) | Concrete Arts India",
+      "description": "Exquisite Adiyogi style Lord Shiva statue in deep slate black finish. Ideal centerpiece for modern wellness spaces, gardens, and yoga sanctuaries.",
+      "keywords": ["Adiyogi Shiva Statue", "Black Shiva Murti", "Modern Spiritual Sculptures", "6 Feet Adiyogi Idol"]
+    }
+  },
+  {
+    "id": 33,
+    "name": "FRP Mahadev Meditation Statue",
+    "slug": "frp-mahadev-meditation-statue",
+    "category": "statues",
+    "brand": "Concrete Arts India",
+    "price": "60000",
+    "currency": "INR",
+    "minimumOrderQuantity": "1 Piece",
+    "material": "FRP (Fiber Reinforced Plastic)",
+    "design": "Kailash Dhyana Pose",
+    "style": "Traditional Serene",
+    "size": "6 Feet",
+    "color": "Sky Blue",
+    "finish": "Premium Semi-gloss Pearlescent",
+    "usage": [
+      "Temple",
+      "Home Decor",
+      "Garden Decoration",
+      "Meditation Room",
+      "Resort Decoration",
+      "Landscape Decoration"
+    ],
+    "description": "A breathtaking 6-foot Mahadev meditation sculpture hand-finished in pearlescent alabaster white with subtle blue accenting. Engineered with marine-grade fiberglass resin shells, perfect for humid pool decks and harsh tropical climates.",
+    "features": [
+      "Marine-Grade Weather Resistance",
+      "Pearlescent Sky Blue Spiritual Aura",
+      "Anti-chlorine and Salinity-proof Shell",
+      "Thick Reinforced Base Support Plates",
+      "Detailed Snake and Crescent Moon Carvings"
+    ],
+    "thumbnail": "images/products/statues/shiva-4.webp",
+    "availability": "In Stock",
+    "countryOfOrigin": "India",
+    "manufacturer": "Concrete Arts India",
+    "seo": {
+      "title": "Mahadev Meditation Sky Blue FRP Statue | Concrete Arts India",
+      "description": "Marine-grade 6ft Mahadev meditation statue in sky blue. Engineered to survive extreme humidity, water features, and intense weather.",
+      "keywords": ["Sky Blue Shiva Statue", "Mahadev Meditation Idol", "Fiberglass Lord Shiva Murti", "Water Feature Statues"]
+    }
+  }
+]

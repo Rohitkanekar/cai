@@ -1,12 +1,9 @@
 <?php
-
 echo "<hr>";
 echo "<h2>Importing Product Images...</h2>";
-
 $imported = 0;
 $skipped = 0;
 $errors = 0;
-
 foreach ($products as $product) {
 
     // Find Product ID
@@ -16,18 +13,13 @@ foreach ($products as $product) {
         WHERE slug = ?
         LIMIT 1
     ");
-
     $stmt->execute([$product["slug"]]);
-
     $dbProduct = $stmt->fetch(PDO::FETCH_ASSOC);
-
     if (!$dbProduct) {
         $errors++;
         continue;
     }
-
     $productId = $dbProduct["id"];
-
     if (empty($product["thumbnail"])) {
         continue;
     }
@@ -40,12 +32,10 @@ foreach ($products as $product) {
         AND image = ?
         LIMIT 1
     ");
-
     $check->execute([
         $productId,
         $product["thumbnail"]
     ]);
-
     if ($check->fetch()) {
         $skipped++;
         continue;
@@ -66,31 +56,18 @@ foreach ($products as $product) {
             ?, ?, ?, ?, ?
         )
     ");
-
     $insert->execute([
-
         $productId,
-
         $product["thumbnail"],
-
         $product["name"],
-
         1,
-
         1
-
     ]);
-
     echo "✅ " . htmlspecialchars($product["name"]) . "<br>";
-
     $imported++;
-
 }
-
 echo "<hr>";
-
 echo "<h3>Images Import Completed</h3>";
-
 echo "Imported : $imported <br>";
 echo "Skipped : $skipped <br>";
 echo "Errors : $errors <br>";

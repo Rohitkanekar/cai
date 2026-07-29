@@ -1,6 +1,8 @@
 <?php
-
 require_once "includes/config.php";
+
+$json = file_get_contents('products.json');
+$products = json_decode($json, true);
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +15,7 @@ $stmt = $pdo->query("
     FROM products
     ORDER BY id ASC
 ");
-
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 if (!$products) {
     die("No products found in database.");
 }

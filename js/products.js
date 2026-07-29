@@ -9,12 +9,12 @@
 const loader = document.getElementById("loader");
 
 function showLoader() {
-    loader.classList.add("active");
+    if (loader) loader.classList.add("active");
     document.body.classList.add('loading');
 }
 
 function hideLoader() {
-    loader.classList.remove("active");
+    if (loader) loader.classList.remove("active");
     document.body.classList.remove('loading');
 }
 
@@ -125,7 +125,7 @@ if (sortBtn && sortDropdown) {
 
 document.querySelectorAll("#sortMenu li").forEach(item => {
     item.addEventListener("click", function () {
-        selectedSort.textContent = this.textContent;
+        if (selectedSort) selectedSort.textContent = this.textContent;
         currentSort = this.dataset.sort;
         currentPage = 1;
         applyFilters();
@@ -155,7 +155,7 @@ if (gridViewBtn) {
     gridViewBtn.addEventListener("click", function () {
         currentView = "grid";
         gridViewBtn.classList.add("active");
-        listViewBtn.classList.remove("active");
+        if (listViewBtn) listViewBtn.classList.remove("active");
         renderProducts();
     });
 }
@@ -168,7 +168,7 @@ if (listViewBtn) {
     listViewBtn.addEventListener("click", function () {
         currentView = "list";
         listViewBtn.classList.add("active");
-        gridViewBtn.classList.remove("active");
+        if (gridViewBtn) gridViewBtn.classList.remove("active");
         renderProducts();
     });
 }
@@ -183,15 +183,17 @@ function getPrice(price) {
 }
 
 function formatPrice(price) {
-    if (price === undefined || price === null) return "-";
 
-    const value = parseFloat(price);
-    if (isNaN(value)) {
-        return price;
-    }
+    if (price === undefined || price === null || price === "")
+        return "-";
 
-    const suffix = typeof price === 'string' ? price.replace(/^[\d.,\s]+/, "") : "";
-    return `${value.toLocaleString("en-IN")}${suffix}`;
+    const value = Number(price);
+
+    if (isNaN(value))
+        return "-";
+
+    return value.toLocaleString("en-IN");
+
 }
 
 /*=========================================================
@@ -207,8 +209,8 @@ function applyFilters() {
 
     if (currentCategory !== "all") {
         filteredProducts = filteredProducts.filter(product => {
-            const catName = typeof product.category === "string" 
-                ? product.category.toLowerCase() 
+            const catName = typeof product.category === "string"
+                ? product.category.toLowerCase()
                 : (product.category?.name?.toLowerCase() || "");
             return catName === currentCategory.toLowerCase();
         });
@@ -227,7 +229,7 @@ function applyFilters() {
     ------------------------------*/
 
     const getProductMinPrice = (prod) => {
-        if (prod.price !== undefined && prod.price !== null) {
+        if (prod.price !== undefined && prod.price !== null && prod.price !== "" && prod.price !== 0) {
             return getPrice(prod.price);
         }
         if (!prod.sizes || prod.sizes.length === 0) return 0;
@@ -263,16 +265,16 @@ function applyFilters() {
 
 function renderProducts() {
     if (!productsGrid) return;
-    
+
     productsGrid.innerHTML = "";
-    
+
     if (filteredProducts.length === 0) {
         if (noProducts) noProducts.style.display = "block";
         productsGrid.style.display = "none";
         if (pagination) pagination.style.display = "none";
         return;
     }
-    
+
     if (noProducts) noProducts.style.display = "none";
     productsGrid.style.display = "";
     if (pagination) pagination.style.display = "flex";
@@ -283,49 +285,120 @@ function renderProducts() {
 
     pageProducts.forEach(product => {
 
+        /*==========================
+        PRICE
+        ==========================*/
+
         let displayPrice = "-";
 
         if (
-            product.size &&
-            product.size.price !== undefined &&
-            product.size.price !== null &&
-            product.size.price !== ""
+            product.category &&
+            (
+                (typeof product.category === "string" && product.category.toLowerCase() === "planters") ||
+                (typeof product.category === "object" && product.category.name?.toLowerCase() === "planters")
+            )
         ) {
-            displayPrice = formatPrice(product.size.price);
-        }
-        else if (
-            product.price !== undefined &&
-            product.price !== null
-        ) {
-            displayPrice = formatPrice(product.price);
-        }
-        else if (
-            product.sizes &&
-            product.sizes.length > 0
-        ) {
-            const prices = product.sizes
-                .map(s => Number(s.price))
-                .filter(p => !isNaN(p));
 
-            if (prices.length > 0) {
-                const minPrice = Math.min(...prices);
-                const maxPrice = Math.max(...prices);
+            // Always show price range for Planters
+            if (product.sizes && typeof product.sizes === "object") {
 
-                displayPrice = (minPrice === maxPrice)
-                    ? formatPrice(minPrice)
-                    : `${formatPrice(minPrice)} - ${formatPrice(maxPrice)}`;
+                const sizeValues = Array.isArray(product.sizes)
+                    ? product.sizes
+                    : Object.values(product.sizes);
+
+                const prices = sizeValues
+                    .map(s => getPrice(s.price))
+                    .filter(p => p > 0);
+
+                if (prices.length) {
+                    displayPrice = `${formatPrice(Math.min(...prices))} - ${formatPrice(Math.max(...prices))}`;
+                }
+
+            } else if (product.min_price && product.max_price) {
+
+                displayPrice = `${formatPrice(product.min_price)} - ${formatPrice(product.max_price)}`;
+
+            } else if (product.price) {
+
+                displayPrice = formatPrice(product.price);
+
             }
+
+        } else {
+
+            // Existing logic for all other categories
+            if (product.price !== undefined && product.price !== null && product.price !== "" && product.price !== 0) {
+
+                displayPrice = formatPrice(product.price);
+
+            } else if (product.sizes && typeof product.sizes === "object") {
+
+                const sizeValues = Array.isArray(product.sizes)
+                    ? product.sizes
+                    : Object.values(product.sizes);
+
+                const prices = sizeValues
+                    .map(s => getPrice(s.price))
+                    .filter(p => p > 0);
+
+                if (prices.length) {
+                    const minPrice = Math.min(...prices);
+                    const maxPrice = Math.max(...prices);
+
+                    displayPrice = minPrice === maxPrice
+                        ? formatPrice(minPrice)
+                        : `${formatPrice(minPrice)} - ${formatPrice(maxPrice)}`;
+                }
+
+            }
+
         }
+
+        /*==========================
+        SIZE
+        ==========================*/
 
         let displaySizes = "-";
-        if (product.size) {
+
+        if (typeof product.size === "string" && product.size !== "") {
+
             displaySizes = product.size;
-        } else if (product.sizes && product.sizes.length > 0) {
-            displaySizes = product.sizes.map(s => s.size).join(", ");
+
+        }
+        else if (product.sizes && typeof product.sizes === "object") {
+
+            const sizeValues = Array.isArray(product.sizes) ? product.sizes : Object.values(product.sizes);
+            const sizeNames = sizeValues
+                .map(s => s.size)
+                .filter(Boolean);
+
+            if (sizeNames.length > 0) {
+                displaySizes = sizeNames.join(", ");
+            }
+
         }
 
-        const categoryName = typeof product.category === "string" 
-            ? product.category 
+        /*==========================
+        FEATURES
+        ==========================*/
+
+        let displayFeatures = "-";
+        if (Array.isArray(product.features) && product.features.length > 0) {
+            displayFeatures = product.features.join(", ");
+        } else if (typeof product.features === "string" && product.features.trim() !== "") {
+            displayFeatures = product.features;
+        }
+
+        /*==========================
+        THUMBNAIL
+        ==========================*/
+
+        const thumbnailSrc = (product.thumbnail && product.thumbnail.trim() !== "" && product.thumbnail !== "-")
+            ? product.thumbnail
+            : "assets/images/placeholder.jpg";
+
+        const categoryName = typeof product.category === "string"
+            ? product.category
             : (product.category?.name || "-");
 
         /*=================================================
@@ -336,7 +409,7 @@ function renderProducts() {
             productsGrid.innerHTML += `
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="${product.thumbnail || "-"}" alt="${product.name || "-"}" loading="lazy">
+                        <img src="${thumbnailSrc}" alt="${product.name || "-"}" loading="lazy">
                         <span class="product-category">${categoryName}</span>
                     </div>
                     <div class="product-content">
@@ -358,8 +431,8 @@ function renderProducts() {
             productsGrid.innerHTML += `
                 <div class="product-list-card">
                     <div class="list-image">
-                        <img src="${product.thumbnail || "-"}" alt="${product.name || "-"}" loading="lazy">
-                        <span class="list-category">${categoryName}</span>                   
+                        <img src="${thumbnailSrc}" alt="${product.name || "-"}" loading="lazy">
+                        <span class="list-category">${categoryName}</span>                  
                         <div class="list-price">₹ ${displayPrice}</div>
                         <a href="product-details.php?id=${product.id}&slug=${product.slug}" class="btn-primary">
                             View Details
@@ -390,7 +463,7 @@ function renderProducts() {
                             </tr>
                             <tr>
                                 <th>Features</th>
-                                <td>${product.features || "-"}</td>
+                                <td>${displayFeatures}</td>
                             </tr>
                         </table>
                     </div>
@@ -463,7 +536,7 @@ function lazyImages() {
 function updateResultCount() {
     if (totalCount) totalCount.textContent = filteredProducts.length;
     if (!showingCount) return;
-    
+
     if (filteredProducts.length === 0) {
         showingCount.textContent = "0";
         return;
@@ -479,7 +552,7 @@ function updateResultCount() {
 
 function renderPagination() {
     if (!pagination) return;
-    
+
     pagination.innerHTML = "";
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
     if (totalPages <= 1) {
@@ -567,7 +640,7 @@ function resetFilters() {
     }
     if (gridViewBtn) gridViewBtn.classList.add("active");
     if (listViewBtn) listViewBtn.classList.remove("active");
-    
+
     applyFilters();
 }
 

@@ -140,7 +140,7 @@ function getProductDisplayPrice(product) {
         DIMENSION ROWS
 =========================================*/
 
-function generateDimensionRows(size) {
+function generateDimensionRows(size, categoryName = "") {
 
     if (!size) {
 
@@ -153,27 +153,43 @@ function generateDimensionRows(size) {
 
     }
 
+    // Check if the product is a planter based on category name
+    const isPlanter = categoryName.toLowerCase().includes('planter');
+
+    // If it's NOT a planter, hide length, breadth, and height entirely
+    if (!isPlanter) {
+        const sizeValue = (size.size !== undefined && size.size !== null && size.size !== "") ? size.size : ((size.name !== undefined && size.name !== null && size.name !== "") ? size.name : "-");
+        return `
+            <tr>
+                <th>Size</th>
+                <td>${sizeValue}</td>
+            </tr>
+        `;
+    }
+
+    // --- For Planters: Show full dimensions ---
     const lengthMm = size.dimensions?.length?.mm ?? size.length_mm;
     const lengthInch = size.dimensions?.length?.inch ?? size.length_inch;
 
-    const breadthMm = size.dimensions?.breadth?.mm ?? size.breadth_mm;
-    const breadthInch = size.dimensions?.breadth?.inch ?? size.breadth_inch;
+    const breadthMm = size.dimensions?.breadth?.mm ?? size.breadth_mm ?? size.breadth_MM;
+    const breadthInch = size.dimensions?.breadth?.inch ?? size.breadth_inch ?? size.breadth_Inch;
 
     const heightMm = size.dimensions?.height?.mm ?? size.height_mm;
     const heightInch = size.dimensions?.height?.inch ?? size.height_inch;
 
     const formatDimension = (mm, inch) => {
         const parts = [];
-        if (mm !== undefined && mm !== null && mm !== "") parts.push(`${mm} mm`);
-        if (inch !== undefined && inch !== null && inch !== "") parts.push(`${inch} inch`);
+        if (mm !== undefined && mm !== null && mm !== "") parts.push(`${mm} Mm`);
+        if (inch !== undefined && inch !== null && inch !== "") parts.push(`${inch} Inch`);
         return parts.length > 0 ? parts.join(" / ") : "-";
     };
 
-    return `
+    const sizeValue = (size.size !== undefined && size.size !== null && size.size !== "") ? size.size : ((size.name !== undefined && size.name !== null && size.name !== "") ? size.name : "-");
 
+    return `
         <tr>
             <th>Size</th>
-            <td>${size.size || size.name || "-"}</td>
+            <td>${sizeValue}</td>
         </tr>
 
         <tr>
@@ -190,10 +206,13 @@ function generateDimensionRows(size) {
             <th>Height</th>
             <td>${formatDimension(heightMm, heightInch)}</td>
         </tr>
-
     `;
 
 }
+
+/*=========================================
+        GENERATE SPECIFICATION ROWS
+=========================================*/
 
 /*=========================================
         GENERATE SPECIFICATION ROWS
@@ -204,42 +223,52 @@ function generateSpecificationRows(product, selectedSize = null) {
     // If multiple sizes exist and none explicitly passed, default to the 1st size
     const size = selectedSize || (product.sizes && product.sizes.length > 0 ? product.sizes[0] : (product.size || {}));
 
-    const featuresHTML = (product.features || [])
-        .map(feature => `<li>${feature}</li>`)
-        .join("");
+    /* Category handling supporting both string or object structure */
+    const categoryName = typeof product.category === "string"
+        ? product.category
+        : (product.category?.name || "-");
+
+    const materialVal = (product.material !== undefined && product.material !== null && product.material !== "") ? product.material : "-";
+    const shapeVal = (product.shape !== undefined && product.shape !== null && product.shape !== "") ? product.shape : "-";
+    const finishVal = (product.finish !== undefined && product.finish !== null && product.finish !== "") ? product.finish : "-";
+    const colorVal = (product.color !== undefined && product.color !== null && product.color !== "") ? product.color : "-";
+    const descriptionVal = (product.description !== undefined && product.description !== null && product.description !== "") ? product.description : "-";
+
+    // Check if features exist and are not empty
+    const hasFeatures = product.features && Array.isArray(product.features) && product.features.length > 0 && product.features.some(f => f && f.trim() !== "");
+    
+    const featuresHTML = hasFeatures
+        ? `<ul class="ul-dot">${product.features.map(feature => `<li>${feature}</li>`).join("")}</ul>`
+        : "-";
 
     return `
         <tr>
             <th>Material</th>
-            <td>${product.material || "-"}</td>
+            <td>${materialVal}</td>
         </tr>
         <tr>
             <th>Shape</th>
-            <td>${product.shape || "-"}</td>
+            <td>${shapeVal}</td>
         </tr>
         <tr>
             <th>Finish</th>
-            <td>${product.finish || "-"}</td>
+            <td>${finishVal}</td>
         </tr>
         <tr>
             <th>Color</th>
-            <td>${product.color || "-"}</td>
+            <td>${colorVal}</td>
         </tr>
         
-        <!-- Output dimension rows directly using formatting logic -->
-        ${generateDimensionRows(size)}
+        <!-- Output dimension rows conditionally based on whether it's a planter -->
+        ${generateDimensionRows(size, categoryName)}
 
         <tr>
             <th>Features</th>
-            <td>
-                <ul class="ul-dot">
-                    ${featuresHTML}
-                </ul>
-            </td>
+            <td>${featuresHTML}</td>
         </tr>
         <tr>
             <th>Description</th>
-            <td>${product.description || "-"}</td>
+            <td>${descriptionVal}</td>
         </tr>
     `;
 }
@@ -257,8 +286,10 @@ function renderProduct(product) {
         ? product.category
         : (product.category?.name || "-");
 
-    /* Resolve Image Path without fallback image */
-    const imagePath = product.thumbnail || (product.images && product.images.length > 0 ? product.images[0].image : null);
+    /* Resolve Image Path with fallback */
+    const imagePath = (product.thumbnail && product.thumbnail.trim() !== "" && product.thumbnail !== "-")
+        ? product.thumbnail
+        : (product.images && product.images.length > 0 ? product.images[0].image : "assets/images/placeholder.jpg");
 
     const imageHTML = imagePath
         ? `<img src="${imagePath}" alt="${product.name}" id="mainImage">`
@@ -267,11 +298,35 @@ function renderProduct(product) {
     /* Variant Selector HTML (if multiple sizes exist) */
     let variantHTML = "";
 
-    let initialQuoteUrl = `contact.php?id=${product.id}&slug=${product.slug}`;
+    const defaultSize = product.sizes && product.sizes.length > 0 ? product.sizes[0] : (product.size || {});
+    const defaultLengthMm = defaultSize.dimensions?.length?.mm ?? defaultSize.length_mm ?? "";
+    const defaultBreadthMm = defaultSize.dimensions?.breadth?.mm ?? defaultSize.breadth_mm ?? defaultSize.breadth_MM ?? "";
+    const defaultHeightMm = defaultSize.dimensions?.height?.mm ?? defaultSize.height_mm ?? "";
+    const defaultSizeValue = defaultSize.size || defaultSize.name || "";
+    const defaultPriceValue = defaultSize.price || product.price || "";
+
+    let initialQuoteUrl = `contact.php?id=${encodeURIComponent(product.id || '')}` +
+              `&slug=${encodeURIComponent(product.slug || '')}` +
+              `&productName=${encodeURIComponent(product.name || '')}` +
+              `&productCategory=${encodeURIComponent(categoryName)}` +
+              `&productMaterial=${encodeURIComponent(product.material || '')}` +
+              `&productSize=${encodeURIComponent(defaultSizeValue)}` +
+              `&productPrice=${encodeURIComponent(defaultPriceValue)}` +
+              `&productLength=${encodeURIComponent(defaultLengthMm)}` +
+              `&productBreadth=${encodeURIComponent(defaultBreadthMm)}` +
+              `&productHeight=${encodeURIComponent(defaultHeightMm)}` +
+              `&productColor=${encodeURIComponent(product.color || '')}` +
+              `&productFinish=${encodeURIComponent(product.finish || '')}` +
+              `&productImage=${encodeURIComponent(imagePath)}` +
+              `&productURL=${encodeURIComponent(window.location.href)}`;
+
+    if (product.features && Array.isArray(product.features)) {
+        product.features.forEach((feature, idx) => {
+            initialQuoteUrl += `&productFeatures[${idx}]=${encodeURIComponent(feature)}`;
+        });
+    }
 
     if (product.sizes && product.sizes.length > 1) {
-
-        initialQuoteUrl += `&size=${encodeURIComponent(product.sizes[0].size)}`;
 
         variantHTML = `
         <div class="variant-wrapper">
@@ -391,10 +446,34 @@ function renderProduct(product) {
                 const quoteBtn = document.querySelector(".quote-btn");
 
                 if (quoteBtn) {
-                    quoteBtn.href =
-                        `contact.php?id=${product.id}` +
-                        `&slug=${product.slug}` +
-                        `&size=${encodeURIComponent(selectedSize.size)}`;
+                    const selLengthMm = selectedSize.dimensions?.length?.mm ?? selectedSize.length_mm ?? "";
+                    const selBreadthMm = selectedSize.dimensions?.breadth?.mm ?? selectedSize.breadth_mm ?? selectedSize.breadth_MM ?? "";
+                    const selHeightMm = selectedSize.dimensions?.height?.mm ?? selectedSize.height_mm ?? "";
+                    const selSizeValue = selectedSize.size || selectedSize.name || "";
+                    const selPriceValue = selectedSize.price || product.price || "";
+
+                    let updatedUrl = `contact.php?id=${encodeURIComponent(product.id || '')}` +
+                            `&slug=${encodeURIComponent(product.slug || '')}` +
+                            `&productName=${encodeURIComponent(product.name || '')}` +
+                            `&productCategory=${encodeURIComponent(categoryName)}` +
+                            `&productMaterial=${encodeURIComponent(product.material || '')}` +
+                            `&productSize=${encodeURIComponent(selSizeValue)}` +
+                            `&productPrice=${encodeURIComponent(selPriceValue)}` +
+                            `&productLength=${encodeURIComponent(selLengthMm)}` +
+                            `&productBreadth=${encodeURIComponent(selBreadthMm)}` +
+                            `&productHeight=${encodeURIComponent(selHeightMm)}` +
+                            `&productColor=${encodeURIComponent(product.color || '')}` +
+                            `&productFinish=${encodeURIComponent(product.finish || '')}` +
+                            `&productImage=${encodeURIComponent(imagePath)}` +
+                            `&productURL=${encodeURIComponent(window.location.href)}`;
+
+                    if (product.features && Array.isArray(product.features)) {
+                        product.features.forEach((feature, idx) => {
+                            updatedUrl += `&productFeatures[${idx}]=${encodeURIComponent(feature)}`;
+                        });
+                    }
+
+                    quoteBtn.href = updatedUrl;
                 }
 
             });
@@ -402,6 +481,8 @@ function renderProduct(product) {
         });
 
     }
+
+    console.log('Current Product', product);
 
 }
 
@@ -632,10 +713,6 @@ function prevSlide() {
     }, 20);
 
 }
-
-/*=========================================
-        MOVE CAROUSEL
-=========================================*/
 
 /*=========================================
         MOVE CAROUSEL

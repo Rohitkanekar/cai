@@ -1,410 +1,177 @@
 <?php
-
 require_once "../includes/config.php";
 
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location:index.php");
-    exit;
-}
-
-$product_id = (int) $_POST["id"];
-
-/*
-|--------------------------------------------------------------------------
-| Basic Fields
-|--------------------------------------------------------------------------
-*/
-
-$category_id = (int) $_POST["category_id"];
-$name = trim($_POST["name"]);
-$slug = trim($_POST["slug"]);
-$sku = trim($_POST["sku"]);
-$item_code = trim($_POST["item_code"]);
-$catalog = trim($_POST["catalog"]);
-$series = trim($_POST["series"]);
-$description = trim($_POST["description"]);
-$material = trim($_POST["material"]);
-$shape = trim($_POST["shape"]);
-$finish = trim($_POST["finish"]);
-$color = trim($_POST["color"]);
-
-$featured = isset($_POST["featured"]) ? 1 : 0;
-$status = isset($_POST["status"]) ? 1 : 0;
-
-/*
-|--------------------------------------------------------------------------
-| Duplicate Slug Check
-|--------------------------------------------------------------------------
-*/
-
-$stmt = $pdo->prepare("
-    SELECT id
-    FROM products
-    WHERE slug=?
-    AND id!=?
-");
-
-$stmt->execute([
-
-    $slug,
-
-    $product_id
-
-]);
-
-if ($stmt->fetch()) {
-
-    die("Slug already exists.");
-
-}
-
-try {
-
-    $pdo->beginTransaction();
-
-    /*
-    |--------------------------------------------------------------------------
-    | Update Product
-    |--------------------------------------------------------------------------
-    */
-
-    $stmt = $pdo->prepare("
-        UPDATE products
-        SET
-            category_id=?,
-            name=?,
-            slug=?,
-            sku=?,
-            item_code=?,
-            catalog=?,
-            series=?,
-            description=?,
-            material=?,
-            shape=?,
-            finish=?,
-            color=?,
-            featured=?,
-            status=?
-        WHERE id=?
-    ");
-
-    $stmt->execute([
-
-        $category_id,
-        $name,
-        $slug,
-        $sku,
-        $item_code,
-        $catalog,
-        $series,
-        $description,
-        $material,
-        $shape,
-        $finish,
-        $color,
-        $featured,
-        $status,
-        $product_id
-
-    ]);
-
-    /*
-    |--------------------------------------------------------------------------
-    | Refresh Product Sizes
-    |--------------------------------------------------------------------------
-    */
-
-    /* Delete existing sizes */
-
-    $stmt = $pdo->prepare("
-    DELETE FROM product_sizes
-    WHERE product_id=?
-");
-
-    $stmt->execute([$product_id]);
-
-    /* Insert all sizes */
-
-    if (!empty($_POST["size"])) {
-
-        $stmt = $pdo->prepare("
-        INSERT INTO product_sizes
-        (
-            product_id,
-            size,
-
-            length_mm,
-            length_inch,
-
-            height_mm,
-            height_inch,
-
-            breadth_mm,
-            breadth_inch,
-
-            price
-        )
-        VALUES
-        (
-            ?,?,?,?,?,?,?,?,?
-        )
-    ");
-
-        foreach ($_POST["size"] as $index => $sizeName) {
-
-            $sizeName = trim($sizeName);
-
-            if ($sizeName === "") {
-                continue;
-            }
-
-            $stmt->execute([
-
-                $product_id,
-
-                $sizeName,
-
-                $_POST["length_mm"][$index] ?? 0,
-                $_POST["length_inch"][$index] ?? 0,
-
-                $_POST["height_mm"][$index] ?? 0,
-                $_POST["height_inch"][$index] ?? 0,
-
-                $_POST["breadth_mm"][$index] ?? 0,
-                $_POST["breadth_inch"][$index] ?? 0,
-
-                $_POST["price"][$index] ?? 0
-
-            ]);
-
-        }
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = intval($_POST['id'] ?? 0);
+    
+    if ($id <= 0) {
+        die("Invalid product ID.");
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Replace Thumbnail
-    |--------------------------------------------------------------------------
-    */
+    // 1. Retrieve basic form fields
+    $name         = trim($_POST['name'] ?? '');
+    $baseSlug     = trim($_POST['slug'] ?? '');
+    $category_id  = intval($_POST['category_id'] ?? 0);
+    $sku          = trim($_POST['sku'] ?? '');
+    $series       = trim($_POST['series'] ?? '');
+    $material     = trim($_POST['material'] ?? '');
+    $color        = trim($_POST['color'] ?? '');
+    $shape        = trim($_POST['shape'] ?? '');
+    $description  = trim($_POST['description'] ?? '');
 
-    if (
-        isset($_FILES["thumbnail"]) &&
-        $_FILES["thumbnail"]["error"] == 0
-    ) {
+    if (empty($name) || empty($baseSlug) || empty($category_id)) {
+        die("Please fill in all required fields.");
+    }
 
-        $stmt = $pdo->prepare("
-            SELECT *
-            FROM product_images
-            WHERE product_id=?
-            AND is_thumbnail=1
-            LIMIT 1
-        ");
-
-        $stmt->execute([$product_id]);
-
-        $oldImage = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $uploadDir = "../../uploads/products/";
-
-        $extension = strtolower(
-            pathinfo(
-                $_FILES["thumbnail"]["name"],
-                PATHINFO_EXTENSION
-            )
-        );
-
-        $filename = uniqid() . "." . $extension;
-
-        move_uploaded_file(
-
-            $_FILES["thumbnail"]["tmp_name"],
-
-            $uploadDir . $filename
-
-        );
-
-        $imagePath = "uploads/products/" . $filename;
-
-        if ($oldImage) {
-
-            if (
-                !empty($oldImage["image"]) &&
-                file_exists("../../" . $oldImage["image"])
-            ) {
-
-                unlink("../../" . $oldImage["image"]);
-
-            }
-
-            $stmt = $pdo->prepare("
-        UPDATE product_images
-        SET
-            image=?,
-            alt_text=?
-        WHERE id=?
-    ");
-
-            $stmt->execute([
-
-                $imagePath,
-                $name,
-                $oldImage["id"]
-
-            ]);
-
+    // 2. Ensure the slug is unique (ignoring current product ID)
+    $slug = $baseSlug;
+    $counter = 1;
+    while (true) {
+        $stmtCheck = $pdo->prepare("SELECT id FROM products WHERE slug = ? AND id != ?");
+        $stmtCheck->execute([$slug, $id]);
+        if ($stmtCheck->fetch()) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
         } else {
-
-            $stmt = $pdo->prepare("
-        INSERT INTO product_images
-        (
-            product_id,
-            image,
-            alt_text,
-            is_thumbnail,
-            sort_order
-        )
-        VALUES
-        (
-            ?,?,?,1,1
-        )
-    ");
-
-            $stmt->execute([
-
-                $product_id,
-                $imagePath,
-                $name
-
-            ]);
-
+            break;
         }
-
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Refresh Features
-    |--------------------------------------------------------------------------
-    */
+    // 3. Fetch category slug/name to determine the subfolder
+    $stmtCat = $pdo->prepare("SELECT name, slug FROM categories WHERE id = ?");
+    $stmtCat->execute([$category_id]);
+    $category = $stmtCat->fetch(PDO::FETCH_ASSOC);
 
-    $stmt = $pdo->prepare("
-        DELETE FROM product_features
-        WHERE product_id=?
-    ");
+    $catFolderName = !empty($category['slug']) ? $category['slug'] : (!empty($category['name']) ? strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $category['name']))) : 'general');
+    
+    $projectRoot = rtrim($_SERVER['DOCUMENT_ROOT'], '/');
+    $subfolderPath = '/cai'; // Adjust if your subfolder path differs
 
-    $stmt->execute([$product_id]);
+    $relativeTargetDir = "/images/products/" . $catFolderName . "/";
+    $targetDir = $projectRoot . $subfolderPath . $relativeTargetDir;
 
-    if (!empty($_POST["features"])) {
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
 
-        $stmt = $pdo->prepare("
-            INSERT INTO product_features
-            (
-                product_id,
-                feature
-            )
-            VALUES
-            (
-                ?, ?
-            )
-        ");
+    $thumbnailSql = "";
+    $params = [$name, $slug, $category_id, $sku, $series, $material, $color, $shape, $description];
 
-        foreach ($_POST["features"] as $feature) {
+    // Handle Thumbnail Upload if provided
+    if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath   = $_FILES['thumbnail']['tmp_name'];
+        $originalName  = $_FILES['thumbnail']['name'];
+        
+        $safeFileName  = preg_replace("/[^a-zA-Z0-9\._-]/", "_", $originalName);
+        $destination   = $targetDir . $safeFileName;
+        $fileCounter = 1;
+        $pathInfo = pathinfo($safeFileName);
+        while (file_exists($destination)) {
+            $safeFileName = $pathInfo['filename'] . '_' . $fileCounter . '.' . ($pathInfo['extension'] ?? '');
+            $destination = $targetDir . $safeFileName;
+            $fileCounter++;
+        }
 
-            $feature = trim($feature);
+        if (move_uploaded_file($fileTmpPath, $destination)) {
+            $thumbnailPathDb = "images/products/" . $catFolderName . "/" . $safeFileName;
+            $thumbnailSql = ", thumbnail = ?";
+            $params[] = $thumbnailPathDb;
 
-            if ($feature == "") {
-
-                continue;
-
+            // Also update product_images table for thumbnail/gallery sync
+            $stmtImgCheck = $pdo->prepare("SELECT id FROM product_images WHERE product_id = ? AND is_thumbnail = 1");
+            $stmtImgCheck->execute([$id]);
+            if ($stmtImgCheck->fetch()) {
+                $stmtImgUpdate = $pdo->prepare("UPDATE product_images SET image = ? WHERE product_id = ? AND is_thumbnail = 1");
+                $stmtImgUpdate->execute([$thumbnailPathDb, $id]);
+            } else {
+                $stmtImgInsert = $pdo->prepare("INSERT INTO product_images (product_id, image, is_thumbnail) VALUES (?, ?, 1)");
+                $stmtImgInsert->execute([$id, $thumbnailPathDb]);
             }
+        }
+    }
 
-            $stmt->execute([
+    $params[] = $id;
 
-                $product_id,
+    try {
+        $pdo->beginTransaction();
 
-                $feature
+        // Update main product table
+        $stmt = $pdo->prepare("UPDATE products SET name = ?, slug = ?, category_id = ?, sku = ?, series = ?, material = ?, color = ?, shape = ?, description = ?" . $thumbnailSql . " WHERE id = ?");
+        $stmt->execute($params);
 
-            ]);
+        // Clear existing sizes to replace with updated rows
+        $delStmt = $pdo->prepare("DELETE FROM product_sizes WHERE product_id = ?");
+        $delStmt->execute([$id]);
 
+        $isPlanterCategory = str_contains(strtolower($category['name'] ?? ''), 'planter');
+
+        if ($isPlanterCategory && isset($_POST['planter_size']) && is_array($_POST['planter_size'])) {
+            // Multi-size Planter Loop
+            $sizes       = $_POST['planter_size'];
+            $prices      = $_POST['planter_price'] ?? [];
+            $lengthMm    = $_POST['planter_length_mm'] ?? [];
+            $lengthInch  = $_POST['planter_length_inch'] ?? [];
+            $heightMm    = $_POST['planter_height_mm'] ?? [];
+            $heightInch  = $_POST['planter_height_inch'] ?? [];
+            $breadthMm   = $_POST['planter_breadth_mm'] ?? [];      
+            $breadthInch = $_POST['planter_breadth_inch'] ?? [];   
+
+            $insertStmt = $pdo->prepare("INSERT INTO product_sizes (product_id, size, price, length_mm, length_inch, height_mm, height_inch, breadth_mm, breadth_inch) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            for ($i = 0; $i < count($sizes); $i++) {
+                if (!empty(trim($sizes[$i]))) {
+                    $insertStmt->execute([
+                        $id,
+                        $sizes[$i],
+                        ($prices[$i] !== '' && isset($prices[$i])) ? $prices[$i] : 0,
+                        ($lengthMm[$i] !== '' && isset($lengthMm[$i])) ? $lengthMm[$i] : null,
+                        ($lengthInch[$i] !== '' && isset($lengthInch[$i])) ? $lengthInch[$i] : null,
+                        ($heightMm[$i] !== '' && isset($heightMm[$i])) ? $heightMm[$i] : null,
+                        ($heightInch[$i] !== '' && isset($heightInch[$i])) ? $heightInch[$i] : null,
+                        ($breadthMm[$i] !== '' && isset($breadthMm[$i])) ? $breadthMm[$i] : null,       
+                        ($breadthInch[$i] !== '' && isset($breadthInch[$i])) ? $breadthInch[$i] : null       
+                    ]);
+                }
+            }
+        } else {
+            // Single Size fallback for non-planters
+            $sizes  = $_POST['size'] ?? [];
+            $prices = $_POST['price'] ?? [];
+
+            $insertStmt = $pdo->prepare("INSERT INTO product_sizes (product_id, size, price, length_mm, length_inch, height_mm, height_inch, breadth_mm, breadth_inch) VALUES (?, ?, ?, NULL, NULL, NULL, NULL, NULL, NULL)");
+            
+            $singleSize  = $sizes[0] ?? 'Standard';
+            $singlePrice = $prices[0] ?? 0;
+
+            if (trim($singleSize) !== '' || trim($singlePrice) !== '') {
+                $insertStmt->execute([
+                    $id,
+                    trim($singleSize),
+                    trim($singlePrice) !== '' ? $singlePrice : 0
+                ]);
+            }
         }
 
+        // Handle Product Features configuration
+        $delFeaturesStmt = $pdo->prepare("DELETE FROM product_features WHERE product_id = ?");
+        $delFeaturesStmt->execute([$id]);
+
+        if (isset($_POST['features']) && is_array($_POST['features'])) {
+            $insertFeatureStmt = $pdo->prepare("INSERT INTO product_features (product_id, feature) VALUES (?, ?)");
+            foreach ($_POST['features'] as $featureText) {
+                $trimmedFeature = trim($featureText);
+                if (!empty($trimmedFeature)) {
+                    $insertFeatureStmt->execute([$id, $trimmedFeature]);
+                }
+            }
+        }
+
+        $pdo->commit();
+        header("Location: edit.php?id=" . $id . "&success=1");
+        exit;
+
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        die("Error updating product: " . $e->getMessage());
     }
-
-    /*
-|--------------------------------------------------------------------------
-| Save SEO
-|--------------------------------------------------------------------------
-*/
-
-    $metaTitle = trim($_POST["meta_title"] ?? "");
-    $metaDescription = trim($_POST["meta_description"] ?? "");
-    $metaKeywords = trim($_POST["meta_keywords"] ?? "");
-
-    $stmt = $pdo->prepare("
-    SELECT id
-    FROM product_seo
-    WHERE product_id=?
-");
-
-    $stmt->execute([$product_id]);
-
-    if ($stmt->fetch()) {
-
-        $stmt = $pdo->prepare("
-        UPDATE product_seo
-        SET
-            meta_title=?,
-            meta_description=?,
-            meta_keywords=?
-        WHERE product_id=?
-    ");
-
-        $stmt->execute([
-
-            $metaTitle,
-            $metaDescription,
-            $metaKeywords,
-            $product_id
-
-        ]);
-
-    } else {
-
-        $stmt = $pdo->prepare("
-        INSERT INTO product_seo
-        (
-            product_id,
-            meta_title,
-            meta_description,
-            meta_keywords
-        )
-        VALUES
-        (
-            ?,?,?,?
-        )
-    ");
-
-        $stmt->execute([
-
-            $product_id,
-            $metaTitle,
-            $metaDescription,
-            $metaKeywords
-
-        ]);
-
-    }
-
-    $pdo->commit();
-
-    header("Location:index.php?updated=1");
-
-    exit;
-
-} catch (Exception $e) {
-
-    $pdo->rollBack();
-
-    die($e->getMessage());
-
 }

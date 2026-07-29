@@ -133,12 +133,7 @@
 
     .product-gallery {
         position: static;
-    }
-
-    .product-gallery img {
-        max-width: 600px;
-        margin: auto;
-    }
+    }   
 
 }
 
@@ -436,6 +431,12 @@
     margin: 15px 0;
     display: flex;
     gap: 15px;
+}
+
+@media(max-width:576px) {
+    .variant-buttons{
+        gap:2px;
+    }
 }
 
 .variant-selector label {
