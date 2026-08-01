@@ -291,13 +291,11 @@ function renderProducts() {
 
         let displayPrice = "-";
 
-        if (
-            product.category &&
-            (
-                (typeof product.category === "string" && product.category.toLowerCase() === "planters") ||
-                (typeof product.category === "object" && product.category.name?.toLowerCase() === "planters")
-            )
-        ) {
+        const categoryNameCheck = typeof product.category === "string"
+            ? product.category.toLowerCase()
+            : (product.category?.name?.toLowerCase() || "");
+
+        if (categoryNameCheck === "planters") {
 
             // Always show price range for Planters
             if (product.sizes && typeof product.sizes === "object") {
@@ -352,6 +350,11 @@ function renderProducts() {
 
             }
 
+        }
+
+        // Append " + Sq. Ft" if category contains GRC
+        if (categoryNameCheck.includes("grc") && displayPrice !== "-") {
+            displayPrice += " + Sq. Ft";
         }
 
         /*==========================

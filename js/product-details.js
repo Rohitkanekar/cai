@@ -105,34 +105,53 @@ function formatPrice(price) {
 
 function getProductDisplayPrice(product) {
 
+    let rawPrice = "-";
+
     /* Multiple Sizes - Default to 1st size price if available */
 
     if (
         product.sizes &&
         product.sizes.length > 0
     ) {
-        return formatPrice(product.sizes[0].price);
+        rawPrice = formatPrice(product.sizes[0].price);
     }
 
     /* Single Size */
 
-    if (
+    else if (
         product.size &&
         Number(product.size.price) > 0
     ) {
-        return formatPrice(product.size.price);
+        rawPrice = formatPrice(product.size.price);
     }
 
     /* Flat Price */
 
-    if (
+    else if (
         product.price &&
         Number(product.price) > 0
     ) {
-        return formatPrice(product.price);
+        rawPrice = formatPrice(product.price);
     }
 
-    return "-";
+    if (rawPrice === "-") {
+        return "-";
+    }
+
+    /* Check category for GRC */
+    const categoryObj = product.category;
+    let categoryNameCheck = "";
+    if (typeof categoryObj === "string") {
+        categoryNameCheck = categoryObj.toLowerCase();
+    } else if (categoryObj && typeof categoryObj === "object") {
+        categoryNameCheck = (categoryObj.slug || categoryObj.name || "").toLowerCase();
+    }
+
+    if (categoryNameCheck.includes("grc")) {
+        return `${rawPrice} + Sq. Ft`;
+    }
+
+    return rawPrice;
 
 }
 
@@ -214,10 +233,6 @@ function generateDimensionRows(size, categoryName = "") {
         GENERATE SPECIFICATION ROWS
 =========================================*/
 
-/*=========================================
-        GENERATE SPECIFICATION ROWS
-=========================================*/
-
 function generateSpecificationRows(product, selectedSize = null) {
 
     // If multiple sizes exist and none explicitly passed, default to the 1st size
@@ -236,7 +251,7 @@ function generateSpecificationRows(product, selectedSize = null) {
 
     // Check if features exist and are not empty
     const hasFeatures = product.features && Array.isArray(product.features) && product.features.length > 0 && product.features.some(f => f && f.trim() !== "");
-    
+
     const featuresHTML = hasFeatures
         ? `<ul class="ul-dot">${product.features.map(feature => `<li>${feature}</li>`).join("")}</ul>`
         : "-";
@@ -306,19 +321,19 @@ function renderProduct(product) {
     const defaultPriceValue = defaultSize.price || product.price || "";
 
     let initialQuoteUrl = `contact.php?id=${encodeURIComponent(product.id || '')}` +
-              `&slug=${encodeURIComponent(product.slug || '')}` +
-              `&productName=${encodeURIComponent(product.name || '')}` +
-              `&productCategory=${encodeURIComponent(categoryName)}` +
-              `&productMaterial=${encodeURIComponent(product.material || '')}` +
-              `&productSize=${encodeURIComponent(defaultSizeValue)}` +
-              `&productPrice=${encodeURIComponent(defaultPriceValue)}` +
-              `&productLength=${encodeURIComponent(defaultLengthMm)}` +
-              `&productBreadth=${encodeURIComponent(defaultBreadthMm)}` +
-              `&productHeight=${encodeURIComponent(defaultHeightMm)}` +
-              `&productColor=${encodeURIComponent(product.color || '')}` +
-              `&productFinish=${encodeURIComponent(product.finish || '')}` +
-              `&productImage=${encodeURIComponent(imagePath)}` +
-              `&productURL=${encodeURIComponent(window.location.href)}`;
+        `&slug=${encodeURIComponent(product.slug || '')}` +
+        `&productName=${encodeURIComponent(product.name || '')}` +
+        `&productCategory=${encodeURIComponent(categoryName)}` +
+        `&productMaterial=${encodeURIComponent(product.material || '')}` +
+        `&productSize=${encodeURIComponent(defaultSizeValue)}` +
+        `&productPrice=${encodeURIComponent(defaultPriceValue)}` +
+        `&productLength=${encodeURIComponent(defaultLengthMm)}` +
+        `&productBreadth=${encodeURIComponent(defaultBreadthMm)}` +
+        `&productHeight=${encodeURIComponent(defaultHeightMm)}` +
+        `&productColor=${encodeURIComponent(product.color || '')}` +
+        `&productFinish=${encodeURIComponent(product.finish || '')}` +
+        `&productImage=${encodeURIComponent(imagePath)}` +
+        `&productURL=${encodeURIComponent(window.location.href)}`;
 
     if (product.features && Array.isArray(product.features)) {
         product.features.forEach((feature, idx) => {
@@ -433,7 +448,21 @@ function renderProduct(product) {
                 /* Update Price */
                 const priceElement = document.getElementById("productPrice");
                 if (priceElement) {
-                    priceElement.innerHTML = `₹ ${formatPrice(selectedSize.price)}`;
+                    let variantPrice = formatPrice(selectedSize.price);
+
+                    const categoryObj = product.category;
+                    let categoryNameCheck = "";
+                    if (typeof categoryObj === "string") {
+                        categoryNameCheck = categoryObj.toLowerCase();
+                    } else if (categoryObj && typeof categoryObj === "object") {
+                        categoryNameCheck = (categoryObj.slug || categoryObj.name || "").toLowerCase();
+                    }
+
+                    if (categoryNameCheck.includes("grc") && variantPrice !== "-") {
+                        variantPrice += " + Sq. Ft";
+                    }
+
+                    priceElement.innerHTML = `₹ ${variantPrice}`;
                 }
 
                 /* Update Specifications & Dynamic Dimensions */
@@ -453,19 +482,19 @@ function renderProduct(product) {
                     const selPriceValue = selectedSize.price || product.price || "";
 
                     let updatedUrl = `contact.php?id=${encodeURIComponent(product.id || '')}` +
-                            `&slug=${encodeURIComponent(product.slug || '')}` +
-                            `&productName=${encodeURIComponent(product.name || '')}` +
-                            `&productCategory=${encodeURIComponent(categoryName)}` +
-                            `&productMaterial=${encodeURIComponent(product.material || '')}` +
-                            `&productSize=${encodeURIComponent(selSizeValue)}` +
-                            `&productPrice=${encodeURIComponent(selPriceValue)}` +
-                            `&productLength=${encodeURIComponent(selLengthMm)}` +
-                            `&productBreadth=${encodeURIComponent(selBreadthMm)}` +
-                            `&productHeight=${encodeURIComponent(selHeightMm)}` +
-                            `&productColor=${encodeURIComponent(product.color || '')}` +
-                            `&productFinish=${encodeURIComponent(product.finish || '')}` +
-                            `&productImage=${encodeURIComponent(imagePath)}` +
-                            `&productURL=${encodeURIComponent(window.location.href)}`;
+                        `&slug=${encodeURIComponent(product.slug || '')}` +
+                        `&productName=${encodeURIComponent(product.name || '')}` +
+                        `&productCategory=${encodeURIComponent(categoryName)}` +
+                        `&productMaterial=${encodeURIComponent(product.material || '')}` +
+                        `&productSize=${encodeURIComponent(selSizeValue)}` +
+                        `&productPrice=${encodeURIComponent(selPriceValue)}` +
+                        `&productLength=${encodeURIComponent(selLengthMm)}` +
+                        `&productBreadth=${encodeURIComponent(selBreadthMm)}` +
+                        `&productHeight=${encodeURIComponent(selHeightMm)}` +
+                        `&productColor=${encodeURIComponent(product.color || '')}` +
+                        `&productFinish=${encodeURIComponent(product.finish || '')}` +
+                        `&productImage=${encodeURIComponent(imagePath)}` +
+                        `&productURL=${encodeURIComponent(window.location.href)}`;
 
                     if (product.features && Array.isArray(product.features)) {
                         product.features.forEach((feature, idx) => {
@@ -513,7 +542,7 @@ function renderRelatedProducts(currentProduct) {
 
     /*----------------------------------
         Current Category
-    -----------------------------------*/
+  -----------------------------------*/
 
     const currentCategoryId =
         currentProduct.category?.id ?? "";
@@ -526,7 +555,7 @@ function renderRelatedProducts(currentProduct) {
 
     /*----------------------------------
         Filter Same Category
-    -----------------------------------*/
+  -----------------------------------*/
 
     const related = allProducts.filter(product => {
 
@@ -557,7 +586,7 @@ function renderRelatedProducts(currentProduct) {
 
     /*----------------------------------
         Render
-    -----------------------------------*/
+  -----------------------------------*/
 
     related.forEach(product => {
 
@@ -592,13 +621,13 @@ function renderRelatedProducts(currentProduct) {
 
                         View Details
 
-                    </a>
+                  </a>
 
-                </div>
+              </div>
 
             </div>
 
-        `);
+      `);
 
     });
 
