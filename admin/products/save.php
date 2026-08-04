@@ -184,15 +184,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $isPlanterCategory = str_contains(strtolower($category['name'] ?? ''), 'planter');
 
         if ($isPlanterCategory) {
-            // Retrieve planter-specific inputs
-            $sizes = $_POST['planter_size'] ?? [];
-            $prices = $_POST['planter_price'] ?? [];
-            $length_mm = $_POST['planter_length_mm'] ?? [];
-            $length_inch = $_POST['planter_length_inch'] ?? [];
-            $breadth_mm = $_POST['planter_breadth_mm'] ?? [];
-            $breadth_inch = $_POST['planter_breadth_inch'] ?? [];
-            $height_mm = $_POST['planter_height_mm'] ?? [];
-            $height_inch = $_POST['planter_height_inch'] ?? [];
+            // Retrieve planter-specific inputs using uniform 'size[]' and general index alignment
+            $sizes = $_POST['size'] ?? [];
+            $prices = $_POST['price'] ?? [];
+            $length_mm = $_POST['length_mm'] ?? [];
+            $length_inch = $_POST['length_inch'] ?? [];
+            $breadth_mm = $_POST['breadth_mm'] ?? [];
+            $breadth_inch = $_POST['breadth_inch'] ?? [];
+            $height_mm = $_POST['height_mm'] ?? [];
+            $height_inch = $_POST['height_inch'] ?? [];
 
             for ($i = 0; $i < count($sizes); $i++) {
                 if (empty($sizes[$i]))

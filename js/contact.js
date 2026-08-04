@@ -11,7 +11,8 @@ const productCard = document.getElementById("selectedProduct");
 const loader = document.getElementById("loader");
 const form = document.getElementById("contactForm");
 const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
+// Fix: Fallback to product slug parameter if standard slug query is omitted
+const slug = params.get("slug") || params.get("productSlug");
 let selectedSizeData = null;
 let selectedProduct = null;
 
@@ -38,12 +39,12 @@ document.addEventListener("click", function (e) {
 });
 
 function showLoader() {
-    loader.classList.add("active");
+    if (loader) loader.classList.add("active");
     document.body.classList.add('loading');
 }
 
 function hideLoader() {
-    loader.classList.remove("active");
+    if (loader) loader.classList.remove("active");
     document.body.classList.remove('loading');
 }
 
@@ -57,6 +58,7 @@ function getCategoryName(cat) {
 }
 
 async function loadSelectedProduct() {
+    if (!productCard) return;
 
     productCard.style.display = "block";
 
@@ -71,26 +73,38 @@ async function loadSelectedProduct() {
         showLoader();
         const response = await fetch("api/products.php");
         const data = await response.json();
-        const products = Array.isArray(data) ? data : (data.products || data.data || []);
-        const product = products.find(item => item.slug === slug);
+
+        // Safely extract products array from various possible response formats
+        const products = Array.isArray(data) ? data : (data.products || data.data || (data.id ? [data] : []));
+        let product = products.find(item => item.slug === slug || String(item.id) === String(slug));
+
+        // Fallback if not found in list but slug matches current sample data structure
+        if (!product && (data.slug === slug || String(data.id) === String(slug))) {
+            product = data;
+        }
+
         if (!product) {
             selectedProduct = null;
             productCard.style.display = "none";
             return;
         }
+
         selectedProduct = product;
         const catName = getCategoryName(product.category);
         const isPlanter = catName.includes('planter');
         const hasSizes = product.sizes && product.sizes.length > 0;
+
         if (hasSizes) {
             selectedProduct.selectedSize =
-                params.get("size") || product.sizes[0].size;
+                params.get("productSize") || params.get("size") || product.sizes[0].size;
 
             selectedSizeData =
                 product.sizes.find(item => item.size === selectedProduct.selectedSize)
                 || product.sizes[0];
 
             selectedProduct.selectedPrice = selectedSizeData.price;
+        } else {
+            selectedProduct.selectedPrice = product.price || (product.size && product.size.price) || "";
         }
 
         const productNameInput = document.getElementById("productName");
@@ -108,6 +122,11 @@ async function loadSelectedProduct() {
             ? (product.category.name || "-")
             : (product.category || "-");
 
+        const urlPrice = params.get("productPrice");
+        const urlSize = params.get("productSize");
+        const finalDisplayPrice = urlPrice ? urlPrice : displayPrice;
+        const finalDisplaySize = urlSize ? urlSize : displaySize;
+
         let featuresList = [];
         if (Array.isArray(product.features)) {
             featuresList = product.features;
@@ -120,47 +139,45 @@ async function loadSelectedProduct() {
             : "<li>-</li>";
 
         let dimensionRowsHTML = "";
+        const activeSizeObj = selectedSizeData || (product.sizes && product.sizes[0]) || {};
+        const lengthData = activeSizeObj.dimensions?.length || { mm: params.get("productLength"), inch: "" };
+        const breadthData = activeSizeObj.dimensions?.breadth || { mm: params.get("productBreadth"), inch: "" };
+        const heightData = activeSizeObj.dimensions?.height || { mm: params.get("productHeight"), inch: "" };
+
         if (isPlanter) {
-            if (hasSizes && selectedSizeData && selectedSizeData.dimensions) {
-                dimensionRowsHTML = `
-                    <tr>
-                        <th>Size</th>
-                        <td>${displaySize}</td>
-                    </tr>
-                    <tr>
-                        <th>Length</th>
-                        <td>${selectedSizeData.dimensions.length?.mm || "-"} mm (${selectedSizeData.dimensions.length?.inch || "-"})</td>
-                    </tr>
-                    <tr>
-                        <th>Breadth</th>
-                        <td>${selectedSizeData.dimensions.breadth?.mm || "-"} mm (${selectedSizeData.dimensions.breadth?.inch || "-"})</td>
-                    </tr>
-                    <tr>
-                        <th>Height</th>
-                        <td>${selectedSizeData.dimensions.height?.mm || "-"} mm (${selectedSizeData.dimensions.height?.inch || "-"})</td>
-                    </tr>
-                `;
-            } else {
-                dimensionRowsHTML = `
-                    <tr>
-                        <th>Size</th>
-                        <td>${displaySize}</td>
-                    </tr>
-                `;
-            }
-        } else {
             dimensionRowsHTML = `
-                ${displaySize !== "-" && displaySize !== "" ? `
                 <tr>
                     <th>Size</th>
-                    <td>${displaySize}</td>
+                    <td>${finalDisplaySize}</td>
+                </tr>
+                <tr>
+                    <th>Length</th>
+                    <td>${lengthData.mm || "-"} mm ${lengthData.inch ? `(${lengthData.inch} in)` : ""}</td>
+                </tr>
+                <tr>
+                    <th>Breadth</th>
+                    <td>${breadthData.mm || "-"} mm ${breadthData.inch ? `(${breadthData.inch} in)` : ""}</td>
+                </tr>
+                <tr>
+                    <th>Height</th>
+                    <td>${heightData.mm || "-"} mm ${heightData.inch ? `(${heightData.inch} in)` : ""}</td>
+                </tr>
+            `;
+        } else {
+            dimensionRowsHTML = `
+                ${finalDisplaySize !== "-" && finalDisplaySize !== "" ? `
+                <tr>
+                    <th>Size</th>
+                    <td>${finalDisplaySize}</td>
                 </tr>
                 ` : ""}
             `;
         }
 
+        const rawThumbnail = product.thumbnail || (product.images?.[0]?.image || product.images?.[0]) || 'images/no-image.webp';
+
         productCard.innerHTML = `
-            <img src="${product.thumbnail || (product.images?.[0]?.image || product.images?.[0]) || 'images/no-image.webp'}" alt="${product.name}">
+            <img src="${rawThumbnail}" alt="${product.name}">
             <div class="selected-product-content">
                 <h2>${product.name}</h2>
                 <table class="product-specification">
@@ -179,7 +196,7 @@ async function loadSelectedProduct() {
                     ${dimensionRowsHTML}
                     <tr>
                         <th>Price</th>
-                        <td>₹ ${Number(displayPrice || 0).toLocaleString("en-IN")}</td>
+                        <td>₹ ${Number(finalDisplayPrice || 0).toLocaleString("en-IN")}</td>
                     </tr>
                     <tr>
                         <th>Color</th>
@@ -202,13 +219,11 @@ async function loadSelectedProduct() {
                         <td>${product.description || "-"}</td>
                     </tr>
                 </table>
-         </div>
+           </div>
         `;
-        console.log('Selected', product);
     } catch (err) {
         console.error("Error loading selected product:", err);
-    }
-    finally {
+    } finally {
         hideLoader();
     }
 }
@@ -230,7 +245,6 @@ if (form) {
         const phone = document.getElementById("phone");
         const email = document.getElementById("email");
         const subject = document.getElementById("subject");
-        const sourceMenu = document.getElementById("sourceMenu");
         const address = document.getElementById("address");
         const message = document.getElementById("message");
 
@@ -310,7 +324,6 @@ if (form) {
         }
 
         if (isValid) {
-
             showLoader();
 
             const formData = {
@@ -321,7 +334,7 @@ if (form) {
                 message: message.value.trim(),
                 address: address.value.trim(),
                 source: sourceInput.value.trim()
-         };
+            };
 
             if (selectedProduct && slug) {
                 const hasSizes = selectedProduct.sizes && selectedProduct.sizes.length > 0;
@@ -341,8 +354,6 @@ if (form) {
                     ? `${window.location.origin}/cai/${rawImage}`
                     : `${window.location.origin}/${rawImage}`;
 
-                console.log(absoluteImage);
-
                 let formattedFeatures = "";
                 if (Array.isArray(selectedProduct.features)) {
                     formattedFeatures = selectedProduct.features.join(", ");
@@ -355,14 +366,14 @@ if (form) {
                     productCategory: typeof selectedProduct.category === "object" ? selectedProduct.category.name : selectedProduct.category,
                     productMaterial: selectedProduct.material,
                     productShape: selectedProduct.shape,
-                    productSize: hasSizes ? selectedProduct.selectedSize : (selectedProduct.size?.size || selectedProduct.size),
-                    productPrice: hasSizes ? selectedProduct.selectedPrice : selectedProduct.price,
+                    productSize: params.get("productSize") || (hasSizes ? selectedProduct.selectedSize : (selectedProduct.size?.size || selectedProduct.size)),
+                    productPrice: params.get("productPrice") || (hasSizes ? selectedProduct.selectedPrice : selectedProduct.price),
                     productColor: selectedProduct.color,
                     productFinish: selectedProduct.finish,
                     productFeatures: formattedFeatures,
                     productDescription: selectedProduct.description || "",
                     productImage: absoluteImage
-             });
+                });
 
                 if (isPlanter && hasSizes) {
                     const currentSizeData = selectedProduct.sizes.find(
@@ -371,13 +382,13 @@ if (form) {
 
                     if (currentSizeData && currentSizeData.dimensions) {
                         Object.assign(formData, {
-                            productLength: `${currentSizeData.dimensions.length?.mm || "-"} mm (${currentSizeData.dimensions.length?.inch || "-"})`,
-                            productBreadth: `${currentSizeData.dimensions.breadth?.mm || "-"} mm (${currentSizeData.dimensions.breadth?.inch || "-"})`,
-                            productHeight: `${currentSizeData.dimensions.height?.mm || "-"} mm (${currentSizeData.dimensions.height?.inch || "-"})`
-                    });
+                            productLength: `${currentSizeData.dimensions.length?.mm || params.get("productLength") || "-"} mm`,
+                            productBreadth: `${currentSizeData.dimensions.breadth?.mm || params.get("productBreadth") || "-"} mm`,
+                            productHeight: `${currentSizeData.dimensions.height?.mm || params.get("productHeight") || "-"} mm`
+                        });
+                    }
                 }
-              }
-         }
+            }
 
             try {
                 const response = await fetch("api/contact.php", {
@@ -387,25 +398,20 @@ if (form) {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify(formData)
-            });
+                });
                 if (response.ok) {
-                    console.log("Form submitted successfully", formData);
                     showToast("Enquiry submitted successfully. We will get back to you soon.", "success");
                     form.reset();
 
-                    // Clear URL params
                     window.history.replaceState({}, document.title, window.location.pathname);
 
-                    // Reset product data
                     selectedProduct = null;
                     selectedSizeData = null;
 
-                    // Reset source dropdown
                     selectedSource.textContent = "Select Source";
                     sourceInput.value = "";
                     sourceBtn.classList.remove("valid-input", "error-input");
 
-                    // Hide selected product
                     productCard.innerHTML = "";
                     productCard.style.display = "none";
 
@@ -416,18 +422,17 @@ if (form) {
                     if (!slug) {
                         productCard.innerHTML = "";
                     }
-
-            } else {
+                } else {
                     showToast("Something went wrong. Please try again.", "error");
+                }
+            } catch (error) {
+                console.error(error);
+                showToast("Unable to submit the form. Please try again later.", "error");
             }
-        } catch (error) {
-            console.error(error);
-            showToast("Unable to submit the form. Please try again later.", "error");
+            finally {
+                hideLoader();
+            }
         }
-        finally {
-            hideLoader();
-      }
-    }
     });
 }
 
@@ -468,19 +473,19 @@ function showToast(message, type = "success") {
         case "success":
             toast.classList.add("success");
             icon = '<i class="fa-solid fa-circle-check"></i>';
-          break;
+            break;
         case "error":
             toast.classList.add("error");
             icon = '<i class="fa-solid fa-circle-xmark"></i>';
-          break;
+            break;
         case "warning":
             toast.classList.add("warning");
             icon = '<i class="fa-solid fa-triangle-exclamation"></i>';
-          break;
+            break;
         case "info":
             toast.classList.add("info");
             icon = '<i class="fa-solid fa-circle-info"></i>';
-          break;
+            break;
         default:
             toast.classList.add("success");
             icon = '<i class="fa-solid fa-circle-check"></i>';

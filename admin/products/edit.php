@@ -375,6 +375,39 @@ if (empty($productFeatures)) {
         }
     }
 
+    // Auto-calculate mm <-> inch conversions dynamically for planter rows
+    document.addEventListener('input', function (e) {
+        if (!e.target.matches('.size-row input[type="number"]')) return;
+        
+        const input = e.target;
+        const row = input.closest('.size-row');
+        if (!row) return;
+
+        const mmToInch = (mm) => (mm && !isNaN(mm)) ? (parseFloat(mm) / 25.4).toFixed(2) : '';
+        const inchToMm = (inch) => (inch && !isNaN(inch)) ? (parseFloat(inch) * 25.4).toFixed(2) : '';
+
+        // Length Conversion
+        if (input.name === 'planter_length_mm[]') {
+            row.querySelector('input[name="planter_length_inch[]"]').value = mmToInch(input.value);
+        } else if (input.name === 'planter_length_inch[]') {
+            row.querySelector('input[name="planter_length_mm[]"]').value = inchToMm(input.value);
+        }
+
+        // Height Conversion
+        if (input.name === 'planter_height_mm[]') {
+            row.querySelector('input[name="planter_height_inch[]"]').value = mmToInch(input.value);
+        } else if (input.name === 'planter_height_inch[]') {
+            row.querySelector('input[name="planter_height_mm[]"]').value = inchToMm(input.value);
+        }
+
+        // Breadth Conversion
+        if (input.name === 'planter_breadth_mm[]') {
+            row.querySelector('input[name="planter_breadth_inch[]"]').value = mmToInch(input.value);
+        } else if (input.name === 'planter_breadth_inch[]') {
+            row.querySelector('input[name="planter_breadth_mm[]"]').value = inchToMm(input.value);
+        }
+    });
+
     document.getElementById('addSizeRowBtn')?.addEventListener('click', function () {
         const wrapper = document.getElementById('sizeRowsWrapper');
         const rows = wrapper.querySelectorAll('.size-row');

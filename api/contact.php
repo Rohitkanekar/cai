@@ -169,9 +169,12 @@ try {
         $mail->Encoding = 'base64';
         $mail->setFrom(SMTP_USER, 'Concrete Arts India');
         $mail->addAddress($email, $name);
+        if (defined('MAIL_OWNER') && MAIL_OWNER) {
+            $mail->addBCC(MAIL_OWNER, 'Concrete Arts India Admin');
+        }
         $mail->addReplyTo($email, $name);
         $mail->isHTML(true);
-        $mail->Subject = "New Enquiry - " . $subject;
+        $mail->Subject = "New Website Enquiry - " . $subject;
 
         // Fallback helper function for missing general/customer fields
         $displaySource = !empty($source) ? $source : "-";

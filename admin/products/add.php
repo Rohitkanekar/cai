@@ -7,9 +7,9 @@ $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->
 ?>
 
 <style>
-#size-rows-container {
-    margin: 0 8px;
-}
+    #size-rows-container {
+        margin: 0 8px;
+    }
 </style>
 <div class="main-content">
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -126,7 +126,8 @@ $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->
                         <div id="features-rows-container">
                             <div class="row g-3 feature-row align-items-center mb-3">
                                 <div class="col-md-10">
-                                    <input type="text" name="features[]" class="form-control" placeholder="e.g. Weather resistant and durable finish">
+                                    <input type="text" name="features[]" class="form-control"
+                                        placeholder="e.g. Weather resistant and durable finish">
                                 </div>
                                 <div class="col-md-2 d-grid">
                                     <button type="button" class="btn btn-success" id="add-feature-row">
@@ -157,9 +158,11 @@ $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->
 
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Thumbnail Image</label>
-                        <input type="file" name="thumbnail" id="thumbnailInput" class="form-control" accept="image/*" required>
+                        <input type="file" name="thumbnail" id="thumbnailInput" class="form-control" accept="image/*"
+                            required>
                         <div class="mt-3">
-                            <img id="thumbnailPreview" src="" alt="Image Preview" class="img-thumbnail" style="display: none; max-height: 150px;">
+                            <img id="thumbnailPreview" src="" alt="Image Preview" class="img-thumbnail"
+                                style="display: none; max-height: 150px;">
                         </div>
                     </div>
 
@@ -184,12 +187,12 @@ $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->
     });
 
     // Thumbnail Image Preview Script
-    document.getElementById('thumbnailInput').addEventListener('change', function(event) {
+    document.getElementById('thumbnailInput').addEventListener('change', function (event) {
         const file = event.target.files[0];
         const preview = document.getElementById('thumbnailPreview');
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 preview.src = e.target.result;
                 preview.style.display = 'block';
             }
@@ -265,6 +268,39 @@ $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->
         });
     }
 
+    // Auto-calculate mm <-> inch conversions
+    document.addEventListener('input', function (e) {
+        if (!e.target.matches('.size-row input[type="number"]')) return;
+
+        const input = e.target;
+        const row = input.closest('.size-row');
+        if (!row) return;
+
+        const mmToInch = (mm) => (mm && !isNaN(mm)) ? (parseFloat(mm) / 25.4).toFixed(2) : '';
+        const inchToMm = (inch) => (inch && !isNaN(inch)) ? (parseFloat(inch) * 25.4).toFixed(2) : '';
+
+        // Length
+        if (input.name === 'length_mm[]') {
+            row.querySelector('input[name="length_inch[]"]').value = mmToInch(input.value);
+        } else if (input.name === 'length_inch[]') {
+            row.querySelector('input[name="length_mm[]"]').value = inchToMm(input.value);
+        }
+
+        // Breadth
+        if (input.name === 'breadth_mm[]') {
+            row.querySelector('input[name="breadth_inch[]"]').value = mmToInch(input.value);
+        } else if (input.name === 'breadth_inch[]') {
+            row.querySelector('input[name="breadth_mm[]"]').value = inchToMm(input.value);
+        }
+
+        // Height
+        if (input.name === 'height_mm[]') {
+            row.querySelector('input[name="height_inch[]"]').value = mmToInch(input.value);
+        } else if (input.name === 'height_inch[]') {
+            row.querySelector('input[name="height_mm[]"]').value = inchToMm(input.value);
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
         const planterSizeSection = document.getElementById('planterSizeSection');
         planterSizeSection.querySelectorAll('input, select').forEach(input => {
@@ -281,12 +317,16 @@ $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->
             const firstRow = container.querySelector('.size-row');
             const newRow = firstRow.cloneNode(true);
 
-            // Clear input/select values in the cloned row
-            newRow.querySelectorAll('input, select').forEach(field => {
-                field.value = '';
+            newRow.querySelector('.size-dropdown').name = 'size[]';
+
+            const numberInputs = newRow.querySelectorAll('input[type="number"]');
+            const fieldNames = ['length_mm[]', 'length_inch[]', 'breadth_mm[]', 'breadth_inch[]', 'height_mm[]', 'height_inch[]', 'price[]'];
+
+            numberInputs.forEach((input, index) => {
+                input.value = '';
+                input.name = fieldNames[index];
             });
 
-            // Replace the "Add More" button with a "Remove" button
             const btnContainer = newRow.querySelector('.col-md-2.d-grid');
             btnContainer.innerHTML = '<button type="button" class="btn btn-danger remove-size-row"><i class="fa fa-trash"></i> Remove</button>';
 
@@ -310,10 +350,8 @@ $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->
                 const firstRow = featureContainer.querySelector('.feature-row');
                 const newRow = firstRow.cloneNode(true);
 
-                // Clear input value in the cloned row
                 newRow.querySelector('input').value = '';
 
-                // Change Add button to a Remove button in the cloned row
                 const btnContainer = newRow.querySelector('.col-md-2.d-grid');
                 btnContainer.innerHTML = '<button type="button" class="btn btn-danger remove-feature-row"><i class="fa fa-trash"></i> Remove</button>';
 

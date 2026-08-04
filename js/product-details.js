@@ -103,30 +103,17 @@ function formatPrice(price) {
         DISPLAY PRICE
 =========================================*/
 
-function getProductDisplayPrice(product) {
+function getProductDisplayPrice(product, selectedSize = null) {
 
     let rawPrice = "-";
 
-    /* Multiple Sizes - Default to 1st size price if available */
+    const size = selectedSize || (product.sizes && product.sizes.length > 0 ? product.sizes[0] : (product.size || {}));
 
-    if (
-        product.sizes &&
-        product.sizes.length > 0
-    ) {
-        rawPrice = formatPrice(product.sizes[0].price);
+    /* Selected Size or 1st Size Price */
+    if (size && size.price !== undefined && size.price !== null && size.price !== "") {
+        rawPrice = formatPrice(size.price);
     }
-
-    /* Single Size */
-
-    else if (
-        product.size &&
-        Number(product.size.price) > 0
-    ) {
-        rawPrice = formatPrice(product.size.price);
-    }
-
     /* Flat Price */
-
     else if (
         product.price &&
         Number(product.price) > 0
@@ -153,6 +140,51 @@ function getProductDisplayPrice(product) {
 
     return rawPrice;
 
+}
+
+/*=========================================
+        RELATED PRODUCTS PRICE RANGE
+=========================================*/
+
+function getRelatedProductPriceRange(product) {
+    /* Check category for GRC */
+    const categoryObj = product.category;
+    let categoryNameCheck = "";
+    if (typeof categoryObj === "string") {
+        categoryNameCheck = categoryObj.toLowerCase();
+    } else if (categoryObj && typeof categoryObj === "object") {
+        categoryNameCheck = (categoryObj.slug || categoryObj.name || "").toLowerCase();
+    }
+
+    const isPlanter = categoryNameCheck.includes("planter");
+
+    // If it's a planter with multiple sizes, calculate and return a price range (Min - Max)
+    if (isPlanter && product.sizes && product.sizes.length > 0) {
+        const prices = product.sizes
+            .map(s => Number(s.price))
+            .filter(p => !isNaN(p) && p > 0);
+
+        if (prices.length > 0) {
+            const minPrice = Math.min(...prices);
+            const maxPrice = Math.max(...prices);
+
+            let priceOutput = "";
+            if (minPrice === maxPrice) {
+                priceOutput = formatPrice(minPrice);
+            } else {
+                priceOutput = `${formatPrice(minPrice)} - ${formatPrice(maxPrice)}`;
+            }
+
+            if (categoryNameCheck.includes("grc") && priceOutput !== "-") {
+                priceOutput += " + Sq. Ft";
+            }
+
+            return priceOutput;
+        }
+    }
+
+    // Fallback to regular single/default display price if not a multi-size planter
+    return getProductDisplayPrice(product);
 }
 
 /*=========================================
@@ -431,9 +463,9 @@ function renderProduct(product) {
         SIZE / VARIANT SWITCHING EVENT LISTENERS
     =========================================*/
 
-    if (product.sizes && product.sizes.length > 1) {
+    const buttons = document.querySelectorAll(".variant-btn");
 
-        const buttons = document.querySelectorAll(".variant-btn");
+    if (buttons.length > 0) {
 
         buttons.forEach(button => {
 
@@ -542,7 +574,7 @@ function renderRelatedProducts(currentProduct) {
 
     /*----------------------------------
         Current Category
-  -----------------------------------*/
+    -----------------------------------*/
 
     const currentCategoryId =
         currentProduct.category?.id ?? "";
@@ -555,7 +587,7 @@ function renderRelatedProducts(currentProduct) {
 
     /*----------------------------------
         Filter Same Category
-  -----------------------------------*/
+    -----------------------------------*/
 
     const related = allProducts.filter(product => {
 
@@ -586,13 +618,15 @@ function renderRelatedProducts(currentProduct) {
 
     /*----------------------------------
         Render
-  -----------------------------------*/
+    -----------------------------------*/
 
     related.forEach(product => {
 
         const image =
             product.thumbnail ||
             "images/no-image.webp";
+
+        const cardPriceRange = getRelatedProductPriceRange(product);
 
         relatedProducts.insertAdjacentHTML("beforeend", `
 
@@ -612,7 +646,7 @@ function renderRelatedProducts(currentProduct) {
                     <h3>${product.name}</h3>
 
                     <div class="product-price">
-                        ₹ ${getProductDisplayPrice(product)}
+                        ₹ ${cardPriceRange}
                     </div>
 
                     <a
@@ -621,9 +655,9 @@ function renderRelatedProducts(currentProduct) {
 
                         View Details
 
-                  </a>
+                    </a>
 
-              </div>
+                </div>
 
             </div>
 
@@ -714,10 +748,9 @@ function nextSlide() {
 
     track.ontransitionend = () => {
         track.style.transition = "none";
-        // Move the first card to the very end of the DOM track container
         track.appendChild(track.firstElementChild);
         track.style.transform = "translateX(0px)";
-        track.ontransitionend = null; // Clear handler
+        track.ontransitionend = null;
     };
 
 }
@@ -732,7 +765,6 @@ function prevSlide() {
     if (cards.length <= visibleCards || !track) return;
 
     track.style.transition = "none";
-    // Instantly move the last card to the front before sliding visible window back
     track.insertBefore(track.lastElementChild, track.firstElementChild);
     track.style.transform = `translateX(-${cardWidth}px)`;
 
