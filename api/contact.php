@@ -8,6 +8,177 @@ require_once "db.php";
 require_once "config.php";
 header("Content-Type: application/json");
 
+function getFallbackValue($value) {
+    return !empty($value) ? $value : "-";
+}
+
+function getProductFeaturesHtml($productFeatures) {
+    if (is_string($productFeatures)) {
+        $decodedFeatures = json_decode($productFeatures, true);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            $productFeatures = $decodedFeatures;
+        } else {
+            $productFeatures = array_map('trim', explode(',', $productFeatures));
+        }
+    }
+
+    if (empty($productFeatures) || !is_array($productFeatures)) {
+        return "-";
+    }
+
+    $featuresHtml = "<ul style='margin: 0; padding-left: 20px;'>";
+    foreach ($productFeatures as $feature) {
+        $trimmed = trim($feature);
+        if ($trimmed !== "") {
+            $featuresHtml .= "<li>" . htmlspecialchars($trimmed, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</li>";
+        }
+    }
+    $featuresHtml .= "</ul>";
+
+    return $featuresHtml === "<ul style='margin: 0; padding-left: 20px;'></ul>" ? "-" : $featuresHtml;
+}
+
+function createMailer() {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->SMTPOptions = [
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        ]
+    ];
+    $mail->SMTPDebug = 0;
+    $mail->Debugoutput = 'html';
+    $mail->Host = SMTP_HOST;
+    $mail->SMTPAuth = true;
+    $mail->Username = SMTP_USER;
+    $mail->Password = SMTP_PASS;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = SMTP_PORT;
+    $mail->CharSet = 'UTF-8';
+    $mail->Encoding = 'base64';
+    $mail->setFrom(SMTP_USER, 'Concrete Arts India');
+    $mail->isHTML(true);
+
+    return $mail;
+}
+
+function createEnquiryDetailsTable($data) {
+    $rows = "";
+    $rows .= "<tr>";
+    $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b; width: 30%;'>Name</th>";
+    $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['name'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+    $rows .= "</tr>";
+    $rows .= "<tr style='background-color: #f1f5f9;'>";
+    $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Phone</th>";
+    $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'><a href='tel:" . htmlspecialchars($data['phone'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "'>" . htmlspecialchars($data['phone'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</a></td>";
+    $rows .= "</tr>";
+    $rows .= "<tr>";
+    $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Email</th>";
+    $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['email'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+    $rows .= "</tr>";
+    $rows .= "<tr style='background-color: #f1f5f9;'>";
+    $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Subject</th>";
+    $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['subject'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+    $rows .= "</tr>";
+    $rows .= "<tr>";
+    $rows .= "<th align='left' style='padding:12px;border:1px solid #e2e8f0;color:#64748b;'>Source</th>";
+    $rows .= "<td style='padding:12px;border:1px solid #e2e8f0;color:#1e293b;'>" . htmlspecialchars($data['source'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+    $rows .= "</tr>";
+    $rows .= "<tr style='background-color:#f1f5f9;'>";
+    $rows .= "<th align='left' style='padding:12px;border:1px solid #e2e8f0;color:#64748b;'>Address</th>";
+    $rows .= "<td style='padding:12px;border:1px solid #e2e8f0;color:#1e293b;'>" . htmlspecialchars($data['customer_address'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+    $rows .= "</tr>";
+    $rows .= "<tr>";
+    $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Message</th>";
+    $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . nl2br(htmlspecialchars($data['message'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')) . "</td>";
+    $rows .= "</tr>";
+
+    if (!empty($data['productName'])) {
+        $rows .= "<tr style='background-color: #f1f5f9;'>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Product Image</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; text-align: center;'>";
+        $rows .= !empty($data['productImage']) ? "<img src='" . htmlspecialchars($data['productImage'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "' alt='" . htmlspecialchars($data['productName'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "' style='max-width: 100%; height: auto;'>" : "-";
+        $rows .= "</td>";
+        $rows .= "</tr>";
+
+        $rows .= "<tr>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Product</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>";
+        if (!empty($data['productURL'])) {
+            $rows .= "<a href='" . htmlspecialchars($data['productURL'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "' target='_blank' style='color: #b8864a; text-decoration: none;'>" . htmlspecialchars($data['productName'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</a>";
+        } else {
+            $rows .= htmlspecialchars($data['productName'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+        }
+        $rows .= "</td>";
+        $rows .= "</tr>";
+        $rows .= "<tr style='background-color: #f1f5f9;'>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Category</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['productCategory'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+        $rows .= "</tr>";
+        $rows .= "<tr>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Material</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['productMaterial'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+        $rows .= "</tr>";
+        $rows .= "<tr style='background-color: #f1f5f9;'>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Color</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['productColor'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+        $rows .= "</tr>";
+        $rows .= "<tr>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Size</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['productSize'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+        $rows .= "</tr>";
+        $rows .= "<tr style='background-color: #f1f5f9;'>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Price</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['productPrice'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+        $rows .= "</tr>";
+
+        if (!empty($data['productLength']) || !empty($data['productBreadth']) || !empty($data['productHeight'])) {
+            $rows .= "<tr>";
+            $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Dimensions (L x B x H)</th>";
+            $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['productLength'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . " x " . htmlspecialchars($data['productBreadth'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . " x " . htmlspecialchars($data['productHeight'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+            $rows .= "</tr>";
+        }
+
+        $rows .= "<tr style='background-color: #f1f5f9;'>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Finish</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . htmlspecialchars($data['productFinish'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</td>";
+        $rows .= "</tr>";
+        $rows .= "<tr>";
+        $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Features</th>";
+        $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>" . $data['productFeaturesHtml'] . "</td>";
+        $rows .= "</tr>";
+    }
+
+    return $rows;
+}
+
+function buildEmailBody($headline, $intro, $detailsRows) {
+    return "<div style='font-family: \"Roboto\", Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;'>" .
+        "<div style='background-color: #b8864a; padding: 25px; text-align: center;'>" .
+        "<h1 style='color: #ffffff; margin: 0; font-size: 24px;'>Concrete Arts India</h1>" .
+        "</div>" .
+        "<div style='padding: 30px;'>" .
+        "<h2 style='color: #1e293b; margin-top: 0;'>" . $headline . "</h2>" .
+        "<p style='color: #475569; line-height: 1.6;'>" . $intro . "</p>" .
+        "<h3 style='color: #b8864a; margin-top: 30px; border-bottom: 1px solid #cbd5e1; padding-bottom: 10px;'>Enquiry Details</h3>" .
+        "<table style='width: 100%; border-collapse: collapse; margin-top: 15px; background-color: #ffffff;'>" .
+        $detailsRows .
+        "</table>" .
+        "</div>" .
+        "<div style='margin-top: 40px; padding: 30px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; color: #475569;'>" .
+        "<p style='margin: 0 0 10px 0; font-weight: 600; font-size: 16px; color: #1e293b;'>Concrete Arts India</p>" .
+        "<div style='margin-bottom: 20px;'>" .
+        "<a href='mailto:concreteartsindia@gmail.com' style='color: #334155; text-decoration: none; font-size: 14px; margin: 0 10px;'>📧 concreteartsindia@gmail.com</a>" .
+        "<span style='color: #cbd5e1;'>|</span>" .
+        "<a href='tel:+7506865658' style='color: #334155; text-decoration: none; font-size: 14px; margin: 0 10px;'>📞 +91 75068 65658</a>" .
+        "</div>" .
+        "<p style='font-size: 12px; margin: 0; color: #94a3b8;'>&copy; " . date('Y') . " Concrete Arts India. All rights reserved.</p>" .
+        "<p style='font-size: 11px; margin-top: 10px; color: #1e293b;'>You are receiving this email because you made an enquiry on our website.</p>" .
+        "</div>" .
+        "</div>";
+}
 
 /*=========================================
     ALLOW ONLY POST
@@ -147,205 +318,65 @@ try {
         ":product_image" => $productImage,
         ":product_url" => $productURL
     ]);
-    $mail = new PHPMailer(true);
+    $displaySource = getFallbackValue($source);
+    $displayAddress = getFallbackValue($customer_address);
+    $displayMessage = getFallbackValue($message);
+    $displaySubject = getFallbackValue($subject);
+    $displayProductPrice = !empty($productPrice) ? "₹ " . $productPrice : "-";
+
+    $mailData = [
+        'name' => $name,
+        'phone' => $phone,
+        'email' => $email,
+        'subject' => $displaySubject,
+        'message' => $displayMessage,
+        'source' => $displaySource,
+        'customer_address' => $displayAddress,
+        'productName' => $productName ?? "",
+        'productCategory' => getFallbackValue($productCategory),
+        'productMaterial' => getFallbackValue($productMaterial),
+        'productSize' => getFallbackValue($productSize),
+        'productPrice' => $displayProductPrice,
+        'productLength' => getFallbackValue($productLength),
+        'productBreadth' => getFallbackValue($productBreadth),
+        'productHeight' => getFallbackValue($productHeight),
+        'productColor' => getFallbackValue($productColor),
+        'productFinish' => getFallbackValue($productFinish),
+        'productImage' => getFallbackValue($productImage),
+        'productURL' => getFallbackValue($productURL),
+        'productFeaturesHtml' => getProductFeaturesHtml($productFeatures)
+    ];
+
+    $detailsRows = createEnquiryDetailsTable($mailData);
+    $customerBody = buildEmailBody(
+        "Dear " . htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . ",",
+        "Thank you for reaching out to us. We have successfully received your enquiry, and our team will review your request and contact you shortly.",
+        $detailsRows
+    );
+    $ownerBody = buildEmailBody(
+        "New enquiry received",
+        "A new enquiry has been submitted through the website. Please review the details below and follow up with the customer as needed.",
+        $detailsRows
+    );
+
     try {
-        $mail->isSMTP();
-        $mail->SMTPOptions = [
-            'ssl' => [
-                'verify_peer' => false,
-                'verify_peer_name' => false,
-                'allow_self_signed' => true
-            ]
-        ];
-        $mail->SMTPDebug = 0;
-        $mail->Debugoutput = 'html';
-        $mail->Host = SMTP_HOST;
-        $mail->SMTPAuth = true;
-        $mail->Username = SMTP_USER;
-        $mail->Password = SMTP_PASS;
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = SMTP_PORT;
-        $mail->CharSet = 'UTF-8';
-        $mail->Encoding = 'base64';
-        $mail->setFrom(SMTP_USER, 'Concrete Arts India');
+        $mail = createMailer();
         $mail->addAddress($email, $name);
-        if (defined('MAIL_OWNER') && MAIL_OWNER) {
-            $mail->addBCC(MAIL_OWNER, 'Concrete Arts India Admin');
-        }
-        $mail->addReplyTo($email, $name);
-        $mail->isHTML(true);
-        $mail->Subject = "New Website Enquiry - " . $subject;
-
-        // Fallback helper function for missing general/customer fields
-        $displaySource = !empty($source) ? $source : "-";
-        $displayAddress = !empty($customer_address) ? $customer_address : "-";
-        $displayMessage = !empty($message) ? $message : "-";
-        $displaySubject = !empty($subject) ? $subject : "-";
-
-        $body = "
-        <div style='font-family: \"Roboto\", Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;'>            
-            <!-- Header Section -->
-            <div style='background-color: #b8864a; padding: 25px; text-align: center;'>
-                <h1 style='color: #ffffff; margin: 0; font-size: 24px;'>Concrete Arts India</h1>
-            </div>
-            <!-- Content Section -->
-            <div style='padding: 30px;'>
-                <h2 style='color: #1e293b; margin-top: 0;'>Dear {$name},</h2>
-                <p style='color: #475569; line-height: 1.6;'>Thank you for reaching out to us. We have successfully received your enquiry, and our team will review your request and contact you shortly.</p>                
-                <h3 style='color: #b8864a; margin-top: 30px; border-bottom: 1px solid #cbd5e1; padding-bottom: 10px;'>Enquiry Details</h3>                
-                <table style='width: 100%; border-collapse: collapse; margin-top: 15px; background-color: #ffffff;'>
-                    <tr>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b; width: 30%;'>Name</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$name}</td>
-                    </tr>
-                    <tr style='background-color: #f1f5f9;'>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Phone</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>
-                            <a href='tel:{$phone}'>{$phone}</a>
-                        </td>   
-                    </tr>
-                    <tr>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Email</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$email}</td>
-                    </tr>
-                    <tr style='background-color: #f1f5f9;'>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Subject</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$displaySubject}</td>
-                    </tr>
-                    <tr>
-                        <th align='left' style='padding:12px;border:1px solid #e2e8f0;color:#64748b;'>Source</th>
-                        <td style='padding:12px;border:1px solid #e2e8f0;color:#1e293b;'>{$displaySource}</td>
-                    </tr>
-                    <tr style='background-color:#f1f5f9;'>
-                        <th align='left' style='padding:12px;border:1px solid #e2e8f0;color:#64748b;'>Address</th>
-                        <td style='padding:12px;border:1px solid #e2e8f0;color:#1e293b;'>{$displayAddress}</td>
-                    </tr>                    
-                    <tr>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Message</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$displayMessage}</td>
-                    </tr>";
-
-        if (!empty($productName)) {
-
-            // Features parsing
-            $featuresHtml = "";
-            if (is_string($productFeatures)) {
-                $decodedFeatures = json_decode($productFeatures, true);
-                if (json_last_error() === JSON_ERROR_NONE) {
-                    $productFeatures = $decodedFeatures;
-                } else {
-                    $productFeatures = array_map('trim', explode(',', $productFeatures));
-                }
-            }
-
-            if (!empty($productFeatures) && is_array($productFeatures)) {
-                $featuresHtml = "<ul style='margin: 0; padding-left: 20px;'>";
-                foreach ($productFeatures as $feature) {
-                    if (!empty(trim($feature))) {
-                        $featuresHtml .= "<li>" . htmlspecialchars($feature) . "</li>";
-                    }
-                }
-                $featuresHtml .= "</ul>";
-            }
-
-            if (empty($featuresHtml) || $featuresHtml === "<ul style='margin: 0; padding-left: 20px;'></ul>") {
-                $featuresHtml = "-";
-            }
-
-            // Fallback formatting for product attributes
-            $displayCategory = !empty($productCategory) ? $productCategory : "-";
-            $displayMaterial = !empty($productMaterial) ? $productMaterial : "-";
-            $displayColor = !empty($productColor) ? $productColor : "-";
-            $displaySize = !empty($productSize) ? $productSize : "-";
-            $displayPrice = !empty($productPrice) ? "₹ " . $productPrice : "-";
-            $displayFinish = !empty($productFinish) ? $productFinish : "-";
-
-            $imageBlock = !empty($productImage)
-                ? "<img src='{$productImage}' alt='{$productName}' style='max-width: 100%; height: auto;'>"
-                : "-";
-
-            $productLinkBlock = !empty($productURL)
-                ? "<a href='{$productURL}' target='_blank' style='color: #b8864a; text-decoration: none;'>{$productName}</a>"
-                : "{$productName}";
-
-            $body .= "
-                    <tr style='background-color: #f1f5f9;'>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Product Image</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; text-align: center;'>
-                            {$imageBlock}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Product</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$productLinkBlock}</td>
-                    </tr>
-                    <tr style='background-color: #f1f5f9;'>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Category</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$displayCategory}</td>
-                    </tr>
-                    <tr>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Material</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$displayMaterial}</td>
-                    </tr>
-                    <tr style='background-color: #f1f5f9;'>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Color</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$displayColor}</td>
-                    </tr>
-                    <tr>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Size</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$displaySize}</td>
-                    </tr>
-                    <tr style='background-color: #f1f5f9;'>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Price</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$displayPrice}</td>
-                    </tr>";
-
-            if (!empty($productLength) || !empty($productBreadth) || !empty($productHeight)) {
-                $body .= "
-                    <tr>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Dimensions (L x B x H)</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$productLength} mm x {$productBreadth} mm x {$productHeight} mm</td>
-                    </tr>";
-            }
-
-            $body .= "
-                    <tr style='background-color: #f1f5f9;'>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Finish</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$displayFinish}</td>
-                    </tr>
-                    <tr>
-                        <th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Features</th>
-                        <td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>{$featuresHtml}</td>
-                    </tr>";
-        }
-        $body .= "
-        </table>
-    </div>
-    <!-- Footer -->
-    <div style='margin-top: 40px; padding: 30px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; color: #475569;'>    
-    <p style='margin: 0 0 10px 0; font-weight: 600; font-size: 16px; color: #1e293b;'>Concrete Arts India</p>    
-    <div style='margin-bottom: 20px;'>
-        <a href='mailto:concreteartsindia@gmail.com' style='color: #334155; text-decoration: none; font-size: 14px; margin: 0 10px;'>
-            📧 concreteartsindia@gmail.com
-        </a>
-        <span style='color: #cbd5e1;'>|</span>
-        <a href='tel:+7506865658' style='color: #334155; text-decoration: none; font-size: 14px; margin: 0 10px;'>
-            📞 +91 75068 65658
-        </a>
-    </div>
-    <p style='font-size: 12px; margin: 0; color: #94a3b8;'>
-        &copy; " . date('Y') . " Concrete Arts India. All rights reserved.
-    </p>
-    <p style='font-size: 11px; margin-top: 10px; color: #1e293b;'>
-        You are receiving this email because you made an enquiry on our website.
-    </p>
-</div>
-</div>";
-        $mail->Body = $body;
+        $mail->addReplyTo(SMTP_USER, 'Concrete Arts India');
+        $mail->Subject = "Thank you for contacting Concrete Arts India";
+        $mail->Body = $customerBody;
         $mail->send();
+
+        $ownerMailer = createMailer();
+        $ownerMailer->addAddress(MAIL_OWNER, 'Concrete Arts India');
+        $ownerMailer->addReplyTo($email, $name);
+        $ownerMailer->Subject = "New enquiry received - " . $name;
+        $ownerMailer->Body = $ownerBody;
+        $ownerMailer->send();
     } catch (Exception $e) {
-        die("Mailer Error: " . $mail->ErrorInfo);
+        die("Mailer Error: " . $e->getMessage());
     }
+
     echo json_encode([
         "success" => true,
         "message" => "Enquiry submitted successfully."
@@ -358,3 +389,4 @@ try {
         "message" => $e->getMessage()
     ]);
 }
+
