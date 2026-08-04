@@ -38,7 +38,28 @@ function getProductFeaturesHtml($productFeatures) {
     return $featuresHtml === "<ul style='margin: 0; padding-left: 20px;'></ul>" ? "-" : $featuresHtml;
 }
 
+function normalizeEmailAddress($email, $fallbackAddress = null) {
+    $candidate = trim((string) $email);
+    if ($candidate !== '' && filter_var($candidate, FILTER_VALIDATE_EMAIL)) {
+        return $candidate;
+    }
+
+    if ($fallbackAddress !== null) {
+        $fallback = trim((string) $fallbackAddress);
+        if ($fallback !== '' && filter_var($fallback, FILTER_VALIDATE_EMAIL)) {
+            return $fallback;
+        }
+    }
+
+    return null;
+}
+
 function createMailer() {
+    $senderAddress = normalizeEmailAddress(SMTP_USER, MAIL_OWNER);
+    if ($senderAddress === null) {
+        throw new Exception('No valid sender email address is configured for the mailer.');
+    }
+
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->SMTPOptions = [
@@ -52,13 +73,13 @@ function createMailer() {
     $mail->Debugoutput = 'html';
     $mail->Host = SMTP_HOST;
     $mail->SMTPAuth = true;
-    $mail->Username = SMTP_USER;
+    $mail->Username = $senderAddress;
     $mail->Password = SMTP_PASS;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = SMTP_PORT;
     $mail->CharSet = 'UTF-8';
     $mail->Encoding = 'base64';
-    $mail->setFrom(SMTP_USER, 'Concrete Arts India');
+    $mail->setFrom($senderAddress, 'Concrete Arts India');
     $mail->isHTML(true);
 
     return $mail;
@@ -361,20 +382,34 @@ try {
 
     try {
         $mail = createMailer();
-        $mail->addAddress($email, $name);
-        $mail->addReplyTo(SMTP_USER, 'Concrete Arts India');
+        $customerEmail = normalizeEmailAddress($email, MAIL_OWNER);
+        if ($customerEmail === null) {
+            throw new Exception('No valid customer email address was provided.');
+        }
+        $mail->addAddress($customerEmail, $name);
+        $mail->addReplyTo($mail->Username, 'Concrete Arts India');
         $mail->Subject = "Thank you for contacting Concrete Arts India";
         $mail->Body = $customerBody;
         $mail->send();
 
         $ownerMailer = createMailer();
-        $ownerMailer->addAddress(MAIL_OWNER, 'Concrete Arts India');
-        $ownerMailer->addReplyTo($email, $name);
+        $ownerAddress = normalizeEmailAddress(MAIL_OWNER, SMTP_USER);
+        if ($ownerAddress === null) {
+            throw new Exception('No valid owner email address is configured for the mailer.');
+        }
+        $ownerMailer->addAddress($ownerAddress, 'Concrete Arts India');
+        $ownerMailer->addReplyTo($customerEmail, $name);
         $ownerMailer->Subject = "New enquiry received - " . $name;
         $ownerMailer->Body = $ownerBody;
         $ownerMailer->send();
     } catch (Exception $e) {
-        die("Mailer Error: " . $e->getMessage());
+        http_response_code(500);
+        echo json_encode([
+            "success" => false,
+            "message" => "Unable to send enquiry email at the moment. Please try again later.",
+            "error" => $e->getMessage()
+        ]);
+        exit;
     }
 
     echo json_encode([
