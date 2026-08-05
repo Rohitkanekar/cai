@@ -75,9 +75,9 @@
                         <i class="fa-solid fa-phone"></i>
                         +91 75068 65658
                     </a>
-                    <a href="mailto:concreteartsindia@gmail.com">
+                    <a href="mailto:contact.concreteartsindia@gmail.com">
                         <i class="fa-solid fa-envelope"></i>
-                        concreteartsindia@gmail.com
+                        contact.concreteartsindia@gmail.com
                     </a>
                 </div>
                 <div class="header-right">
@@ -271,8 +271,8 @@
                         </li>
                         <li>
                             <i class="fa-solid fa-envelope"></i>
-                            <a href="mailto:concreteartsindia@gmail.com">
-                                concreteartsindia@gmail.com
+                            <a href="mailto:contact.concreteartsindia@gmail.com">
+                                contact.concreteartsindia@gmail.com
                             </a>
                         </li>
                         <li>

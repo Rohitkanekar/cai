@@ -98,6 +98,12 @@ categoryButtons.forEach(button => {
         currentCategory = this.dataset.category;
         currentPage = 1;
         applyFilters();
+        if (window.innerWidth < 767) {
+            productsGrid.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
     });
 });
 

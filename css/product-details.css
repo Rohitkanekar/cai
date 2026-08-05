@@ -435,7 +435,8 @@
 
 @media(max-width:576px) {
     .variant-buttons{
-        gap:2px;
+        gap:10px;
+        flex-wrap: wrap;
     }
 }
 

@@ -50,7 +50,7 @@
             "logo":"https://www.concreteartsindia.com/images/logo.png",
             "image":"https://www.concreteartsindia.com/images/logo.png",
             "telephone":"+91-9867704727",
-            "email":"concreteartsindia@gmail.com",
+            "email":"contact.concreteartsindia@gmail.com",
             "sameAs":[
                 "https://www.facebook.com/",
                 "https://www.instagram.com/",
@@ -66,7 +66,7 @@
             "image":"https://www.concreteartsindia.com/images/logo.png",
             "url":"https://www.concreteartsindia.com",
             "telephone":"+91-9867704727",
-            "email":"concreteartsindia@gmail.com",
+            "email":"contact.concreteartsindia@gmail.com",
             "priceRange":"₹₹",
             "address":{
                 "@type":"PostalAddress",
@@ -124,9 +124,9 @@
                         <i class="fa-solid fa-phone"></i>
                         +91 75068 65658
                     </a>
-                    <a href="mailto:concreteartsindia@gmail.com">
+                    <a href="mailto:contact.concreteartsindia@gmail.com">
                         <i class="fa-solid fa-envelope"></i>
-                        concreteartsindia@gmail.com
+                        contact.concreteartsindia@gmail.com
                     </a>
                 </div>
                 <div class="header-right">
@@ -218,7 +218,7 @@
                     </div>
 
                     <div class="team-card">
-                        <img src="images/team/rohit-kanekar.webp" alt="Civil Engineer">
+                        <img src="images/team/tanaji-bhosle.webp" alt="Civil Engineer">
                         <div class="team-content">
                             <h2>Tanaji Bhosle</h2>
                             <h3>Civil Engineer</h3>
@@ -400,8 +400,8 @@
                         </li>
                         <li>
                             <i class="fa-solid fa-envelope"></i>
-                            <a href="mailto:concreteartsindia@gmail.com">
-                                concreteartsindia@gmail.com
+                            <a href="mailto:contact.concreteartsindia@gmail.com">
+                                contact.concreteartsindia@gmail.com
                             </a>
                         </li>
                         <li>

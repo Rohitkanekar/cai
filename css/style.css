@@ -636,6 +636,7 @@ button {
         transition: .4s;
         z-index: 999;
         border-top: 2px solid var(--primary);
+        border-bottom: 2px solid var(--primary);
         padding: 20px 0;
     }
 

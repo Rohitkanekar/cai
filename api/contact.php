@@ -8,11 +8,13 @@ require_once "db.php";
 require_once "config.php";
 header("Content-Type: application/json");
 
-function getFallbackValue($value) {
+function getFallbackValue($value)
+{
     return !empty($value) ? $value : "-";
 }
 
-function getProductFeaturesHtml($productFeatures) {
+function getProductFeaturesHtml($productFeatures)
+{
     if (is_string($productFeatures)) {
         $decodedFeatures = json_decode($productFeatures, true);
         if (json_last_error() === JSON_ERROR_NONE) {
@@ -38,7 +40,8 @@ function getProductFeaturesHtml($productFeatures) {
     return $featuresHtml === "<ul style='margin: 0; padding-left: 20px;'></ul>" ? "-" : $featuresHtml;
 }
 
-function normalizeEmailAddress($email, $fallbackAddress = null) {
+function normalizeEmailAddress($email, $fallbackAddress = null)
+{
     $candidate = trim((string) $email);
     if ($candidate !== '' && filter_var($candidate, FILTER_VALIDATE_EMAIL)) {
         return $candidate;
@@ -54,7 +57,8 @@ function normalizeEmailAddress($email, $fallbackAddress = null) {
     return null;
 }
 
-function createMailer() {
+function createMailer()
+{
     $senderAddress = normalizeEmailAddress(SMTP_USER, MAIL_OWNER);
     if ($senderAddress === null) {
         throw new Exception('No valid sender email address is configured for the mailer.');
@@ -85,7 +89,8 @@ function createMailer() {
     return $mail;
 }
 
-function createEnquiryDetailsTable($data) {
+function createEnquiryDetailsTable($data)
+{
     $rows = "";
     $rows .= "<tr>";
     $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b; width: 30%;'>Name</th>";
@@ -120,7 +125,21 @@ function createEnquiryDetailsTable($data) {
         $rows .= "<tr style='background-color: #f1f5f9;'>";
         $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Product Image</th>";
         $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; text-align: center;'>";
-        $rows .= !empty($data['productImage']) ? "<img src='" . htmlspecialchars($data['productImage'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "' alt='" . htmlspecialchars($data['productName'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "' style='max-width: 100%; height: auto;'>" : "-";
+        $imageUrl = !empty($data['productImage']) ? $data['productImage'] : '';
+
+        // Force absolute path[cite: 1]
+        if (!preg_match('~^(?:f|ht)tps?://~i', $imageUrl) && !empty($imageUrl)) {
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+            $domain = $_SERVER['HTTP_HOST'] ?? 'concreteartsindia.infinityfree.io';
+            $imageUrl = $protocol . $domain . '/' . ltrim($imageUrl, '/');
+        }
+
+        $rows .= !empty($imageUrl)
+            ? "<img src='" . htmlspecialchars($imageUrl, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "' 
+                  alt='" . htmlspecialchars($data['productName'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "' 
+                  class='product-image'
+                  style='display:block; max-width:100%; object-fit:cover;'>"
+            : "-";
         $rows .= "</td>";
         $rows .= "</tr>";
 
@@ -128,7 +147,7 @@ function createEnquiryDetailsTable($data) {
         $rows .= "<th align='left' style='padding: 12px; border: 1px solid #e2e8f0; color: #64748b;'>Product</th>";
         $rows .= "<td style='padding: 12px; border: 1px solid #e2e8f0; color: #1e293b;'>";
         if (!empty($data['productURL'])) {
-            $rows .= "<a href='" . htmlspecialchars($data['productURL'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "' target='_blank' style='color: #b8864a; text-decoration: none;'>" . htmlspecialchars($data['productName'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . "</a>";
+            $rows .= htmlspecialchars($data['productName'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         } else {
             $rows .= htmlspecialchars($data['productName'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
         }
@@ -175,7 +194,8 @@ function createEnquiryDetailsTable($data) {
     return $rows;
 }
 
-function buildEmailBody($headline, $intro, $detailsRows) {
+function buildEmailBody($headline, $intro, $detailsRows)
+{
     return "<div style='font-family: \"Roboto\", Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;'>" .
         "<div style='background-color: #b8864a; padding: 25px; text-align: center;'>" .
         "<h1 style='color: #ffffff; margin: 0; font-size: 24px;'>Concrete Arts India</h1>" .
@@ -191,7 +211,7 @@ function buildEmailBody($headline, $intro, $detailsRows) {
         "<div style='margin-top: 40px; padding: 30px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; color: #475569;'>" .
         "<p style='margin: 0 0 10px 0; font-weight: 600; font-size: 16px; color: #1e293b;'>Concrete Arts India</p>" .
         "<div style='margin-bottom: 20px;'>" .
-        "<a href='mailto:concreteartsindia@gmail.com' style='color: #334155; text-decoration: none; font-size: 14px; margin: 0 10px;'>📧 concreteartsindia@gmail.com</a>" .
+        "<a href='mailto:contact.concreteartsindia@gmail.com' style='color: #334155; text-decoration: none; font-size: 14px; margin: 0 10px;'>📧 contact.concreteartsindia@gmail.com</a>" .
         "<span style='color: #cbd5e1;'>|</span>" .
         "<a href='tel:+7506865658' style='color: #334155; text-decoration: none; font-size: 14px; margin: 0 10px;'>📞 +91 75068 65658</a>" .
         "</div>" .
@@ -375,7 +395,7 @@ try {
         $detailsRows
     );
     $ownerBody = buildEmailBody(
-        "New enquiry received",
+        "Dear Admin, new enquiry received,",
         "A new enquiry has been submitted through the website. Please review the details below and follow up with the customer as needed.",
         $detailsRows
     );
@@ -424,4 +444,3 @@ try {
         "message" => $e->getMessage()
     ]);
 }
-
