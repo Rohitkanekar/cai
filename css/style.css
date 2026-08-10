@@ -1293,3 +1293,8 @@ button {
         transform: rotate(360deg);
     }
 }
+
+.view-more{
+    text-align: center;
+    margin-top: 50px;
+}

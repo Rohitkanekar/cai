@@ -10,7 +10,7 @@
     <!-- SEO -->
     <meta name="title" content="Concrete Arts India | Premium Concrete Planters, GRC & FRP Products">
     <meta name="description"
-        content="Browse our complete range of premium concrete planters, GRC jali, FRP products, outdoor benches, garden furniture and architectural landscape products.">
+        content="Concrete Arts India manufactures GRC, FRP and concrete planters, benches, jali, temples and architectural products in Mumbai, Maharashtra.">
     <meta name="keywords"
         content="Concrete Arts India, Concrete Planters, FRP Products, GRC Jali, Outdoor Benches, Landscape Products, Garden Planters, Cement Planters, Concrete Furniture, Architectural Concrete, Garden Decor India">
     <meta name="author" content="Concrete Arts India">
@@ -22,14 +22,14 @@
     <meta property="og:title" content="Concrete Arts India | Premium Concrete Planters & Landscape Products">
     <meta property="og:description"
         content="Manufacturer of Concrete Planters, GRC Jali, FRP Products, Outdoor Benches, Garden Furniture & Landscape Products across India.">
-    <meta property="og:image" content="https://www.concreteartsindia.com/images/og-image.jpg">
-    <meta property="og:url" content="https://www.concreteartsindia.com/">
+    <meta property="og:image" content="https://concreteartsindia.in/images/og-image.jpg">
+    <meta property="og:url" content="https://concreteartsindia.in/">
     <meta property="og:site_name" content="Concrete Arts India">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Concrete Arts India">
     <meta name="twitter:description"
         content="Premium Concrete Planters, GRC Jali, FRP Products and Landscape Solutions.">
-    <meta name="twitter:image" content="https://www.concreteartsindia.com/images/og-image.jpg">
+    <meta name="twitter:image" content="https://concreteartsindia.in/images/og-image.jpg">
     <meta name="geo.region" content="IN-MH">
     <meta name="geo.placename" content="Mumbai">
     <meta name="geo.position" content="19.173060;72.964460">
@@ -40,14 +40,73 @@
     <script type="application/ld+json">
         {
         "@context":"https://schema.org",
-        "@type":"CollectionPage",
-        "name":"Products",
-        "url":"https://www.concreteartsindia.com/products.php",
-        "description":"Browse premium concrete planters, GRC products, FRP products, benches and landscape furniture."
+        "@graph":[
+
+            {
+            "@type":"Organization",
+            "@id":"https://concreteartsindia.in/#organization",
+            "name":"Concrete Arts India",
+            "url":"https://www.concreteartsindia.in",
+            "logo":"https://concreteartsindia.in/images/logo.png",
+            "image":"https://concreteartsindia.in/images/logo.png",
+            "telephone":"+91-7506865658",
+            "email":"contact.concreteartsindia@gmail.com",
+            "sameAs":[
+                "https://www.facebook.com/",
+                "https://www.instagram.com/",
+                "https://www.linkedin.com/",
+                "https://www.youtube.com/"
+            ]
+            },
+
+            {
+            "@type":"LocalBusiness",
+            "@id":"https://concreteartsindia.in/#business",
+            "name":"Concrete Arts India",
+            "image":"https://concreteartsindia.in/images/logo.png",
+            "url":"https://www.concreteartsindia.in",
+            "telephone":"+91-7506865658",
+            "email":"contact.concreteartsindia@gmail.com",
+            "priceRange":"₹₹",
+            "address":{
+                "@type":"PostalAddress",
+                "streetAddress":"Office No. 115, Udyog Kshetra, Next To D'Mart, Above Mahindra Showroom,
+                                Mulund Goregaon Link Road, Mulund (W), Mumbai - 400 080, Maharashtra, India",
+                "addressLocality":"Mumbai",
+                "addressRegion":"Maharashtra",
+                "postalCode":"400081",
+                "addressCountry":"IN"
+            },
+            "openingHoursSpecification":[
+                {
+                "@type":"OpeningHoursSpecification",
+                "dayOfWeek":[
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ],
+                "opens":"09:00",
+                "closes":"18:00"
+                }
+            ]
+            },
+
+            {
+            "@type":"WebSite",
+            "@id":"https://www.concreteartsindia.in",
+            "url":"https://www.concreteartsindia.in",
+            "name":"Concrete Arts India",
+            "alternateName": "Concrete Arts India"
+            }
+        ]
         }
     </script>
 
-    <title>Concrete Products | Concrete Planters | GRC | FRP | Concrete Arts India</title>
+    <title>Concrete Arts India | GRC, FRP & Concrete Products Manufacturer in Mumbai</title>
+    <link rel="canonical" href="https://concreteartsindia.in/products.php">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/products.css">
@@ -82,13 +141,13 @@
                 </div>
                 <div class="header-right">
                     <a aria-label="Visit our Instagram page" target="_blank" rel="noopener"
-                        href="https://www.facebook.com/sharer.php?u=https://www.concreteartsindia.com/"><i
+                        href="https://www.facebook.com/sharer.php?u=https://concreteartsindia.in/"><i
                             class="fab fa-facebook-f"></i></a>
                     <a aria-label="Visit our linkedin page" target="_blank" rel="noopener"
-                        href="https://www.linkedin.com/cws/share/?url=https://www.concreteartsindia.com/"><i
+                        href="https://www.linkedin.com/cws/share/?url=https://concreteartsindia.in/"><i
                             class="fab fa-linkedin-in"></i></a>
                     <a aria-label="Visit our twitter page" target="_blank" rel="noopener"
-                        href="https://twitter.com/share?url=https://www.concreteartsindia.com/&amp;text=Concrete Arts India"><i
+                        href="https://twitter.com/share?url=https://concreteartsindia.in/&amp;text=Concrete Arts India"><i
                             class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
@@ -99,7 +158,7 @@
             <div class="container">
                 <div class="logo">
                     <a href="index.php">
-                        <img src="images/logo.png" alt="Concrete Arts">
+                        <img src="images/logo.png" alt="Concrete Arts India">
                     </a>
                 </div>
                 <ul class="menu">
@@ -159,7 +218,7 @@
                                         class="category-btn active" data-category="all">
                                         All Products
                                     </button>
-                                </li>                                
+                                </li>
                                 <li>
                                     <button aria-label="Category" type="button" role="button" class="category-btn"
                                         data-category="benches">
@@ -305,14 +364,14 @@
                     </p>
                     <div class="footer-social">
                         <a aria-label="Visit our Instagram page" target="_blank" rel="noopener"
-                            href="https://www.facebook.com/sharer.php?u=https://www.concreteartsindia.com/">
+                            href="https://www.facebook.com/sharer.php?u=https://concreteartsindia.in/">
                             <i class="fab fa-facebook-f" aria-hidden="true"></i>
                         </a>
                         <a aria-label="Visit our linkedin page" target="_blank" rel="noopener"
-                            href="https://www.linkedin.com/cws/share/?url=https://www.concreteartsindia.com/"><i
+                            href="https://www.linkedin.com/cws/share/?url=https://concreteartsindia.in/"><i
                                 class="fab fa-linkedin-in" aria-hidden="true"></i></a>
                         <a aria-label="Visit our twitter page" target="_blank" rel="noopener"
-                            href="https://twitter.com/share?url=https://www.concreteartsindia.com/&amp;text=Concrete Arts India"><i
+                            href="https://twitter.com/share?url=https://concreteartsindia.in/&amp;text=Concrete Arts India"><i
                                 class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
                     </div>
                 </div>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://concreteartsindia.in/</loc>
+    </url>  
+
+    <url>
+        <loc>https://concreteartsindia.in/about.php</loc>
+    </url>
+
+    <url>
+        <loc>https://concreteartsindia.in/team.php</loc>
+    </url>
+
+    <url>
+        <loc>https://concreteartsindia.in/products.php</loc>
+    </url>    
+
+    <url>
+        <loc>https://concreteartsindia.in/projects.php</loc>
+    </url>
+
+    <url>
+        <loc>https://concreteartsindia.in/gallery.php</loc>
+    </url>
+
+    <url>
+        <loc>https://concreteartsindia.in/contact.php</loc>
+    </url>
+
+</urlset>

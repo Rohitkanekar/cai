@@ -12,7 +12,7 @@
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
 }
 
@@ -25,6 +25,7 @@
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
 }
 
 /*==========================================
@@ -65,17 +66,26 @@
 
 .project-info {
     position: absolute;
-    left: 30px;
+    left: 5%;
+    right:5%;
     bottom: 30px;
     color: var(--light);
     opacity: 1;
+    width:90%;
 }
 
 .project-info h3 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    line-height: 1;
 }
+
+.project-info h5 {
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 16px;
+}    
 
 .project-info span {
     display: inline-block;
@@ -127,4 +137,26 @@
         font-size: 13px;
         padding: 7px 15px;
     }
+}
+
+/*=========================================================
+                LIGHTBOX IMAGE / VIDEO
+=========================================================*/
+
+.lightbox-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-image,
+.lightbox-video {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 10px;
+    display: block;
+}
+
+.lightbox-video {
+    background: #000;
 }

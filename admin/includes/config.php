@@ -12,10 +12,10 @@ if ($isLocal) {
     $password = "";
     define('ADMIN_URL', '/cai/admin/');
 } else {
-    $host = "sql306.infinityfree.com";
-    $dbname = "if0_42478964_cai";
-    $username = "if0_42478964";
-    $password = "MASTERrohit26";
+    $host = "localhost";
+    $dbname = "u699767164_concreteart";
+    $username = "u699767164_concreteart";
+    $password = "Concreteart@2026";
     define('ADMIN_URL', '/admin/');
 }
 try {

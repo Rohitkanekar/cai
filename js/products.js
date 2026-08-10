@@ -570,7 +570,7 @@ function renderPagination() {
 
     const previousButton = document.createElement("button");
     previousButton.className = "page-btn";
-    previousButton.innerHTML = "&laquo;";
+    previousButton.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
     previousButton.disabled = currentPage === 1;
     previousButton.addEventListener("click", () => {
         currentPage--;
@@ -600,7 +600,7 @@ function renderPagination() {
 
     const nextButton = document.createElement("button");
     nextButton.className = "page-btn";
-    nextButton.innerHTML = "&raquo;";
+    nextButton.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
     nextButton.disabled = currentPage === totalPages;
     nextButton.addEventListener("click", () => {
         currentPage++;
