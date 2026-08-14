@@ -71,7 +71,7 @@ async function loadSelectedProduct() {
 
     try {
         showLoader();
-        const response = await fetch("api/products.php");
+        const response = await fetch("/api/products.php");
         const data = await response.json();
 
         // Safely extract products array from various possible response formats
@@ -391,7 +391,7 @@ if (form) {
             }
 
             try {
-                const response = await fetch("api/contact.php", {
+                const response = await fetch("/api/contact.php", {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",

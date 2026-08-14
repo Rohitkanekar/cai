@@ -36,14 +36,14 @@
     <meta name="ICBM" content="19.173060,72.964460">
     <meta name="copyright" content="Concrete Arts India">
     <meta name="distribution" content="global">
-    <meta name="rating" content="general">    
+    <meta name="rating" content="general">
 
     <title>Contact Concrete Arts India | GRC, FRP & Concrete Products Mumbai</title>
     <link rel="canonical" href="https://concreteartsindia.in/contact.php">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contact.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/style.css?v=<?= filemtime('css/style.css') ?>">
+    <link rel="stylesheet" href="css/contact.css?v=<?= filemtime('css/contact.css') ?>">
+    <link rel="stylesheet" href="css/font-awesome.css?v=<?= filemtime('css/font-awesome.css') ?>">
 
     <script type="application/ld+json">
         {
@@ -112,7 +112,7 @@
         ]
         }
     </script>
-    
+
 </head>
 
 <body>
@@ -143,14 +143,14 @@
                 </div>
                 <div class="header-right">
                     <a aria-label="Visit our Instagram page" target="_blank" rel="noopener"
-                        href="https://www.facebook.com/concreteartsindia.insharer.php?u=https://concreteartsindia.in/"><i
-                            class="fab fa-facebook-f"></i></a>
+                        href="https://www.instagram.com/concreteartsindia.in"><i class="fab fa-instagram"></i></a>
+                    <a aria-label="Visit our Facebook page" target="_blank" rel="noopener"
+                        href="https://www.facebook.com/concreteartsindia.in"><i class="fab fa-facebook-f"></i></a>
                     <a aria-label="Visit our linkedin page" target="_blank" rel="noopener"
-                        href="https://www.linkedin.com/company/concreteartsindia/cws/share/?url=https://concreteartsindia.in/"><i
+                        href="https://www.linkedin.com/company/concreteartsindia/"><i
                             class="fab fa-linkedin-in"></i></a>
-                    <a aria-label="Visit our twitter page" target="_blank" rel="noopener"
-                        href="https://twitter.com/share?url=https://concreteartsindia.in/&amp;text=Concrete Arts India"><i
-                            class="fa-brands fa-x-twitter"></i></a>
+                    <a aria-label="Visit our YouTube Channel" target="_blank" rel="noopener"
+                        href="https://www.youtube.com/@ConcreteArtsIndia"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -194,7 +194,9 @@
             <div class="container">
                 <h1>Contact Us</h1>
                 <p>
-                    Home
+                    <a href="index.php">
+                        Home
+                    </a>
                     <span>/</span>
                     Contact Us
                 </p>
@@ -373,15 +375,14 @@
                     </p>
                     <div class="footer-social">
                         <a aria-label="Visit our Instagram page" target="_blank" rel="noopener"
-                            href="https://www.facebook.com/concreteartsindia.insharer.php?u=https://concreteartsindia.in/">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                        </a>
+                            href="https://www.instagram.com/concreteartsindia.in"><i class="fab fa-instagram"></i></a>
+                        <a aria-label="Visit our Facebook page" target="_blank" rel="noopener"
+                            href="https://www.facebook.com/concreteartsindia.in"><i class="fab fa-facebook-f"></i></a>
                         <a aria-label="Visit our linkedin page" target="_blank" rel="noopener"
-                            href="https://www.linkedin.com/company/concreteartsindia/cws/share/?url=https://concreteartsindia.in/"><i
-                                class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                        <a aria-label="Visit our twitter page" target="_blank" rel="noopener"
-                            href="https://twitter.com/share?url=https://concreteartsindia.in/&amp;text=Concrete Arts India"><i
-                                class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+                            href="https://www.linkedin.com/company/concreteartsindia/"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a aria-label="Visit our YouTube Channel" target="_blank" rel="noopener"
+                            href="https://www.youtube.com/@ConcreteArtsIndia"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
 
@@ -460,8 +461,8 @@
     </footer>
     <div id="toast"></div>
 
-    <script src="js/script.js"></script>
-    <script src="js/contact.js"></script>
+    <script src="js/script.js?v=<?= filemtime('js/script.js') ?>"></script>
+    <script src="js/contact.js?v=<?= filemtime('js/contact.js') ?>"></script>
 
 </body>
 

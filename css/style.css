@@ -513,18 +513,23 @@ button {
 }
 
 .header-right a:nth-child(1):hover {
+    background: #833AB4;
+    /* Instagram */
+}
+
+.header-right a:nth-child(2):hover {
     background: #1877F2;
     /* Facebook */
 }
 
-.header-right a:nth-child(2):hover {
-    background: #0077B5;
-    /* LinkedIn */
+.header-right a:nth-child(3):hover {
+    background: #0A66C2;
+    /* Linkedin */
 }
 
-.header-right a:nth-child(3):hover {
-    background: #1DA1F2;
-    /* YouTube */
+.header-right a:nth-child(4):hover {
+    background: #FF0000;
+    /* Youtube */
 }
 
 /* =============================
@@ -826,18 +831,23 @@ button {
 }
 
 .footer-social a:nth-child(1):hover {
+    background: #833AB4;
+    /* Instagram */
+}
+
+.footer-social a:nth-child(2):hover {
     background: #1877F2;
     /* Facebook */
 }
 
-.footer-social a:nth-child(2):hover {
-    background: #0077B5;
-    /* Instagram */
+.footer-social a:nth-child(3):hover {
+    background: #0A66C2;
+    /* Linkedin */
 }
 
-.footer-social a:nth-child(3):hover {
-    background: #1DA1F2;
-    /* LinkedIn */
+.footer-social a:nth-child(4):hover {
+    background: #FF0000;
+    /* Youtube */
 }
 
 /*==========================================
@@ -1097,12 +1107,18 @@ button {
     margin-bottom: 10px;
 }
 
+@media (max-width:576px) {
+    .page-banner h1 {
+        font-size: 26px;
+    }
+}
+
 .page-banner p {
     color: #ddd;
     font-size: 16px;
 }
 
-.page-banner span {
+.page-banner span, .page-banner a {
     margin: 0 8px;
     color: var(--primary);
 }

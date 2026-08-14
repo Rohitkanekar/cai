@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /admin/
+Disallow: /api/
+Disallow: /includes/
+
 Sitemap: https://concreteartsindia.in/sitemap.xml

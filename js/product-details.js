@@ -1,4 +1,41 @@
 /*=========================================
+        NORMALIZE IMAGE PATH Reva 050493
+=========================================*/
+
+function normalizeImagePath(path) {
+
+    if (!path) {
+        return "";
+    }
+
+    path = String(path).trim();
+
+    if (!path) {
+        return "";
+    }
+
+    /* Already absolute URL */
+    if (
+        path.startsWith("http://") ||
+        path.startsWith("https://") ||
+        path.startsWith("//")
+    ) {
+        return path;
+    }
+
+    /* Root-relative path */
+    if (path.startsWith("/")) {
+        return path;
+    }
+
+    /* Remove ./ if present */
+    path = path.replace(/^\.\/+/, "");
+
+    /* Always make local paths root-relative */
+    return "/" + path;
+}
+
+/*=========================================
         PRODUCT DETAILS
 =========================================*/
 
@@ -20,11 +57,123 @@ const relatedProducts = document.getElementById("relatedProducts");
 let allProducts = [];
 
 /*=========================================
-        GET SLUG
+        GET PRODUCT SLUG
 =========================================*/
 
-const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
+const currentUrl = new URL(window.location.href);
+
+let slug = "";
+
+/*
+|--------------------------------------------------------------------------
+| METHOD 1
+| Query parameter:
+| product-details.php?slug=royal-frp-planter-ry3r55
+|--------------------------------------------------------------------------
+*/
+
+const querySlug = currentUrl.searchParams.get("slug");
+
+if (querySlug && querySlug.trim() !== "") {
+
+    slug = querySlug.trim();
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| METHOD 2
+| Pretty URL:
+| /product/royal-frp-planter-ry3r55
+|--------------------------------------------------------------------------
+*/
+
+if (!slug) {
+
+    const pathname = currentUrl.pathname
+        .replace(/\/+$/, "");
+
+    const match = pathname.match(
+        /\/product\/([^\/]+)$/i
+    );
+
+    if (match && match[1]) {
+
+        slug = decodeURIComponent(
+            match[1]
+        ).trim();
+
+    }
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| METHOD 3
+| Fallback: last pathname segment
+|--------------------------------------------------------------------------
+*/
+
+if (!slug) {
+
+    const pathParts = currentUrl.pathname
+        .split("/")
+        .filter(Boolean);
+
+    if (pathParts.length > 0) {
+
+        const lastPart =
+            pathParts[pathParts.length - 1];
+
+        /*
+         * Do not use PHP filenames as product slugs.
+         */
+        if (
+            lastPart &&
+            !lastPart.toLowerCase().endsWith(".php")
+        ) {
+
+            slug = decodeURIComponent(
+                lastPart
+            ).trim();
+
+        }
+
+    }
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| FINAL NORMALIZATION
+|--------------------------------------------------------------------------
+*/
+
+if (slug) {
+
+    slug = slug
+        .replace(/^\/+/, "")
+        .replace(/\/+$/, "")
+        .trim();
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| DEBUG
+|--------------------------------------------------------------------------
+*/
+
+console.log("=================================");
+console.log("CURRENT URL:", currentUrl.href);
+console.log("CURRENT PATH:", currentUrl.pathname);
+console.log("QUERY SLUG:", querySlug);
+console.log("FINAL PRODUCT SLUG:", slug);
+console.log("=================================");
+
+/*=========================================
+        LOAD PRODUCT
+=========================================*/
 
 /*=========================================
         LOAD PRODUCT
@@ -33,53 +182,199 @@ const slug = params.get("slug");
 async function loadProduct() {
 
     showLoader();
+
     try {
 
-        /* Product */
+        /*----------------------------------
+            VALIDATE SLUG
+        ----------------------------------*/
 
-        const response = await fetch(
-            `api/product.php?slug=${encodeURIComponent(slug)}`
-        );
+        if (
+            !slug ||
+            slug === "null" ||
+            slug === "undefined"
+        ) {
 
-        const data = await response.json();
-
-        if (!data.success) {
+            console.error(
+                "Invalid product slug:",
+                slug
+            );
 
             productContainer.innerHTML = `
                 <div class="product-not-found">
+
                     <h2>Product Not Found</h2>
-                    <a href="products.php" class="btn-primary">
+
+                    <a
+                        href="/products.php"
+                        class="btn-primary">
+
                         Back to Products
+
                     </a>
+
                 </div>
             `;
 
             return;
+
         }
 
-        /* All Products */
+        /*----------------------------------
+            NORMALIZE SLUG
+        ----------------------------------*/
 
-        const productsResponse = await fetch("api/products.php");
-        const productsData = await productsResponse.json();
+        slug = String(slug).trim();
 
-        allProducts = productsData.products || [];
+        /*----------------------------------
+            API URL
+        ----------------------------------*/
+
+        const productApiUrl =
+            `/api/product.php?slug=${encodeURIComponent(slug)}`;
+
+        console.log(
+            "Product API URL:",
+            productApiUrl
+        );
+
+        /*----------------------------------
+            FETCH PRODUCT
+        ----------------------------------*/
+
+        const response = await fetch(
+            productApiUrl,
+            {
+                method: "GET",
+                cache: "no-store",
+                headers: {
+                    "Accept": "application/json"
+                }
+            }
+        );
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Product API HTTP error: ${response.status}`
+            );
+
+        }
+
+        const data = await response.json();
+
+        console.log(
+            "Product API Response:",
+            data
+        );
+
+        /*----------------------------------
+            PRODUCT NOT FOUND
+        ----------------------------------*/
+
+        if (
+            !data ||
+            data.success !== true ||
+            !data.product
+        ) {
+
+            productContainer.innerHTML = `
+                <div class="product-not-found">
+
+                    <h2>Product Not Found</h2>
+
+                    <a
+                        href="/products.php"
+                        class="btn-primary">
+
+                        Back to Products
+
+                    </a>
+
+                </div>
+            `;
+
+            return;
+
+        }
+
+        /*----------------------------------
+            FETCH ALL PRODUCTS
+        ----------------------------------*/
+
+        const productsResponse = await fetch(
+            `/api/products.php`,
+            {
+                method: "GET",
+                cache: "no-store",
+                headers: {
+                    "Accept": "application/json"
+                }
+            }
+        );
+
+        if (!productsResponse.ok) {
+
+            throw new Error(
+                `Products API HTTP error: ${productsResponse.status}`
+            );
+
+        }
+
+        const productsData =
+            await productsResponse.json();
+
+        allProducts =
+            Array.isArray(productsData.products)
+                ? productsData.products
+                : [];
+
+        /*----------------------------------
+            RENDER PRODUCT
+        ----------------------------------*/
 
         renderProduct(data.product);
 
-        renderRelatedProducts(data.product);
+        /*----------------------------------
+            RENDER RELATED PRODUCTS
+        ----------------------------------*/
+
+        renderRelatedProducts(
+            data.product
+        );
 
     }
     catch (error) {
 
-        console.error("Unable to load product.", error);
+        console.error(
+            "Unable to load product:",
+            error
+        );
+
+        productContainer.innerHTML = `
+            <div class="product-not-found">
+
+                <h2>Unable to Load Product</h2>
+
+                <a
+                    href="/products.php"
+                    class="btn-primary">
+
+                    Back to Products
+
+                </a>
+
+            </div>
+        `;
 
     }
     finally {
+
         hideLoader();
+
     }
 
 }
-
 /*=========================================
         FORMAT PRICE
 =========================================*/
@@ -334,9 +629,21 @@ function renderProduct(product) {
         : (product.category?.name || "-");
 
     /* Resolve Image Path with fallback */
-    const imagePath = (product.thumbnail && product.thumbnail.trim() !== "" && product.thumbnail !== "-")
-        ? product.thumbnail
-        : (product.images && product.images.length > 0 ? product.images[0].image : "assets/images/placeholder.jpg");
+    const rawImagePath =
+        (
+            product.thumbnail &&
+            product.thumbnail.trim() !== "" &&
+            product.thumbnail !== "-"
+        )
+            ? product.thumbnail
+            : (
+                product.images &&
+                    product.images.length > 0
+                    ? product.images[0].image
+                    : "/images/no-image.webp"
+            );
+
+    const imagePath = normalizeImagePath(rawImagePath);
 
     const imageHTML = imagePath
         ? `<img src="${imagePath}" alt="${product.name}" id="mainImage">`
@@ -622,9 +929,9 @@ function renderRelatedProducts(currentProduct) {
 
     related.forEach(product => {
 
-        const image =
-            product.thumbnail ||
-            "images/no-image.webp";
+        const image = normalizeImagePath(
+            product.thumbnail || "/images/no-image.webp"
+        );
 
         const cardPriceRange = getRelatedProductPriceRange(product);
 
@@ -650,7 +957,7 @@ function renderRelatedProducts(currentProduct) {
                     </div>
 
                     <a
-                        href="product-details.php?id=${product.id}&slug=${product.slug}"
+                        href="/product/${encodeURIComponent(product.slug)}"
                         class="btn-primary">
 
                         View Details
@@ -661,7 +968,7 @@ function renderRelatedProducts(currentProduct) {
 
             </div>
 
-      `);
+`);
 
     });
 

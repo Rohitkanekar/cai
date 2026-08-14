@@ -1,5 +1,5 @@
 /*=========================================================
-                    PRODUCTS PAGE
+                    PRODUCTS PAGE Rohit 261288
 =========================================================*/
 
 /*=========================================================
@@ -424,7 +424,7 @@ function renderProducts() {
                     <div class="product-content">
                         <h3 title="${product.name || "-"}">${product.name || "-"}</h3>
                         <div class="product-price">₹ ${displayPrice}</div>
-                        <a href="product-details.php?id=${product.id}&slug=${product.slug}" class="btn-primary">
+                        <a href="/product/${encodeURIComponent(product.slug)}" class="btn-primary">
                             View Details
                         </a>
                     </div>
@@ -443,7 +443,7 @@ function renderProducts() {
                         <img src="${thumbnailSrc}" alt="${product.name || "-"}" loading="lazy">
                         <span class="list-category">${categoryName}</span>                  
                         <div class="list-price">₹ ${displayPrice}</div>
-                        <a href="product-details.php?id=${product.id}&slug=${product.slug}" class="btn-primary">
+                        <a href="/product/${encodeURIComponent(product.slug)}" class="btn-primary">
                             View Details
                         </a>
                     </div>
