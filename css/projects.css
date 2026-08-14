@@ -1,5 +1,5 @@
 /*==========================================
-            RECENT PROJECTS
+            RECENT PROJECTS CAI
 ==========================================*/
 
 .projects {
@@ -78,7 +78,7 @@
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 5px;
-    line-height: 1;
+    line-height: 1.3;
 }
 
 .project-info h5 {
@@ -159,4 +159,42 @@
 
 .lightbox-video {
     background: #000;
+}
+
+/* =========================================================
+   RESPONSIVE YOUTUBE LIGHTBOX
+========================================================= */
+
+.lightbox-youtube {
+    display: none;
+    width: min(90vw, 1200px);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    max-width: 100%;
+    border: 0;
+    border-radius: 8px;
+    background: #000;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+
+    .lightbox-youtube {
+        width: 92vw;
+        aspect-ratio: 16 / 9;
+        height: auto;
+    }
+
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+    .lightbox-youtube {
+        width: 94vw;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        border-radius: 4px;
+    }
+
 }

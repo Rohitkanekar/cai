@@ -4,7 +4,7 @@
     DATABASE CONFIGURATION
 =========================================*/
 
-$host = "localhost";
+$host = "ftp.concreteartsindia.in";
 $dbname = "u699767164_concreteart";
 $username = "u699767164_concreteart";
 $password = "Concreteart@2026";
