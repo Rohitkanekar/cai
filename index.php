@@ -9,34 +9,22 @@
 
     <!-- SEO -->
     <meta name="title" content="Concrete Arts India | Premium Concrete Planters, GRC & FRP Products">
-    <meta name="description"
-        content="Concrete Arts India manufactures GRC, FRP and concrete products including planters, benches, GRC jali, statues and custom architectural solutions in Mumbai.">
-    <meta name="keywords"
-        content="Concrete Arts India, Concrete Planters, FRP Products, GRC Jali, Outdoor Benches, Landscape Products, Garden Planters, Cement Planters, Concrete Furniture, Architectural Concrete, Garden Decor India">
+    <meta name="description" content="Concrete Arts India is a Mumbai manufacturer of concrete planters, benches, GRC jali, FRP products, statues and custom architectural solutions for residential, commercial and landscape projects across India.">    
     <meta name="author" content="Concrete Arts India">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#b8864a">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Concrete Arts India | Premium Concrete Planters & Landscape Products">
     <meta property="og:description"
         content="Manufacturer of Concrete Planters, GRC Jali, FRP Products, Outdoor Benches, Garden Furniture & Landscape Products across India.">
-    <meta property="og:image" content="https://concreteartsindia.in/images/logo.png">
+    <meta property="og:image" content="https://concreteartsindia.in/images/logo-new.png">
     <meta property="og:url" content="https://concreteartsindia.in/">
     <meta property="og:site_name" content="Concrete Arts India">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Concrete Arts India">
     <meta name="twitter:description"
         content="Premium Concrete Planters, GRC Jali, FRP Products and Landscape Solutions.">
-    <meta name="twitter:image" content="https://concreteartsindia.in/images/logo.png">
-    <meta name="geo.region" content="IN-MH">
-    <meta name="geo.placename" content="Mumbai">
-    <meta name="geo.position" content="19.173060;72.964460">
-    <meta name="ICBM" content="19.173060,72.964460">
-    <meta name="copyright" content="Concrete Arts India">
-    <meta name="distribution" content="global">
-    <meta name="rating" content="general">
+    <meta name="twitter:image" content="https://concreteartsindia.in/images/logo-new.png">
 
     <title>Concrete Arts India | GRC, FRP & Concrete Products Manufacturer in Mumbai</title>
     <link rel="canonical" href="https://concreteartsindia.in/">
@@ -49,37 +37,37 @@
         {
         "@context":"https://schema.org",
         "@graph":[
-
             {
             "@type":"Organization",
             "@id":"https://concreteartsindia.in/#organization",
             "name":"Concrete Arts India",
-            "url":"https://www.concreteartsindia.in",
-            "logo":"https://concreteartsindia.in/images/logo.png",
-            "image":"https://concreteartsindia.in/images/logo.png",
+            "url":"https://concreteartsindia.in/",
+            "logo":"https://concreteartsindia.in/images/logo-new.png",
+            "image":"https://concreteartsindia.in/images/logo-new.png",
             "telephone":"+91-7506865658",
             "email":"contact.concreteartsindia@gmail.com",
             "sameAs":[
                 "https://www.facebook.com/concreteartsindia.in",
-                "https://www.instagram.com/concreteartsindia",
+                "https://www.instagram.com/concreteartsindia.in",
                 "https://www.linkedin.com/company/concreteartsindia/",
                 "https://www.youtube.com/@ConcreteArtsIndia"
             ]
             },
-
             {
             "@type":"LocalBusiness",
             "@id":"https://concreteartsindia.in/#business",
+            "mainEntityOfPage": {
+                "@id": "https://concreteartsindia.in/"
+            },
             "name":"Concrete Arts India",
-            "image":"https://concreteartsindia.in/images/logo.png",
-            "url":"https://www.concreteartsindia.in",
+            "image":"https://concreteartsindia.in/images/logo-new.png",
+            "url":"https://concreteartsindia.in/",
             "telephone":"+91-7506865658",
             "email":"contact.concreteartsindia@gmail.com",
             "priceRange":"₹₹",
             "address":{
                 "@type":"PostalAddress",
-                "streetAddress":"Office No. 115, Udyog Kshetra, Next To D'Mart, Above Mahindra Showroom,
-                                Mulund Goregaon Link Road, Mulund (W), Mumbai - 400 080, Maharashtra, India",
+                "streetAddress":"Office No. 115, Udyog Kshetra, Next To D'Mart, Above Mahindra Showroom, Mulund Goregaon Link Road, Mulund (W), Mumbai - 400 080, Maharashtra, India",
                 "addressLocality":"Mumbai",
                 "addressRegion":"Maharashtra",
                 "postalCode":"400080",
@@ -101,13 +89,15 @@
                 }
             ]
             },
-
             {
             "@type":"WebSite",
-            "@id":"https://www.concreteartsindia.in",
-            "url":"https://www.concreteartsindia.in",
+            "@id":"https://concreteartsindia.in/#website",
+            "url":"https://concreteartsindia.in/",
             "name":"Concrete Arts India",
-            "alternateName": "Concrete Arts India"
+            "alternateName": [
+                "Concrete Arts India",
+                "concreteartsindia.in"
+            ]
             }
         ]
         }
@@ -151,7 +141,7 @@
             <div class="container">
                 <div class="logo">
                     <a href="index.php">
-                        <img src="images/logo.png" alt="Concrete Arts India">
+                        <img src="images/logo-new.png" alt="Concrete Arts India">
                     </a>
                 </div>
                 <ul class="menu">
@@ -188,8 +178,11 @@
                         Premium Concrete & Landscape Solutions
                     </div>
                     <h1>
-                        Concrete Arts India – GRC, FRP & Concrete Products Manufacturer in Mumbai
+                        Concrete Arts India
                     </h1>
+                    <p>
+                        GRC, FRP & Concrete Products Manufacturer in Mumbai.
+                    </p>
                     <p> We manufacture premium-quality concrete benches, planters,
                         bollards, sculptures, GRC jalis, FRP products and custom
                         architectural solutions for residential, commercial and public
@@ -262,7 +255,7 @@
                 <div class="about-content">
                     <span>WHO WE ARE</span>
                     <h2>
-                        Creating Beautiful Outdoor Spaces Since 2019
+                        Creating Beautiful Outdoor Spaces Since 2005
                     </h2>
                     <p>
                         Concrete Arts India specializes in premium architectural
@@ -466,7 +459,7 @@
             <div class="container">
                 <div class="counter-grid">
                     <div class="counter-box">
-                        <h2 data-target="18">0</h2>
+                        <h2 data-target="20">0</h2>
                         <p>Years Experience</p>
                     </div>
                     <div class="counter-box">
@@ -639,7 +632,7 @@
 
                 <div class="footer-column">
                     <a href="index.php" class="footer-logo">
-                        <img src="images/logo.png" alt="Concrete Arts India">
+                        <img src="images/logo-new.png" alt="Concrete Arts India">
                     </a>
                     <p class="footer-desc">
                         GST No. 27AGAPJ9480B1ZI
@@ -682,8 +675,8 @@
                 <div class="footer-column">
                     <h3>Categories</h3>
                     <ul>
-                        <li><a href="products.php">Planters</a></li>
-                        <li><a href="products.php">Benches</a></li>
+                        <li><a href="products.php">Concrete Planters</a></li>
+                        <li><a href="products.php">Concrete Benches</a></li>
                         <li><a href="products.php">GRC Jali</a></li>
                         <li><a href="products.php">Statues</a></li>
                     </ul>

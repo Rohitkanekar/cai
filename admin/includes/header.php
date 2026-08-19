@@ -72,7 +72,7 @@ require_once "auth.php";
             font-size: 15px;
         }
         .sidebar ul li a:hover {
-            background: #b88e2f;
+            background: #b8864a;
             color: #fff;
         }
         .sidebar i {

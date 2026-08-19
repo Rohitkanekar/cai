@@ -16,6 +16,9 @@ http_response_code(404);
 
     <meta name="description" content="The page you are looking for could not be found on Concrete Arts India.">
 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
@@ -29,7 +32,7 @@ http_response_code(404);
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: #f7f7f7;
             color: #222;
             display: flex;
@@ -46,6 +49,11 @@ http_response_code(404);
             padding: 60px 40px;
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 60px);
+            flex-direction: column;
         }
 
         .error-code {
@@ -73,7 +81,7 @@ http_response_code(404);
 
         .home-button {
             display: inline-block;
-            background: #B8864A;
+            background: #b8864a;
             color: #fff;
             text-decoration: none;
             font-size: 16px;

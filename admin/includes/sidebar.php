@@ -6,13 +6,13 @@ $currentDir = basename(dirname($_SERVER['PHP_SELF']));
 ?>
 <style>
     .active {
-        background: #b88e2f;
+        background: #b8864a;
         color: #fff;
     }
 </style>
 <div class="sidebar">
     <div class="logo">
-        <img src="<?= ADMIN_URL ?>assets/images/logo.png" alt="Concrete Arts India">
+        <img src="<?= ADMIN_URL ?>assets/images/logo-new.png" alt="Concrete Arts India">
     </div>
     <ul>
         <li>

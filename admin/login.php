@@ -59,12 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .login-logo h2 {
-            color: #b88e2f;
+            color: #b8864a;
             font-weight: 700;
         }
 
         .btn-login {
-            background: #b88e2f;
+            background: #b8864a;
             border: none;
         }
 

@@ -248,7 +248,7 @@
 
 .counter-box:hover {
     transform: translateY(-10px);
-    background: #B8864A;
+    background: var(--primary);
     box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
 }
 

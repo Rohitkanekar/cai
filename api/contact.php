@@ -395,7 +395,7 @@ try {
         $detailsRows
     );
     $ownerBody = buildEmailBody(
-        "Dear Admin, new enquiry received,",
+        "Dear Admin, new enquiry received",
         "A new enquiry has been submitted through the website. Please review the details below and follow up with the customer as needed.",
         $detailsRows
     );

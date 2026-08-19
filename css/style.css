@@ -257,7 +257,7 @@ main {
 ============================= */
 
 :root {
-    --primary: #B8864A;
+    --primary: #b8864a;
     --secondary: #1f1f1f;
     --light: #fff;
     --background: #f7f7f7;
@@ -715,11 +715,6 @@ button {
     margin-bottom: 25px;
 }
 
-.footer-logo img {
-    width: 170px;
-    display: block;
-}
-
 /*==========================================
             DESCRIPTION
 ==========================================*/
@@ -750,7 +745,7 @@ button {
     bottom: 0;
     width: 45px;
     height: 3px;
-    background: #B8864A;
+    background: #b8864a;
 }
 
 /*==========================================
@@ -775,7 +770,7 @@ button {
 }
 
 .footer-column ul li a:hover {
-    color: #B8864A;
+    color: #b8864a;
 }
 
 /*==========================================
@@ -790,7 +785,7 @@ button {
 }
 
 .contact-info i {
-    color: #B8864A;
+    color: #b8864a;
     font-size: 18px;
     margin-top: 3px;
 }
@@ -804,7 +799,7 @@ button {
 }
 
 .contact-info a:hover {
-    color: #B8864A;
+    color: #b8864a;
 }
 
 /*==========================================
@@ -884,7 +879,7 @@ button {
 }
 
 .footer-bottom-links a:hover {
-    color: #B8864A;
+    color: #b8864a;
 }
 
 /*==========================================

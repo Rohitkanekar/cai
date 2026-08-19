@@ -16,7 +16,7 @@ if ($isLocal) {
     $dbname = "u699767164_concreteart";
     $username = "u699767164_concreteart";
     $password = "Concreteart@2026";
-    define('ADMIN_URL', 'admin/');
+    define('ADMIN_URL', '/admin/');
 }
 try {
     $pdo = new PDO(

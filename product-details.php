@@ -304,7 +304,7 @@ if (!empty($productSEOImage)) {
 
     $socialImage =
         $siteUrl .
-        '/images/logo.png';
+        '/images/logo-new.png';
 }
 
 
@@ -496,7 +496,7 @@ $structuredData = [
             '@id' => $siteUrl . '/#organization',
             'name' => 'Concrete Arts India',
             'url' => $siteUrl . '/',
-            'logo' => $siteUrl . '/images/logo.png'
+            'logo' => $siteUrl . '/images/logo-new.png'
         ],
 
         $productSchema,
@@ -512,11 +512,8 @@ $structuredData = [
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <base href="/">
 
 
@@ -524,22 +521,13 @@ $structuredData = [
          PRIMARY SEO
     ====================================================== -->
 
-    <title>
-        <?= seoEscape($seoTitle) ?>
-    </title>
-
+    <title><?= seoEscape($seoTitle) ?></title>
     <meta name="description" content="<?= seoEscape($seoDescription) ?>">
-
     <meta name="keywords" content="<?= seoEscape($seoKeywords) ?>">
-
     <meta name="author" content="Concrete Arts India">
-
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
     <meta name="language" content="English">
-
     <meta name="theme-color" content="#b8864a">
 
 
@@ -562,17 +550,11 @@ $structuredData = [
     ====================================================== -->
 
     <meta property="og:type" content="product">
-
     <meta property="og:title" content="<?= seoEscape($seoTitle) ?>">
-
     <meta property="og:description" content="<?= seoEscape($seoDescription) ?>">
-
     <meta property="og:url" content="<?= seoEscape($productUrl) ?>">
-
     <meta property="og:site_name" content="Concrete Arts India">
-
     <meta property="og:image" content="<?= seoEscape($socialImage) ?>">
-
     <meta property="og:image:alt" content="<?= seoEscape($productSEO['name']) ?>">
 
 
@@ -581,13 +563,9 @@ $structuredData = [
     ====================================================== -->
 
     <meta name="twitter:card" content="summary_large_image">
-
     <meta name="twitter:title" content="<?= seoEscape($seoTitle) ?>">
-
     <meta name="twitter:description" content="<?= seoEscape($seoDescription) ?>">
-
     <meta name="twitter:image" content="<?= seoEscape($socialImage) ?>">
-
     <meta name="twitter:image:alt" content="<?= seoEscape($productSEO['name']) ?>">
 
 
@@ -596,11 +574,8 @@ $structuredData = [
     ====================================================== -->
 
     <meta name="geo.region" content="IN-MH">
-
     <meta name="geo.placename" content="Mumbai">
-
     <meta name="geo.position" content="19.173060;72.964460">
-
     <meta name="ICBM" content="19.173060,72.964460">
 
 
@@ -609,9 +584,7 @@ $structuredData = [
     ====================================================== -->
 
     <link rel="stylesheet" href="/css/style.css?v=<?= filemtime('css/style.css') ?>">
-
     <link rel="stylesheet" href="/css/product-details.css?v=<?= filemtime('css/product-details.css') ?>">
-
     <link rel="stylesheet" href="/css/font-awesome.css?v=<?= filemtime('css/font-awesome.css') ?>">
 
 
@@ -620,12 +593,12 @@ $structuredData = [
     ====================================================== -->
 
     <script type="application/ld+json">
-<?= json_encode(
-    $structuredData,
-    JSON_PRETTY_PRINT |
-    JSON_UNESCAPED_SLASHES |
-    JSON_UNESCAPED_UNICODE
-) ?>
+        <?= json_encode(
+            $structuredData,
+            JSON_PRETTY_PRINT |
+            JSON_UNESCAPED_SLASHES |
+            JSON_UNESCAPED_UNICODE
+        ) ?>
     </script>
 
 </head>
@@ -675,7 +648,7 @@ $structuredData = [
             <div class="container">
                 <div class="logo">
                     <a href="/">
-                        <img src="/images/logo.png" alt="Concrete Arts India">
+                        <img src="/images/logo-new.png" alt="Concrete Arts India">
                     </a>
                 </div>
                 <ul class="menu">
@@ -708,29 +681,20 @@ $structuredData = [
             <div class="overlay"></div>
             <div class="container">
                 <div class="banner-content">
-
                     <h1>
                         <?= seoEscape($productSEO['name']) ?>
                     </h1>
-
                     <p>
-
                         <a href="index.php">
                             Home
                         </a>
-
                         <span>/</span>
-
                         <a href="products.php">
                             Products
                         </a>
-
                         <span>/</span>
-
                         <?= seoEscape($productSEO['name']) ?>
-
                     </p>
-
                 </div>
             </div>
         </section>
@@ -746,40 +710,26 @@ $structuredData = [
         <!-- ==================================== EXPLORE MORE PRODUCTS ==================================== -->
 
         <section class="products-more section-padding">
-
             <div class="container">
-
                 <div class="section-heading">
                     <span>RELATED PRODUCTS</span>
                     <h2>You May Also Like</h2>
                 </div>
-
                 <div class="product-carousel">
-
                     <button class="carousel-btn prev">
                         <i class="fa fa-chevron-left"></i>
                     </button>
-
                     <div class="carousel-wrapper">
-
                         <div class="carousel-track" id="relatedProducts">
-
                             <!-- Products Here -->
-
                         </div>
-
                     </div>
-
                     <button class="carousel-btn next">
                         <i class="fa fa-chevron-right"></i>
                     </button>
-
                 </div>
-
             </div>
-
         </section>
-
     </main>
 
     <!-- ================= FOOTER ================= -->
@@ -791,7 +741,7 @@ $structuredData = [
 
                 <div class="footer-column">
                     <a href="index.php" class="footer-logo">
-                        <img src="images/logo.png" alt="Concrete Arts India">
+                        <img src="images/logo-new.png" alt="Concrete Arts India">
                     </a>
                     <p class="footer-desc">
                         GST No. 27AGAPJ9480B1ZI
@@ -834,8 +784,8 @@ $structuredData = [
                 <div class="footer-column">
                     <h3>Categories</h3>
                     <ul>
-                        <li><a href="products.php">Planters</a></li>
-                        <li><a href="products.php">Benches</a></li>
+                        <li><a href="products.php">Concrete Planters</a></li>
+                        <li><a href="products.php">Concrete Benches</a></li>
                         <li><a href="products.php">GRC Jali</a></li>
                         <li><a href="products.php">Statues</a></li>
                     </ul>
